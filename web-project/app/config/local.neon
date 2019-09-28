@@ -1,0 +1,7 @@
+parameters:
+
+
+database:
+	dsn: 'mysql:host=127.0.0.1;dbname=iis'
+	user: 'iis'
+	password: 'the_best_project_ever'
