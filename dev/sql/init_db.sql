@@ -1,4 +1,4 @@
-# ISS project
+# IIS project
 # Description: Init database scheme.
 # Author: Jiri Jurica (xjuric29)
 
@@ -32,6 +32,7 @@ CREATE TABLE `user_customer` (
 CREATE TABLE `user_worker` (
     `id` VARCHAR(32) NOT NULL,
     `superior` VARCHAR(32) DEFAULT NULL,
+    `role` ENUM('common_worker', 'manager', 'superior', 'administrator'),
     PRIMARY KEY(`id`),
     FOREIGN KEY(`id`)
         REFERENCES user(`id`)
@@ -97,7 +98,6 @@ CREATE TABLE `event_ticket_comment` (
     `ticket` INTEGER NOT NULL,
     `author` VARCHAR(32) NOT NULL,
     `content` TEXT NOT NULL,
-    `image` BLOB DEFAULT NULL,
     PRIMARY KEY(`id`),
     FOREIGN KEY(`ticket`)
         REFERENCES ticket(`id`)
