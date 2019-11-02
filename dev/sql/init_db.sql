@@ -19,14 +19,23 @@ CREATE TABLE `user` (
     PRIMARY KEY(`id`)
 );
 
+CREATE TABLE `company` (
+    `id` INTEGER AUTO_INCREMENT,
+    `name` VARCHAR(256) NOT NULL,
+    `deleted` BOOLEAN DEFAULT 0 NOT NULL,
+    PRIMARY KEY(`id`)
+);
+
 CREATE TABLE `user_customer` (
     `id` VARCHAR(32) NOT NULL,
-    `company` VARCHAR(64) DEFAULT NULL,
+    `id_company` INTEGER,
     PRIMARY KEY(`id`),
     FOREIGN KEY(`id`)
         REFERENCES user(`id`)
         ON UPDATE CASCADE
-        ON DELETE CASCADE   # If I will delete a record from `user` table, the record with same `id` will be deleted from this table.
+        ON DELETE CASCADE,  # If I will delete a record from `user` table, the record with same `id` will be deleted from this table.
+	FOREIGN KEY  (`id_company`)
+		REFERENCES company(`id`)
 );
 
 CREATE TABLE `user_worker` (
@@ -46,8 +55,11 @@ CREATE TABLE `user_worker` (
 
 CREATE TABLE `product` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
-    `name` VARCHAR(128) NOT NULL,
-    PRIMARY KEY(`id`)
+    `id_company` INTEGER NOT NULL,
+	`name` VARCHAR(128) NOT NULL,
+    PRIMARY KEY(`id`),
+	FOREIGN KEY (`id_company`)
+		REFERENCES company(`id`)
 );
 
 CREATE TABLE `sub_product` (
