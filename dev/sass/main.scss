@@ -17,6 +17,18 @@ $color-button: #d9544f;
   @include button-variant($color-button, $color-button);
 }
 
+section nav div.dropdown a{
+  width: 150px;
+  text-align: left;
+  position: relative;
+
+  &::after{
+    position: absolute;
+    right: 10px;
+    top: 15px;
+  }
+}
+
 section { // Main content of the site.
   margin-top: 80px;
 
