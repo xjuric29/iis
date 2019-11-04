@@ -12,7 +12,7 @@ git clone git@github.com:xjuric29/iis.git
 cd iis/web-project
 composer install	# Install nette dependencies to vendor dir.
 sudo ln -s /var/git/iis/web-project/www/ /var/www/iis
-sudo printf "\n #IIS project\nlocalhost\tiis\n" >> /etc/hosts
+sudo printf "\n# IIS project\nlocalhost\tiis\n" >> /etc/hosts
 sudo ln -s /var/git/iis/dev/apache2/sites-available/iis.conf /etc/apache2/sites-available/
 sudo a2ensite iis.conf
 sudo systemctl reload apache2

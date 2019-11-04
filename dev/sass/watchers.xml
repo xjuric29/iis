@@ -1,0 +1,22 @@
+<TaskOptions>
+  <TaskOptions>
+    <option name="arguments" value="--sourcemap=none --no-cache --load-path /home/jirkaj/Git/iis/web-project/vendor/twbs/bootstrap/scss --load-path /home/jirkaj/Git/iis/web-project/vendor/twbs/bootstrap/scss/mixins --load-path /home/jirkaj/Git/iis/web-project/vendor/twbs/bootstrap/scss/utilities --update /home/jirkaj/Git/iis/dev/sass/main.scss:/home/jirkaj/Git/iis/web-project/www/css/main.css" />
+    <option name="checkSyntaxErrors" value="true" />
+    <option name="description" />
+    <option name="exitCodeBehavior" value="ERROR" />
+    <option name="fileExtension" value="scss" />
+    <option name="immediateSync" value="true" />
+    <option name="name" value="SCSS" />
+    <option name="output" value="$FileNameWithoutExtension$.css" />
+    <option name="outputFilters">
+      <array />
+    </option>
+    <option name="outputFromStdout" value="false" />
+    <option name="program" value="scss" />
+    <option name="runOnExternalChanges" value="true" />
+    <option name="scopeName" value="Sass" />
+    <option name="trackOnlyRoot" value="true" />
+    <option name="workingDir" value="$FileDir$" />
+    <envs />
+  </TaskOptions>
+</TaskOptions>

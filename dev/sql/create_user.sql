@@ -1,4 +1,4 @@
-# ISS project
+# ISS project 2019
 # Description: Create project db user.
 # Author: Jiri Jurica (xjuric29)
 

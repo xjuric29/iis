@@ -1,0 +1,61 @@
+/*!
+ * IIS project 2019
+ * Description: Sass code for site styles.
+ * Author: Jiri Jurica (xjuric29)
+ */
+
+// Bootstrap sass code import.
+@import "../../web-project/vendor/twbs/bootstrap/scss/bootstrap.scss";
+
+// Own variable and mixin definitions.
+$grid-breakpoints: map_merge($grid-breakpoints, ("xxl": 1495px)); // Append new breakpoint to bootstrap.
+
+$color-button: #d9544f;
+
+// Main phone breakpoint rules.
+.btn-our {  // Define our own button color.
+  @include button-variant($color-button, $color-button);
+}
+
+section { // Main content of the site.
+  margin-top: 80px;
+
+  header {  // Headline and creation ticket button.
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+// Extended tablet rules.
+@media (min-width: map-get($grid-breakpoints, lg)) {
+
+}
+
+// Extended computer rules.
+@media (min-width: map-get($grid-breakpoints, xl)) {
+  .navbar {
+    height: 180px;
+
+    .container {
+      .col-12 {
+        display: flex;  // Keep elements in navbar in same row.
+
+        .navbar-brand {
+          font-size: 2.5em; // Size of project name in header.
+        }
+
+        .nav-item {
+          font-size: 1.625em;
+        }
+      }
+    }
+  }
+}
+
+// Define new breakpoint container size.
+@media (min-width: map-get($grid-breakpoints, xxl)) {
+  .container {  // Define new size of container for xxl breakpoint size.
+    max-width: map-get($grid-breakpoints, xxl) - 60 !important;
+  }
+}

@@ -1,4 +1,4 @@
-# IIS project
+# IIS project 2019
 # Description: Init database scheme.
 # Author: Jiri Jurica (xjuric29)
 
