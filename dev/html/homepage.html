@@ -54,18 +54,86 @@ Author: Jiri Jurica (xjuric29)
             <a class="btn btn-our float-right" href="#" role="button">Add ticket</a>
         </header>
         <hr>
-        <nav>
+        <nav class="d-flex">
             <div class="dropdown">
-                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="btn dropdown-toggle border" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Sort
                 </a>
 
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                    <a class="dropdown-item" href="#">Name</a>
-                    <a class="dropdown-item" href="#">Date</a>
+                    <a class="dropdown-item" href="#">Name descending</a>
+                    <a class="dropdown-item" href="#">Name ascending</a>
+                    <a class="dropdown-item" href="#">Date descending</a>
+                    <a class="dropdown-item" href="#">Date ascending</a>
                 </div>
             </div>
+
+            <div class="input-group mb-3" id="searchbox">
+                <input type="text" class="form-control" placeholder="Search..." aria-label="Search..." aria-describedby="button-addon2">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="button" id="button-addon2">Search</button>
+                </div>
+            </div>
+
         </nav>
+
+        <table class="table table-hover table-responsive-lg">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">Issue</th>
+                <th scope="col">Date</th>
+                <th scope="col">State</th>
+                <th scope="col">Reporter</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+                    <a href="#">Issue123</a>
+                    <div>Haloo from di odr sajd</div>
+
+                </td>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>@mdo</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#">Michal nerob paniku</a>
+                    <div>Michal panikari pri robeni IIS projektu</div>
+                </td>
+                <td>Jacob</td>
+                <td>Thornton</td>
+                <td>@fat</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#">Issue23456788765</a>
+                    <div>Nieco nejde</div>
+                </td>
+                <td>Larry</td>
+                <td>the Bird</td>
+                <td>@twitter</td>
+            </tr>
+            </tbody>
+        </table>
+
+
+
+        <nav aria-label="Page navigation example" id="paging">
+            <ul class="pagination justify-content-center">
+                <li class="page-item disabled">
+                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                    <a class="page-link" href="#">Next</a>
+                </li>
+            </ul>
+        </nav>
+
     </section>
 </body>
 </html>

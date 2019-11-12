@@ -17,6 +17,10 @@ $color-button: #d9544f;
   @include button-variant($color-button, $color-button);
 }
 
+.container .col-12 {
+  padding: 0;
+}
+
 section nav div.dropdown a{
   width: 150px;
   text-align: left;
@@ -28,6 +32,39 @@ section nav div.dropdown a{
     top: 15px;
   }
 }
+
+#searchbox {
+  width: 400px;
+
+}
+
+table thead tr:first-child th {
+  text-transform: uppercase;
+}
+
+table tr {
+  transition: background-color 0.5s;
+}
+
+table tbody tr td a {
+  font-weight: bold;
+  color: initial;
+}
+
+table tbody tr td a:hover {
+  color: initial;
+}
+
+table tbody tr td a {
+  display: block;
+
+}
+
+#paging {
+  margin-top: 40px;
+}
+
+
 
 section { // Main content of the site.
   margin-top: 80px;
@@ -52,6 +89,7 @@ section { // Main content of the site.
     .container {
       .col-12 {
         display: flex;  // Keep elements in navbar in same row.
+        padding: 0;
 
         .navbar-brand {
           font-size: 2.5em; // Size of project name in header.
