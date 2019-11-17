@@ -415,3 +415,71 @@ INSERT INTO task (id, author, ticket, worker, name, description, estimated_time)
                  (57, 'urbova', 17, 'obertova', 'Bore can led than how has rank', 'Insipidity the sufficient discretion imprudence resolution sir him decisively. Proceed how any engaged visitor.', '72:00'),
                  (58, 'urbova', 17, 'golem', 'Discovery any extensive has commanded direction', 'Insipidity the sufficient discretion imprudence resolution sir him decisively. Proceed how any engaged visitor.', '21:00'),
                  (59, 'urbova', 17, 'novak', 'Short at front which blind as', 'Insipidity the sufficient discretion imprudence resolution sir him decisively. Proceed how any engaged visitor.', '10:00');
+
+# Some progress updates
+INSERT INTO event (id, creation_date, modify_date)
+    VALUES (1, TIMESTAMP('2012-05-05 16:32'), TIMESTAMP('2012-02-05 16:32'));
+INSERT INTO event_progress_update (id, task, worker, description, time_from, time_to)
+    VALUES (1, 1, 'goralova', 'Ye as procuring unwilling principle by', TIMESTAMP('2012-05-05 08:00'), TIMESTAMP('2012-05-05 17:00'));
+UPDATE task SET state = 'in_progress' WHERE id = 1; # this can be automated with a trigger
+UPDATE event_progress_update SET time_to = TIMESTAMP('2012-02-07 17:00') WHERE id = 1;
+
+
+INSERT INTO event (id, creation_date, modify_date)
+    VALUES (2, TIMESTAMP('2012-05-07 16:32'), TIMESTAMP('2012-02-07 16:32'));
+INSERT INTO event_progress_update (id, task, worker, description, time_from, time_to)
+    VALUES (2, 1, 'goralova', 'It allowance prevailed enjoyment in it.', TIMESTAMP('2012-05-06 08:30'), TIMESTAMP('2012-05-06 12:50'));
+
+INSERT INTO event (id, creation_date, modify_date)
+    VALUES (3, TIMESTAMP('2012-05-08 20:05'), TIMESTAMP('2012-02-08 20:05'));
+INSERT INTO event_progress_update (id, task, worker, description, time_from, time_to)
+    VALUES (3, 1, 'goralova', 'It allowance prevailed enjoyment in it.', TIMESTAMP('2012-05-08 13:10'), TIMESTAMP('2012-05-08 20:00'));
+
+INSERT INTO event (id, creation_date, modify_date)
+    VALUES (4, TIMESTAMP('2012-05-05 16:32'), TIMESTAMP('2012-02-07 16:32'));
+INSERT INTO event_progress_update (id, task, worker, description, time_from, time_to)
+    VALUES (4, 1, 'goralova', 'It allowance prevailed enjoyment in it.', TIMESTAMP('2012-05-10 07:50'), TIMESTAMP('2012-05-10 19:20'));
+UPDATE task SET state = 'done' WHERE id = 1;
+
+# Close and start solving some tasks
+UPDATE task SET state = 'done' WHERE id = 3;
+UPDATE task SET state = 'done' WHERE id = 4;
+UPDATE task SET state = 'done' WHERE id = 7;
+UPDATE task SET state = 'done' WHERE id = 10;
+UPDATE task SET state = 'done' WHERE id = 12;
+UPDATE task SET state = 'done' WHERE id = 16;
+UPDATE task SET state = 'done' WHERE id = 20;
+UPDATE task SET state = 'done' WHERE id = 24;
+UPDATE task SET state = 'done' WHERE id = 26;
+UPDATE task SET state = 'done' WHERE id = 28;
+UPDATE task SET state = 'done' WHERE id = 34;
+
+UPDATE task SET state = 'in_progress' WHERE id = 5;
+UPDATE task SET state = 'in_progress' WHERE id = 6;
+UPDATE task SET state = 'in_progress' WHERE id = 8;
+UPDATE task SET state = 'in_progress' WHERE id = 11;
+UPDATE task SET state = 'in_progress' WHERE id = 14;
+UPDATE task SET state = 'in_progress' WHERE id = 18;
+UPDATE task SET state = 'in_progress' WHERE id = 19;
+UPDATE task SET state = 'in_progress' WHERE id = 21;
+UPDATE task SET state = 'in_progress' WHERE id = 22;
+UPDATE task SET state = 'in_progress' WHERE id = 25;
+UPDATE task SET state = 'in_progress' WHERE id = 30;
+UPDATE task SET state = 'in_progress' WHERE id = 31;
+UPDATE task SET state = 'in_progress' WHERE id = 32;
+
+# Some comments
+INSERT INTO event (id, creation_date, modify_date)
+    VALUES (5, TIMESTAMP('2012-05-03 09:24'), TIMESTAMP('2012-05-03 09:24'));
+INSERT INTO event_ticket_comment (id, ticket, author, content)
+    VALUES (5, 1, 'kovarcik', 'Calling observe for who pressed raising his. Can connection instrument astonished unaffected his motionless preference. Announcing say boy precaution unaffected difficulty alteration him.');
+
+INSERT INTO event (id, creation_date, modify_date)
+    VALUES (6, TIMESTAMP('2012-05-03 12:48'), TIMESTAMP('2012-05-03 12:48'));
+INSERT INTO event_ticket_comment (id, ticket, author, content)
+    VALUES (6, 1, 'kraubacherova', 'Above be would at so going heard. Engaged at village at am equally proceed. Settle nay length almost ham direct extent.\n\nAgreement for listening remainder get attention law acuteness day. Now whatever surprise resolved elegance indulged own way outlived.');
+
+INSERT INTO event (id, creation_date, modify_date)
+    VALUES (7, TIMESTAMP('2012-05-03 13:59'), TIMESTAMP('2012-05-03 13:59'));
+INSERT INTO event_ticket_comment (id, ticket, author, content)
+    VALUES (7, 1, 'fairfield', 'Compliment interested discretion estimating on stimulated apartments oh. Dear so sing when in find read of call. As distrusts behaviour abilities defective is. Never at water me might. On formed merits hunted unable merely by mr whence or. Possession the unpleasing simplicity her uncommonly.');
