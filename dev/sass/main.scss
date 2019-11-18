@@ -64,7 +64,65 @@ table tbody tr td a {
   margin-top: 40px;
 }
 
+#ticket-detail {
+  max-width: 50em;
+  margin-top: 0;
 
+  table {
+    margin-top: 30px;
+  }
+
+  table tbody tr th {
+    font-weight: normal;
+    width: 10em;
+    vertical-align: top;
+  }
+
+  table tbody tr td {
+    font-size: 16px;
+  }
+}
+
+#ticket-item {
+  font-size: 16px;
+}
+
+.initials-bg {
+  background-color: #6f42c1;
+  padding: 10px;
+  color: white;
+}
+
+.comment-wrapper-left {
+  padding-left: 10px;
+  padding-top: 20px;
+}
+
+.name-user {
+  position: relative;
+  left: 50px;
+  top: -30px;
+}
+
+.date-and-time {
+  position: relative;
+  left: 50px;
+  top: -30px;
+}
+
+.comment-content {
+  //border-style: solid;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  padding-top: 10px;
+  padding-left: 10px;
+  padding-bottom: 20px;
+  background-color: whitesmoke;
+  margin-top: -25px;
+  margin-left: 50px;
+  margin-bottom: 40px;
+}
 
 section { // Main content of the site.
   margin-top: 80px;
@@ -84,7 +142,7 @@ section { // Main content of the site.
 // Extended computer rules.
 @media (min-width: map-get($grid-breakpoints, xl)) {
   .navbar {
-    height: 180px;
+    height: 130px;
 
     .container {
       .col-12 {
