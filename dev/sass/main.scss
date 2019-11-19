@@ -33,9 +33,9 @@ section nav div.dropdown a{
   }
 }
 
-#searchbox {
-  width: 400px;
-
+#searchbox-wrapper {
+  margin-top: 1em;
+  width: 100%;
 }
 
 table thead tr:first-child th {
@@ -158,6 +158,11 @@ section { // Main content of the site.
         }
       }
     }
+  }
+
+  #searchbox-wrapper {
+    margin-top: 0;
+    width: 40%;
   }
 }
 
