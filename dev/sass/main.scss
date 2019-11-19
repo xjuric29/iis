@@ -237,6 +237,11 @@ section { // Main content of the site.
       }
     }
   }
+
+  #searchbox-wrapper {
+    margin-top: 0;
+    width: 40%;
+  }
 }
 
 // Define new breakpoint container size.
