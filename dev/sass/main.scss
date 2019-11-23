@@ -17,6 +17,7 @@ $color-button: #d9544f;
   @include button-variant($color-button, $color-button);
 }
 
+
 .container .col-12 {
   padding: 0;
 }
@@ -38,6 +39,7 @@ section nav div.dropdown a{
 
 }
 
+//Table on main page
 table thead tr:first-child th {
   text-transform: uppercase;
 }
@@ -64,6 +66,7 @@ table tbody tr td a {
   margin-top: 40px;
 }
 
+//Ticked detail
 #ticket-detail {
   max-width: 50em;
   margin-top: 0;
@@ -118,10 +121,81 @@ table tbody tr td a {
   padding-top: 10px;
   padding-left: 10px;
   padding-bottom: 20px;
+  padding-right: 20px;
   background-color: whitesmoke;
   margin-top: -25px;
   margin-left: 50px;
   margin-bottom: 40px;
+  max-width: 40em;
+}
+
+.circle-right {
+  margin-left: 650px;
+}
+
+.comment-content-right {
+  border-top-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  padding-top: 10px;
+  padding-left: 10px;
+  padding-bottom: 20px;
+  padding-right: 20px;
+  background-color: whitesmoke;
+  margin-right: 60px;
+  margin-bottom: 20px;
+  max-width: 40em;
+  float: right;
+}
+
+#name-date-right {
+  text-align: right;
+  margin-right: 60px;
+  margin-bottom: 5px;
+  margin-top: -30px;
+}
+
+#edit-butt {
+  color: #4e555b;
+  float: right;
+  margin-top: -35px;
+
+  div {
+    float: left;
+    margin-right: 5px;
+  }
+  img {
+    float: right;
+  }
+}
+
+#edit-butt:hover {
+  color: dodgerblue;
+}
+
+.comment-field {
+  color: #b3b7bb;
+  padding-top: 5px;
+  padding-left: 5px;
+  margin-top: 15px;
+  margin-bottom: 20px;
+}
+
+img.attach-img {
+  max-width: 200px;
+}
+
+.drop-type {
+  margin-bottom: 0.5rem;
+}
+
+.drop-product {
+  max-width: 20em;
+}
+
+#product-type {
+  margin-top: 30px;
+  max-width: 20em;
 }
 
 section { // Main content of the site.
