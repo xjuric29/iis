@@ -54,7 +54,7 @@ Author: Jiri Jurica (xjuric29)
             <a class="btn btn-our float-right" href="#" role="button">Add ticket</a>
         </header>
         <hr>
-        <nav class="d-flex">
+        <nav class="d-flex flex-wrap justify-content-between">
             <div class="dropdown">
                 <a class="btn dropdown-toggle border" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Sort
@@ -67,17 +67,18 @@ Author: Jiri Jurica (xjuric29)
                     <a class="dropdown-item" href="#">Date ascending</a>
                 </div>
             </div>
-
-            <div class="input-group mb-3" id="searchbox">
-                <input type="text" class="form-control" placeholder="Search..." aria-label="Search..." aria-describedby="button-addon2">
-                <div class="input-group-append">
-                    <button class="btn btn-outline-secondary" type="button" id="button-addon2">Search</button>
+            <div id="searchbox-wrapper">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Search..." aria-label="Search..." aria-describedby="button-addon2">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="button" id="button-addon2">Search</button>
+                    </div>
                 </div>
             </div>
 
         </nav>
 
-        <table class="table table-hover table-responsive-lg">
+        <table class="table table-hover table-responsive-md">
             <thead class="thead-dark">
             <tr>
                 <th scope="col">Issue</th>

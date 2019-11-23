@@ -34,9 +34,9 @@ section nav div.dropdown a{
   }
 }
 
-#searchbox {
-  width: 400px;
-
+#searchbox-wrapper {
+  margin-top: 1em;
+  width: 100%;
 }
 
 //Table on main page
@@ -210,7 +210,11 @@ section { // Main content of the site.
 
 // Extended tablet rules.
 @media (min-width: map-get($grid-breakpoints, lg)) {
-
+  #searchbox-wrapper {
+    margin-top: 0;
+    width: 35%;
+    min-width: 250px;
+  }
 }
 
 // Extended computer rules.
@@ -232,6 +236,11 @@ section { // Main content of the site.
         }
       }
     }
+  }
+
+  #searchbox-wrapper {
+    margin-top: 0;
+    width: 40%;
   }
 }
 
