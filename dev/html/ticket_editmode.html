@@ -15,6 +15,7 @@ Author: Jiri Jurica (xjuric29)
     <link rel="stylesheet" href="../../web-project/www/css/main.css">
 
     <title>ITS | Ticket-editmode</title>
+    <link rel="stylesheet" href="../sass/main.scss">
 </head>
 <body>
 <nav class="navbar navbar-expand-xl navbar-dark bg-dark">
@@ -56,12 +57,12 @@ Author: Jiri Jurica (xjuric29)
     <hr>
     <section id="ticket-detail">
         <label for="exampleFormControlInput1">Issue</label>
-        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Phasellus eget enim in arcu">
+        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Phasellus eget enim in arcu"> //ZMENIT
 
-        <div id="product-type">
-            <div class="drop-type">Product type</div>
+        <div class="product-type" id="product">
+            <div class="drop-type mt-4">Product type</div>
             <div class="drop-product dropdown">
-                <a class="btn dropdown-toggle border" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="btn dropdown-toggle border product-dropdown" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Product1
                 </a>
 
@@ -73,6 +74,40 @@ Author: Jiri Jurica (xjuric29)
                 </div>
             </div>
         </div>
+
+        <div class="product-type" id="subproduct">
+            <div class="drop-type mt-4">Subproduct</div>
+            <div class="drop-product dropdown">
+                <a class="btn dropdown-toggle border product-dropdown" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Product1
+                </a>
+
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <a class="dropdown-item" href="#">Product2</a>
+                    <a class="dropdown-item" href="#">Product3</a>
+                    <a class="dropdown-item" href="#">Product4</a>
+                    <a class="dropdown-item" href="#">Product5</a>
+                </div>
+            </div>
+        </div>
+
+        <div id="description-edit">
+            <div class="drop-type mt-4">Description</div>
+            <textarea class="form-control description-edit-field" id="exampleFormControlTextarea1" rows="3">Fusce placerat et erat ac imperdiet. Nunc sed felis sed enim dictum faucibus. Mauris et eleifend turpis. Cras magna arcu, consequat vel faucibus nec, rutrum aliquam turpis. In convallis condimentum sem, a cursus libero ultrices et. Donec auctor metus ut augue eleifend, vitae posuere dui scelerisque. Proin sagittis, sapien quis semper facilisis, felis augue tincidunt nisl, non tincidunt dui est eu nisl. Nullam ipsum felis, dictum nec leo eget, euismod luctus ante. Aliquam efficitur, velit sit amet molestie posuere, neque ipsum sodales enim, id commodo tortor ligula non felis. Pellentesque tristique molestie quam vel porta.
+            </textarea>
+        </div>
+
+        <div id="attachements">
+            <div class="mt-4">Attachements:</div>
+            <div id="no-file">No files attached.</div>
+            <button type="button" class="btn btn-light mt-3 choose-file">Choose file</button>
+        </div>
+
+        <div id="save-buttons">
+            <button type="button" class="btn btn-primary mt-4 submit-but">Submit</button>
+            <div><button type="button" class="btn btn-outline-secondary close-but">Close</button></div>
+        </div>
+
 
     </section>
 </section>
