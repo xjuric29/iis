@@ -193,9 +193,61 @@ img.attach-img {
   max-width: 20em;
 }
 
-#product-type {
-  margin-top: 30px;
+.product-type {
   max-width: 20em;
+}
+
+#product {
+  float: left;
+}
+
+#subproduct{
+  float: right;
+}
+
+.product-dropdown {
+  width: 20em;
+  text-align: left;
+}
+
+section#ticket-detail .dropdown-toggle::after { //"arrow/triangle" position in dropdown
+  position: absolute;
+  right: 10px;
+  top: 15px;
+}
+
+#description-edit {
+  display: inline-block;
+  width: 50em;
+}
+
+.description-edit-field {
+  padding-top: 5px;
+  padding-left: 5px;
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
+
+.choose-file {
+  background-color: #b3b7bb;
+}
+
+#no-file {
+  color: #b3b7bb;
+  font-style: italic;
+}
+
+#save-buttons {
+  margin-top: 20px;
+}
+
+.close-but {
+  float: right;
+  margin-right: 35em;
+}
+
+.submit-but {
+  float: left;
 }
 
 section { // Main content of the site.
