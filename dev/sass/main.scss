@@ -72,7 +72,9 @@ table tbody tr td a {
   margin-top: 0;
 
   table {
-    margin-top: 30px;
+    display: flex;
+    flex-grow: 3;
+    border-right: solid 1px;
   }
 
   table tbody tr th {
@@ -88,6 +90,22 @@ table tbody tr td a {
 
 #ticket-item {
   font-size: 16px;
+}
+
+.ticket-detail-table {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-top: 30px;
+}
+
+.ticket-state {
+  padding-left: 10px;
+}
+
+.ticked-detail-state {
+  font-weight: bold;
+  text-transform: uppercase;
 }
 
 .initials-bg {
@@ -168,6 +186,10 @@ table tbody tr td a {
   //margin-top: -30px;*/
 }
 
+.comment-user-info, .comment-user-info-right {
+  margin-bottom: 1em;
+}
+
 .name-date-left {
   margin-left: 0.7em;
 }
@@ -225,6 +247,11 @@ img.attach-img {
 .product-dropdown {
   width: 20em;
   text-align: left;
+}
+
+#task-name {
+  font-style: italic;
+  font-weight: normal;
 }
 
 section#ticket-detail .dropdown-toggle::after { //"arrow/triangle" position in dropdown
