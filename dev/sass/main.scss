@@ -97,19 +97,19 @@ table tbody tr td a {
 }
 
 .comment-wrapper-left {
-  padding-left: 10px;
-  padding-top: 20px;
+  padding-left: 0.8em;
+  padding-top: 1.6em;
 }
 
 .name-user {
   position: relative;
-  left: 50px;
+  left: 3.6em;
   top: -30px;
 }
 
 .date-and-time {
   position: relative;
-  left: 50px;
+  left: 3.6em;
   top: -30px;
 }
 
@@ -124,13 +124,13 @@ table tbody tr td a {
   padding-right: 20px;
   background-color: whitesmoke;
   margin-top: -25px;
-  margin-left: 50px;
+  margin-left: 3.6em;
   margin-bottom: 40px;
   max-width: 40em;
 }
 
 .circle-right {
-  margin-left: 650px;
+  margin-left: 46.4em;
 }
 
 .comment-content-right {
@@ -142,7 +142,7 @@ table tbody tr td a {
   padding-bottom: 20px;
   padding-right: 20px;
   background-color: whitesmoke;
-  margin-right: 60px;
+  margin-right: 4.3em;
   margin-bottom: 20px;
   max-width: 40em;
   float: right;
@@ -150,7 +150,7 @@ table tbody tr td a {
 
 #name-date-right {
   text-align: right;
-  margin-right: 60px;
+  margin-right: 4.3em;
   margin-bottom: 5px;
   margin-top: -30px;
 }
@@ -239,6 +239,7 @@ section#ticket-detail .dropdown-toggle::after { //"arrow/triangle" position in d
 
 #save-buttons {
   margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .close-but {
