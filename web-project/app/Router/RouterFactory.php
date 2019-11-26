@@ -18,7 +18,7 @@ final class RouterFactory
 		$router->addRoute('<presenter>/<action>[/<id>]', 'Homepage:default');
 
 		# Ticket overview
-        $router->addRoute('<presenter>/<action>[/<page=1 \d+>] ? orderBy=<orderAttr> & order=<orderDir>', 'Tickets:default');
+        $router->addRoute('<presenter>/<action>[/<page=1 \d+>]', 'Tickets:default');
 		return $router;
 	}
 }
