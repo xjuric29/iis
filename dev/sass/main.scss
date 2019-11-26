@@ -101,11 +101,17 @@ table tbody tr td a {
 
 .ticket-state {
   padding-left: 10px;
+  margin-bottom: 3px;
 }
 
 .ticked-detail-state {
   font-weight: bold;
   text-transform: uppercase;
+}
+
+.ticked-side-details {
+  display: flex;
+  flex-direction: column;
 }
 
 .initials-bg {
