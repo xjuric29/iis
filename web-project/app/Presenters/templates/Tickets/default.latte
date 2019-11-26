@@ -1,0 +1,75 @@
+{block title}
+ITS | Tickets
+{/block}
+{block content}
+    <section class="container">
+        <header class="col-12">
+            <h1>Tickets</h1>
+            <a class="btn btn-our float-right" href="#" role="button">Add ticket</a>
+        </header>
+        <hr>
+        <nav class="d-flex flex-wrap justify-content-between">
+            <div class="dropdown">
+                <a class="btn dropdown-toggle border" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Sort
+                </a>
+
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <a class="dropdown-item" href="#">Name descending</a>
+                    <a class="dropdown-item" href="#">Name ascending</a>
+                    <a class="dropdown-item" href="#">Date descending</a>
+                    <a class="dropdown-item" href="#">Date ascending</a>
+                </div>
+            </div>
+            <div id="searchbox-wrapper">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Search..." aria-label="Search..." aria-describedby="button-addon2">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="button" id="button-addon2">Search</button>
+                    </div>
+                </div>
+            </div>
+
+        </nav>
+
+        <table class="table table-hover table-responsive-md">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">Issue</th>
+                <th scope="col">Date</th>
+                <th scope="col">State</th>
+                <th scope="col">Reporter</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr n:foreach="$ticketList as $ticket">
+                <td>
+                    <a href="#">{$ticket->name}</a>
+                    <div>{$ticket->description|truncate:160}</div>
+
+                </td>
+                <td>{$ticket->creation_date|date:'F j, Y'}</td>
+                <td>{$ticket->state}</td>
+                <td>{$ticket->author}</td>
+            </tr>
+            </tbody>
+        </table>
+
+
+        <!--
+        <nav aria-label="Page navigation example" id="paging">
+            <ul class="pagination justify-content-center">
+                <li class="page-item disabled">
+                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                    <a class="page-link" href="#">Next</a>
+                </li>
+            </ul>
+        </nav>
+-->
+    </section>
+{/block}
