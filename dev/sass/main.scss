@@ -91,27 +91,24 @@ table tbody tr td a {
 }
 
 .initials-bg {
-  background-color: #6f42c1;
-  padding: 10px;
   color: white;
 }
 
 .comment-wrapper-left {
-  padding-left: 0.8em;
   padding-top: 1.6em;
 }
 
-.name-user {
+/*.name-user {
   position: relative;
   left: 3.6em;
   top: -30px;
-}
+}*/
 
-.date-and-time {
+/*.date-and-time {
   position: relative;
   left: 3.6em;
   top: -30px;
-}
+}*/
 
 .comment-content {
   //border-style: solid;
@@ -123,14 +120,30 @@ table tbody tr td a {
   padding-bottom: 20px;
   padding-right: 20px;
   background-color: whitesmoke;
-  margin-top: -25px;
   margin-left: 3.6em;
   margin-bottom: 40px;
   max-width: 40em;
 }
 
-.circle-right {
-  margin-left: 46.4em;
+.comment-user-info { //left side
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.comment-user-info-right {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.circle-right, .circle-left {
+  width: 40px;
+  height: 40px;
+  background-color: #6f42c1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .comment-content-right {
@@ -142,17 +155,21 @@ table tbody tr td a {
   padding-bottom: 20px;
   padding-right: 20px;
   background-color: whitesmoke;
-  margin-right: 4.3em;
+  margin-right: 3.6em;
   margin-bottom: 20px;
   max-width: 40em;
   float: right;
 }
 
-#name-date-right {
+.name-date-right {
   text-align: right;
-  margin-right: 4.3em;
-  margin-bottom: 5px;
-  margin-top: -30px;
+  margin-right: 0.7em;
+  //margin-bottom: 5px;
+  //margin-top: -30px;*/
+}
+
+.name-date-left {
+  margin-left: 0.7em;
 }
 
 #edit-butt {
