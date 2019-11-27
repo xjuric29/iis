@@ -30,7 +30,8 @@ class viewTickets extends viewBase {
         }
     # xjuric29 methods
     public function getTicket($id) {
-        /** Return data for specific ticket. */
+        /**Return data for specific ticket.
+           @param $id: Specific ticket id. */
         $query = $this->database->table('ticket')->where('id = ?', $id);
 
         return $query->fetch();
