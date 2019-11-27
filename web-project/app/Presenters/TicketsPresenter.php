@@ -16,9 +16,33 @@ class TicketsPresenter extends Nette\Application\UI\Presenter
     /** @persistent */
     public $orderDir;
 
-    public function renderDefault($orderBy, $orderDir, $page = 1): void
+    /** Renders the page on load
+     * @author xpospi95
+     * @param $orderBy: ordering parameter, name and date for now, values defined in this function
+     * @param $orderDir: ordering direction, desc(ending) or asc(ending)
+     * @param $page: number of page to render, first is default
+     */
+    public function renderDefault($orderBy, $orderDir, $page = 1, $search = null): void
     {
-        $this->template->ticketList = $this->tickets->getTicketTable($orderBy, $orderDir, $page);
+        $this->template->ticketList = $this->tickets->getTicketTable($orderBy, $orderDir, $page, $search);
         $this->template->paginator = $this->tickets->paginator;
+    }
+
+    /** Creates a search bar
+     * @author xpospi95
+     * @param $orderBy:
+     */
+    public function createComponentSearch() : Nette\Application\UI\Form {
+        $form = new Nette\Application\UI\Form;
+        $form->addText('searchBox')
+            ->addRule(Nette\Application\UI\Form::MIN_LENGTH, 'Enter at least %d characters to search.', 3);
+        $form->addSubmit('searchButton', 'Search');
+        $form->onSuccess[] = [$this, 'performSearch'];
+        return $form;
+    }
+
+    public function performSearch(Nette\Application\UI\Form $form, \stdClass $values): void
+    {
+        $this->redirect('Tickets:', ['search' => $values->searchBox, 'page' => '1']);
     }
 }
