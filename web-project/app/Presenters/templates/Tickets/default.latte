@@ -15,10 +15,10 @@ ITS | Tickets
                 </a>
 
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                    <a class="dropdown-item" href="#">Name descending</a>
-                    <a class="dropdown-item" href="#">Name ascending</a>
-                    <a class="dropdown-item" href="#">Date descending</a>
-                    <a class="dropdown-item" href="#">Date ascending</a>
+                    <a class="dropdown-item" n:href="Tickets: orderBy => 'name', orderDir => 'desc'">Name descending</a>
+                    <a class="dropdown-item" n:href="Tickets: orderBy => 'name', orderDir => 'asc'">Name ascending</a>
+                    <a class="dropdown-item" n:href="Tickets: orderBy => 'date', orderDir => 'desc'">Date descending</a>
+                    <a class="dropdown-item" n:href="Tickets: orderBy => 'date', orderDir => 'asc'">Date ascending</a>
                 </div>
             </div>
             <div id="searchbox-wrapper">
@@ -50,26 +50,53 @@ ITS | Tickets
                 </td>
                 <td>{$ticket->creation_date|date:'F j, Y'}</td>
                 <td>{$ticket->state}</td>
-                <td>{$ticket->author}</td>
+                <td>{$ticket->ref('user', 'author')->first_name} {$ticket->ref('user', 'author')->surname}</td>
             </tr>
             </tbody>
         </table>
 
 
-        <!--
+        {var $prevPagesCount = 3}
+        {var $nextPagesCount = 3}
         <nav aria-label="Page navigation example" id="paging">
             <ul class="pagination justify-content-center">
-                <li class="page-item disabled">
-                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                <li class="page-item {$paginator->isFirst() ? "disabled"}">
+                    <a class="page-link" n:href="default, page => $paginator->page-1" tabindex="-1" aria-disabled="{$paginator->isFirst() ? "true" : "false"}">Previous</a>
                 </li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item">
-                    <a class="page-link" href="#">Next</a>
+                {if !$paginator->isFirst()} <!--Display first page-->
+                    <li class="page-item"><a class="page-link" n:href="default, page => 1">1</a></li>
+                {/if}
+
+                {var $pageIterator = $paginator->page - $prevPagesCount - 1}
+                {if $pageIterator > 1} <!--Insert ellipsis after first page if it's too far-->
+                    <li class="page-item disabled"><a class="page-link">...</a></li>
+                    {var $pageIterator = $pageIterator + 1}
+                {/if}
+                {while $pageIterator < $paginator->page} <!-- 3 more next numbered pages if available-->
+                    {if $pageIterator > 1}
+                        <li class="page-item"><a class="page-link" n:href="default, page => $pageIterator">{$pageIterator}</a></li>
+                    {/if}
+                    {var $pageIterator = $pageIterator + 1}
+                {/while}
+
+                <li class="page-item active"><a class="page-link" n:href="default">{$paginator->page}</a></li>
+                {var $pageIterator = $paginator->page + 1}
+                {while $pageIterator <= $paginator->page + $nextPagesCount && $pageIterator < $paginator->pageCount} <!-- 3 more next numbered pages if available-->
+                    <li class="page-item"><a class="page-link" n:href="default, page => $pageIterator">{$pageIterator}</a></li>
+                    {var $pageIterator = $pageIterator + 1}
+                {/while}
+                {if $pageIterator < $paginator->pageCount} <!-- Insert ellipsis before last page if it's further-->
+                    <li class="page-item disabled"><a class="page-link">...</a></li>
+                {/if}
+
+                {if !$paginator->isLast()} <!-- Display last page-->
+                    <li class="page-item"><a class="page-link" n:href="default, page => $paginator->pageCount">{$paginator->pageCount}</a></li>
+                {/if}
+
+                <li class="page-item {$paginator->isLast() ? "disabled"}">
+                    <a class="page-link" n:href="default, page => $paginator->page+1" aria-disabled="{$paginator->isLast() ? "true" : "false"}">Next</a>
                 </li>
             </ul>
         </nav>
--->
     </section>
 {/block}
