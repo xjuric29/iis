@@ -19,6 +19,7 @@ final class RouterFactory
 
 		# Ticket overview
         $router->addRoute('<presenter>/<action>[/<page=1 \d+>]', 'Tickets:default');
+        $router->addRoute('tickets/search', 'Tickets:search');
 		return $router;
 	}
 }

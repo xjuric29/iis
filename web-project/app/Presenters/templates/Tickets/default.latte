@@ -22,12 +22,14 @@ ITS | Tickets
                 </div>
             </div>
             <div id="searchbox-wrapper">
-                <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="Search..." aria-label="Search..." aria-describedby="button-addon2">
-                    <div class="input-group-append">
-                        <button class="btn btn-outline-secondary" type="button" id="button-addon2">Search</button>
+                {form search}
+                    <div class="input-group mb-3">
+                        <input n:name="searchBox" type="text" class="form-control" placeholder="Search..." aria-label="Search..." aria-describedby="button-addon2">
+                        <div class="input-group-append">
+                            <button  n:name="searchButton" class="btn btn-outline-secondary" type="submit" id="button-addon2">Search</button>
+                        </div>
                     </div>
-                </div>
+                {/form}
             </div>
 
         </nav>
@@ -55,48 +57,6 @@ ITS | Tickets
             </tbody>
         </table>
 
-
-        {var $prevPagesCount = 3}
-        {var $nextPagesCount = 3}
-        <nav aria-label="Page navigation example" id="paging">
-            <ul class="pagination justify-content-center">
-                <li class="page-item {$paginator->isFirst() ? "disabled"}">
-                    <a class="page-link" n:href="default, page => $paginator->page-1" tabindex="-1" aria-disabled="{$paginator->isFirst() ? "true" : "false"}">Previous</a>
-                </li>
-                {if !$paginator->isFirst()} <!--Display first page-->
-                    <li class="page-item"><a class="page-link" n:href="default, page => 1">1</a></li>
-                {/if}
-
-                {var $pageIterator = $paginator->page - $prevPagesCount - 1}
-                {if $pageIterator > 1} <!--Insert ellipsis after first page if it's too far-->
-                    <li class="page-item disabled"><a class="page-link">...</a></li>
-                    {var $pageIterator = $pageIterator + 1}
-                {/if}
-                {while $pageIterator < $paginator->page} <!-- 3 more next numbered pages if available-->
-                    {if $pageIterator > 1}
-                        <li class="page-item"><a class="page-link" n:href="default, page => $pageIterator">{$pageIterator}</a></li>
-                    {/if}
-                    {var $pageIterator = $pageIterator + 1}
-                {/while}
-
-                <li class="page-item active"><a class="page-link" n:href="default">{$paginator->page}</a></li>
-                {var $pageIterator = $paginator->page + 1}
-                {while $pageIterator <= $paginator->page + $nextPagesCount && $pageIterator < $paginator->pageCount} <!-- 3 more next numbered pages if available-->
-                    <li class="page-item"><a class="page-link" n:href="default, page => $pageIterator">{$pageIterator}</a></li>
-                    {var $pageIterator = $pageIterator + 1}
-                {/while}
-                {if $pageIterator < $paginator->pageCount} <!-- Insert ellipsis before last page if it's further-->
-                    <li class="page-item disabled"><a class="page-link">...</a></li>
-                {/if}
-
-                {if !$paginator->isLast()} <!-- Display last page-->
-                    <li class="page-item"><a class="page-link" n:href="default, page => $paginator->pageCount">{$paginator->pageCount}</a></li>
-                {/if}
-
-                <li class="page-item {$paginator->isLast() ? "disabled"}">
-                    <a class="page-link" n:href="default, page => $paginator->page+1" aria-disabled="{$paginator->isLast() ? "true" : "false"}">Next</a>
-                </li>
-            </ul>
-        </nav>
+    {include paging}
     </section>
 {/block}

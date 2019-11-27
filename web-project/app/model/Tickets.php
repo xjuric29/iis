@@ -13,14 +13,8 @@ class Tickets {
         $this->database = $database;
     }
 
-    private function getTicketCount() {
-        return $this->database->fetchField('SELECT COUNT(*) FROM ticket');
-    }
-
-    public function getTicketTable($orderBy, $orderDir, $page = 1) {
-        $articlesCount = $this->getTicketCount();
+    public function getTicketTable($orderBy, $orderDir, $page = 1, $search = null) {
         $this->paginator = new Nette\Utils\Paginator;
-        $this->paginator->setItemCount($articlesCount); // celkový počet článků
         $this->paginator->setItemsPerPage(10); // počet položek na stránce
         $this->paginator->setPage($page); // číslo aktuální stránky
 
@@ -41,9 +35,16 @@ class Tickets {
                 $orderStr .= " DESC";
         }
 
-        return $this->database->table('ticket')
+        $retval =  $this->database->table('ticket')
             ->order($orderStr)
             ->limit($this->paginator->getLength(), $this->paginator->getOffset());
-    }
 
+        if ($search) {
+            $retval =  $retval->where("name LIKE ?", '%' . $search . '%');
+        }
+
+        $this->paginator->setItemCount($retval->count('*')); // celkový počet riadkov
+
+        return $retval;
+    }
 }
