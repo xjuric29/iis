@@ -13,7 +13,7 @@ class Tickets {
         $this->database = $database;
     }
 
-    public function getTicketTable($orderBy, $orderDir, $page = 1, $search = null) {
+    public function getTicketTable($orderBy, $orderDir, $page, $search, $userid) {
         $this->paginator = new Nette\Utils\Paginator;
         $this->paginator->setItemsPerPage(10); // počet položek na stránce
         $this->paginator->setPage($page); // číslo aktuální stránky
@@ -41,9 +41,13 @@ class Tickets {
 
         if ($search) {
             $search = '%' . $search . '%';
-            $retval =  $retval->where("name LIKE ? OR description LIKE ?", $search, $search);
+            $retval = $retval->where("name LIKE ? OR description LIKE ?", $search, $search);
         }
 
+        if ($userid) {
+            $retval = $retval->where("author LIKE ?", $userid);
+        }
+        
         $this->paginator->setItemCount($retval->count('*')); // celkový počet riadkov
 
         return $retval;
