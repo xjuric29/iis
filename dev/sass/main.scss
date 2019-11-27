@@ -301,6 +301,22 @@ section#ticket-detail .dropdown-toggle::after { //"arrow/triangle" position in d
   float: left;
 }
 
+//Homepage loggedout
+
+.dropdown-login-form:hover {
+  background: none;
+  color: black;
+}
+
+.dropdown-login-button {
+  background: #b3b7bb;
+  height: 40px;
+}
+
+.dropdown-menu-right {
+  padding-bottom: 0;
+}
+
 section { // Main content of the site.
   margin-top: 80px;
 
