@@ -40,7 +40,8 @@ class Tickets {
             ->limit($this->paginator->getLength(), $this->paginator->getOffset());
 
         if ($search) {
-            $retval =  $retval->where("name LIKE ?", '%' . $search . '%');
+            $search = '%' . $search . '%';
+            $retval =  $retval->where("name LIKE ? OR description LIKE ?", $search, $search);
         }
 
         $this->paginator->setItemCount($retval->count('*')); // celkový počet riadkov
