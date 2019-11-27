@@ -1,26 +1,18 @@
 <?php
 
-declare(strict_types=1);
-
 namespace App\Presenters;
 
 use Nette;
 
 
-final class TicketsPresenter extends Nette\Application\UI\Presenter
+class TicketsPresenter extends Nette\Application\UI\Presenter
 {
-    private $database;
-    public $title = "Hello";
+    /** @var \App\Model\Tickets @inject */
+    public $tickets;
 
-    public function __construct(Nette\Database\Context $database)
+    public function renderDefault($orderBy, $orderDir, $page = 1): void
     {
-        $this->database = $database;
-    }
-
-    public function renderDefault(): void
-    {
-        $this->template->ticketList = $this->database->table('ticket')
-            ->order('creation_date DESC')
-            ->limit(20);
+        $this->template->ticketList = $this->tickets->getTicketTable($orderBy, $orderDir, $page);
+        $this->template->paginator = $this->tickets->paginator;
     }
 }
