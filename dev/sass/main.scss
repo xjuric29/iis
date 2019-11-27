@@ -309,12 +309,32 @@ section#ticket-detail .dropdown-toggle::after { //"arrow/triangle" position in d
 }
 
 .dropdown-login-button {
-  background: #b3b7bb;
+  background-color: dodgerblue;
   height: 40px;
+  padding-top: 0.6em;
+  text-transform: uppercase;
+  text-align: center;
+  color: white;
+}
+
+.dropdown-login-button:hover{
+  background-color: #1d7ade;
+  color: white;
+}
+
+.dropdown-error-msg {
+  color: red;
+  padding-left: 1.7em;
+  font-size: 12px;
+  padding-bottom: 1em;
 }
 
 .dropdown-menu-right {
   padding-bottom: 0;
+}
+
+.dropdown-menu {
+  overflow: hidden;
 }
 
 section { // Main content of the site.
