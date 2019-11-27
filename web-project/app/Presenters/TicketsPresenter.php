@@ -22,9 +22,9 @@ class TicketsPresenter extends Nette\Application\UI\Presenter
      * @param $orderDir: ordering direction, desc(ending) or asc(ending)
      * @param $page: number of page to render, first is default
      */
-    public function renderDefault($orderBy, $orderDir, $page = 1, $search = null): void
+    public function renderDefault($orderBy, $orderDir, $page = 1, $search = null, $userid = null): void
     {
-        $this->template->ticketList = $this->tickets->getTicketTable($orderBy, $orderDir, $page, $search);
+        $this->template->ticketList = $this->tickets->getTicketTable($orderBy, $orderDir, $page, $search, $userid);
         $this->template->paginator = $this->tickets->paginator;
     }
 
