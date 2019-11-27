@@ -71,19 +71,19 @@ table tbody tr td a {
   max-width: 50em;
   margin-top: 0;
 
-  table {
+  table#ticket-detail-tab {
     display: flex;
     flex-grow: 3;
     border-right: solid 1px;
   }
 
-  table tbody tr th {
+  table#ticket-detail-tab tbody tr th {
     font-weight: normal;
     width: 10em;
     vertical-align: top;
   }
 
-  table tbody tr td {
+  table#ticket-detail-tab tbody tr td {
     font-size: 16px;
   }
 }
@@ -361,6 +361,18 @@ section#ticket-detail .dropdown-toggle::after { //"arrow/triangle" position in d
   width: 5em;
 }
 
+.activity-notes {
+  margin-left: 3.6em;
+}
+
+.activity-item {
+  padding-right: 2em;
+}
+
+table.noted-activity tr th {
+  font-weight: normal;
+}
+
 section { // Main content of the site.
   margin-top: 80px;
 
@@ -375,6 +387,38 @@ section { // Main content of the site.
 .dropdown-state {
   width: 8em;
   text-align: left;
+}
+
+//Task manager
+#activity-date-time {
+  display: flex;
+  align-items: start;
+  //justify-content: space-between;
+  margin-top: 20px;
+
+  #activity-date {
+    align-items: flex-start;
+    width: 12em;
+    margin-right: 3em;
+  }
+
+  #activity-time{
+    align-items: flex-end;
+    width: 5em;
+    margin-right: 3em;
+  }
+  #activity-time2 {
+    width: 5em;
+  }
+}
+
+.noted-activity {
+  border-right: 0px;
+}
+
+//Users detail edit
+#exampleFormControlInput4 {
+  width: 20em;
 }
 
 

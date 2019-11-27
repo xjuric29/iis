@@ -63,7 +63,7 @@ Author: Jiri Jurica (xjuric29)
         </a>
 
         <div class="ticket-detail-table">
-            <table>
+            <table id="ticket-detail-tab">
                 <tbody>
                 <tr>
                     <th class="ticket-item">Creator:</th>
@@ -120,40 +120,78 @@ Author: Jiri Jurica (xjuric29)
             Fusce placerat et erat ac imperdiet. Nunc sed felis sed enim dictum faucibus. Mauris et eleifend turpis. Cras magna arcu, consequat vel faucibus nec, rutrum aliquam turpis. In convallis condimentum sem, a cursus libero ultrices et. Donec auctor metus ut augue eleifend, vitae posuere dui scelerisque. Proin sagittis, sapien quis semper facilisis, felis augue tincidunt nisl, non tincidunt dui est eu nisl. Nullam ipsum felis, dictum nec leo eget, euismod luctus ante. Aliquam efficitur, velit sit amet molestie posuere, neque ipsum sodales enim, id commodo tortor ligula non felis. Pellentesque tristique molestie quam vel porta.
         </div>
 
-        <div class="ticket-item mt-5">Attachments:</div>
-        <a href="img/blue_screen.jpg"><img class= "attach-img mt-3" src="img/blue_screen.jpg" alt="Blue screen" href="img/blue_screen"></a>
+        <div class="ticket-item mt-5">Noted activity:</div>
+        <div id="activity-date-time">
+            <div class="form-group" id="activity-date">
+                <label for="formGroupExampleInput1">Date</label>
+                <form action="/action_page.php">
+                    <input type="date" class="form-control" id="formGroupExampleInput1">
+                </form>
+            </div>
+            <div class="form-group" id="activity-time">
+                <label for="formGroupExampleInput2">Start time</label>
+                <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="00:00">
+            </div>
+            <div class="form-group" id="activity-time2">
+                <label for="formGroupExampleInput2">End time</label>
+                <input type="text" class="form-control" id="formGroupExampleInput3" placeholder="00:00">
+            </div>
+        </div>
 
-        <div class="ticket-item mt-5">Comments:</div>
-        <textarea class="form-control comment-field" id="exampleFormControlTextarea1" rows="3">Type comment here ...</textarea>
+        <div>Notes:</div>
+        <textarea class="form-control comment-field" id="exampleFormControlTextarea1" rows="3"></textarea>
         <button type="button" class="btn btn-primary">Submit</button>
         <hr>
+
         <div class="comment-wrapper-left">
             <div class="comment-user-info">
                 <div class="circle-right rounded-circle"><span class="initials-bg">MP</span></div>
                 <div class="name-date-left">
                     <div class="name-user">Michal Pospisil<span> • admin</span></div>
-                    <div class="date-and-time">12/11/2019 12:13</div>
                 </div>
             </div>
-            <div class="comment-content border">
-                Toto je nejaky komentar, ktory patri k tomuto ticketu.
-                Radim v nom ako mozno dany problem riesit, pretoze som sa nim uz stretol.
+            <div class="activity-notes">
+                <table class="noted-activity">
+                    <tr>
+                        <th class="activity-item">Date:</th>
+                        <td>11/2/2019</td>
+                    </tr>
+                    <tr>
+                        <th class="activity-item">Spent time:</th>
+                        <td>5:30</td>
+                    </tr>
+                </table>
+                <div class="mt-4">Tohle jsem udelal takhle ale jsem blokly na tomhle. Udelal jsem na to ticket, task je teraz blokly.</div>
             </div>
         </div>
-        <div class="comment-wrapper-right">
-            <div class="comment-user-info-right">
-                <div class="name-date-right">
-                    <div class="name-user-right">Angela Merkel<span> • manager</span></div>
-                    <div class="date-and-time-right">12/11/2019 12:05</div>
-                </div>
+
+        <hr>
+
+        <div class="comment-wrapper-left">
+            <div class="comment-user-info">
                 <div class="circle-right rounded-circle"><span class="initials-bg">MP</span></div>
+                <div class="name-date-left">
+                    <div class="name-user">Michal Pospisil<span> • admin</span></div>
+                </div>
             </div>
-            </div>
-            <div class="comment-content-right border">
-                Toto je nejaky komentar, ktory patri k tomuto ticketu.
-                Radim v nom ako mozno dany problem riesit, pretoze som sa nim uz stretol.
+            <div class="activity-notes">
+                <table class="noted-activity">
+                    <tr>
+                        <th class="activity-item">Date:</th>
+                        <td>11/2/2019</td>
+                    </tr>
+                    <tr>
+                        <th class="activity-item">Spent time:</th>
+                        <td>12:20</td>
+                    </tr>
+                </table>
+                <div class="mt-4">Nevim co dal. Jsem zoufaly.</div>
             </div>
         </div>
+
+        <hr>
+
+
     </section>
 </section>
 </body>
