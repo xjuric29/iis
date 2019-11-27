@@ -11,7 +11,10 @@ session:
 
 services:
 	router: App\Router\RouterFactory::createRouter
+	authenticator: App\Model\Authenticator
 
 	# DB functions
 	- App\Model\viewTickets
 	- App\Model\viewTasks
+	- App\Model\Comments
+	- App\Model\User
