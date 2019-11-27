@@ -230,6 +230,7 @@ img.attach-img {
   max-width: 200px;
 }
 
+//Ticked editmode
 .drop-type {
   margin-bottom: 0.5rem;
 }
@@ -242,14 +243,6 @@ img.attach-img {
   max-width: 20em;
 }
 
-#product {
-  float: left;
-}
-
-#subproduct{
-  float: right;
-}
-
 .product-dropdown {
   width: 20em;
   text-align: left;
@@ -258,6 +251,11 @@ img.attach-img {
 #task-name {
   font-style: italic;
   font-weight: normal;
+}
+
+#undefined {
+  font-weight: normal;
+  font-style: italic;
 }
 
 section#ticket-detail .dropdown-toggle::after { //"arrow/triangle" position in dropdown
@@ -308,6 +306,13 @@ section#ticket-detail .dropdown-toggle::after { //"arrow/triangle" position in d
   color: black;
 }
 
+.dropdown-forgotten-pswd {
+  margin-left: 1.5em;
+  padding-bottom: 1em;
+  font-style: italic;
+  color: black;
+}
+
 .dropdown-login-button {
   background-color: dodgerblue;
   height: 40px;
@@ -337,6 +342,25 @@ section#ticket-detail .dropdown-toggle::after { //"arrow/triangle" position in d
   overflow: hidden;
 }
 
+//Task Editmode
+.product-setting {
+  display: flex;
+  margin-bottom: 20px;
+  justify-content: space-between;
+
+  #product {
+    justify-content: flex-start;
+  }
+
+  #subproduct {
+    justify-content: flex-end;
+  }
+}
+
+.time-form {
+  width: 5em;
+}
+
 section { // Main content of the site.
   margin-top: 80px;
 
@@ -346,6 +370,13 @@ section { // Main content of the site.
     justify-content: space-between;
   }
 }
+
+//Ticket manager
+.dropdown-state {
+  width: 8em;
+  text-align: left;
+}
+
 
 // Extended tablet rules.
 @media (min-width: map-get($grid-breakpoints, lg)) {
