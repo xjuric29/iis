@@ -1,0 +1,160 @@
+<!--
+IIS project 2019
+Description: HTML code for homepage.
+Author: Jiri Jurica (xjuric29)
+-->
+
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="../../web-project/www/css/main.css">
+
+    <title>ITS | Ticket-manager</title>
+</head>
+<body>
+<nav class="navbar navbar-expand-xl navbar-dark bg-dark">
+    <div class="container">
+        <div class="col-12">
+            <a class="navbar-brand" href="#">ITS - Issue tracking system</a>
+            <button class="navbar-toggler float-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    <!-- Display item without logged user.
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Log in</a>
+                    </li>
+                    -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            José Manuel Cerqueira Afonso dos Santos
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">My tickets</a>
+                            <a class="dropdown-item" href="#">Profile</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Log out</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="container">
+    <header class="col-12">
+        <h1>Tasks</h1>
+        <a class="btn btn-our float-right" href="#" role="button">Add ticket</a>
+    </header>
+    <hr>
+    <section id="ticket-detail">
+        <h2>Phasellus eget enim in arcu</h2>
+
+        <a href="ticket_editmode.html" id="edit-butt">
+            <div>Create/edit task</div>
+            <img src="img/files-and-folders.png" alt="Edit">
+        </a>
+
+        <div class="ticket-detail-table">
+            <table>
+                <tbody>
+                <tr>
+                    <th class="ticket-item">Creator:</th>
+                    <td>Manager Name</td>
+                </tr>
+                <tr>
+                    <th class="ticket-item">Assignee:</th>
+                    <td>Hisname Hissurname</td>
+                </tr>
+                <tr>
+                    <th class="ticket-item">Date:</th>
+                    <td>2/11/19 14:12</td>
+                </tr>
+                <tr>
+                    <th class="ticket-item">Product:</th>
+                    <td>Product: Subproduct</td>
+                </tr>
+                <tr>
+                    <th class="ticket-item">Ticket:</th>
+                    <td><a href="ticket_manager.html" id="task-name">Phasellus eget enim in arcu</a></td>
+                </tr>
+                </tbody>
+            </table>
+
+            <div class="ticked-side-details">
+                <div class="ticket-state">
+                    <div>State</div>
+                    <div class="dropdown">
+                        <button class="btn dropdown-toggle border dropdown-state" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            To do
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="#">Denied</a>
+                            <a class="dropdown-item" href="#">In progress</a>
+                            <a class="dropdown-item" href="#">Blocked</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ticket-state">
+                    <div>Estimated time</div>
+                    <div class="ticked-detail-state">02:00</div>
+                </div>
+
+                <div class="ticket-state">
+                    <div>Spent time</div>
+                    <div class="ticked-detail-state">00:00</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="ticket-item mt-5">Description:</div>
+        <div id="desc-text" class="mt-2">
+            Fusce placerat et erat ac imperdiet. Nunc sed felis sed enim dictum faucibus. Mauris et eleifend turpis. Cras magna arcu, consequat vel faucibus nec, rutrum aliquam turpis. In convallis condimentum sem, a cursus libero ultrices et. Donec auctor metus ut augue eleifend, vitae posuere dui scelerisque. Proin sagittis, sapien quis semper facilisis, felis augue tincidunt nisl, non tincidunt dui est eu nisl. Nullam ipsum felis, dictum nec leo eget, euismod luctus ante. Aliquam efficitur, velit sit amet molestie posuere, neque ipsum sodales enim, id commodo tortor ligula non felis. Pellentesque tristique molestie quam vel porta.
+        </div>
+
+        <div class="ticket-item mt-5">Attachments:</div>
+        <a href="img/blue_screen.jpg"><img class= "attach-img mt-3" src="img/blue_screen.jpg" alt="Blue screen" href="img/blue_screen"></a>
+
+        <div class="ticket-item mt-5">Comments:</div>
+        <textarea class="form-control comment-field" id="exampleFormControlTextarea1" rows="3">Type comment here ...</textarea>
+        <button type="button" class="btn btn-primary">Submit</button>
+        <hr>
+        <div class="comment-wrapper-left">
+            <div class="comment-user-info">
+                <div class="circle-right rounded-circle"><span class="initials-bg">MP</span></div>
+                <div class="name-date-left">
+                    <div class="name-user">Michal Pospisil<span> • admin</span></div>
+                    <div class="date-and-time">12/11/2019 12:13</div>
+                </div>
+            </div>
+            <div class="comment-content border">
+                Toto je nejaky komentar, ktory patri k tomuto ticketu.
+                Radim v nom ako mozno dany problem riesit, pretoze som sa nim uz stretol.
+            </div>
+        </div>
+        <div class="comment-wrapper-right">
+            <div class="comment-user-info-right">
+                <div class="name-date-right">
+                    <div class="name-user-right">Angela Merkel<span> • manager</span></div>
+                    <div class="date-and-time-right">12/11/2019 12:05</div>
+                </div>
+                <div class="circle-right rounded-circle"><span class="initials-bg">MP</span></div>
+            </div>
+            </div>
+            <div class="comment-content-right border">
+                Toto je nejaky komentar, ktory patri k tomuto ticketu.
+                Radim v nom ako mozno dany problem riesit, pretoze som sa nim uz stretol.
+            </div>
+        </div>
+    </section>
+</section>
+</body>
+</html>
