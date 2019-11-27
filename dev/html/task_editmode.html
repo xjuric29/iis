@@ -14,7 +14,7 @@ Author: Jiri Jurica (xjuric29)
 
     <link rel="stylesheet" href="../../web-project/www/css/main.css">
 
-    <title>ITS | Ticket-editmode</title>
+    <title>ITS | Task-editmode</title>
     <link rel="stylesheet" href="../sass/main.scss">
 </head>
 <body>
@@ -51,13 +51,13 @@ Author: Jiri Jurica (xjuric29)
 </nav>
 <section class="container">
     <header class="col-12">
-        <h1>Tickets</h1>
+        <h1>Tasks</h1>
         <a class="btn btn-our float-right" href="#" role="button">Add ticket</a>
     </header>
     <hr>
     <section id="ticket-detail">
-        <label for="exampleFormControlInput1">Issue</label>
-        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Phasellus eget enim in arcu">
+        <label for="exampleFormControlInput1">Task</label>
+        <input class="form-control" id="exampleFormControlInput1" placeholder="This is name of task">
 
         <div class="product-setting">
             <div class="product-type" id="product">
@@ -92,19 +92,15 @@ Author: Jiri Jurica (xjuric29)
                 </div>
             </div>
         </div>
+
+        <label for="exampleFormControlInput1">Estimated time</label>
+        <input class="form-control time-form" placeholder="00:00">
+
+
         <div id="description-edit">
             <div class="drop-type mt-4">Description</div>
             <textarea class="form-control description-edit-field" id="exampleFormControlTextarea1" rows="3">Fusce placerat et erat ac imperdiet. Nunc sed felis sed enim dictum faucibus. Mauris et eleifend turpis. Cras magna arcu, consequat vel faucibus nec, rutrum aliquam turpis. In convallis condimentum sem, a cursus libero ultrices et. Donec auctor metus ut augue eleifend, vitae posuere dui scelerisque. Proin sagittis, sapien quis semper facilisis, felis augue tincidunt nisl, non tincidunt dui est eu nisl. Nullam ipsum felis, dictum nec leo eget, euismod luctus ante. Aliquam efficitur, velit sit amet molestie posuere, neque ipsum sodales enim, id commodo tortor ligula non felis. Pellentesque tristique molestie quam vel porta.
             </textarea>
-        </div>
-
-        <div id="attachements">
-            <div class="mt-4">Attachements:</div>
-            <form>
-                <div class="form-group">
-                    <input type="file" class="form-control-file" id="exampleFormControlFile1">
-                </div>
-            </form>
         </div>
 
         <div id="save-buttons">
