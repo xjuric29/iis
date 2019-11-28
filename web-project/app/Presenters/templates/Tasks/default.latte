@@ -1,0 +1,21 @@
+{layout '../listComponents.latte'}
+{block title}ITS | Tasks{/block}
+{block H1}Tasks{/block}
+{block tableHeader}
+    <tr>
+        <th scope="col">Issue</th>
+        <th scope="col">State</th>
+        <th scope="col">Creator</th>
+    </tr>
+{/block}
+{block tableBody}
+    <tr n:foreach="$taskList as $task">
+        <td>
+            <a href="#">{$task->name}</a>
+            <div>{$task->description|truncate:160}</div>
+
+        </td>
+        <td>{$task->state}</td>
+        <td>{$task->ref('user', 'author')->first_name} {$task->ref('user', 'author')->surname}</td>
+    </tr>
+{/block}
