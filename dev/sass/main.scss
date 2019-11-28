@@ -451,14 +451,19 @@ section { // Main content of the site.
   align-items: flex-start;
 }
 
-#edit-but-2{
+#edit-but-2 {
   display: flex;
   justify-content: space-between;
  // align-items: flex-start;
 
-  #edit-text{
+  #edit-text {
     margin-right: 0.5em;
   }
+}
+
+//Products table
+.subproduct-name {
+  font-weight: bolder;
 }
 
 
