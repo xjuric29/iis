@@ -360,6 +360,14 @@ section#ticket-detail .dropdown-toggle::after { //"arrow/triangle" position in d
   width: 5em;
 }
 
+.alert-flash {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  width: 100%;
+}
+
 section { // Main content of the site.
   margin-top: 80px;
 

@@ -47,7 +47,7 @@ END;
 CALL create_worker('mrkvicka', 'Peter', 'Mrkvička', 'pmrkvicka@example.com', NULL, 'administrator', 'hash');
 CALL create_worker('foelden', 'Harvey', 'Foelden', 'ceo@example.com', NULL, 'administrator', 'hash');
 
-CALL create_worker('xpospi95', 'Milan', 'Pospíšil', 'xpospi95@fit.vutbr.cz', NULL, 'administrator', '$2y$10$2geAxDsVbu3KnP152thj.eIFESxJviuvoqZXmZ7re38g4GUwICnvC');
+CALL create_worker('xpospi95', 'Michal', 'Pospíšil', 'xpospi95@fit.vutbr.cz', NULL, 'administrator', '$2y$10$2geAxDsVbu3KnP152thj.eIFESxJviuvoqZXmZ7re38g4GUwICnvC');
 
 # Superiors
 CALL create_worker('motak', 'Gabriel', 'Moták', 'gmotak@example.com', NULL, 'superior', 'hash');

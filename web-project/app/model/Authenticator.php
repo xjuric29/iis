@@ -41,7 +41,7 @@ class Authenticator implements NS\IAuthenticator{
             // Get specific user info for workers including role.
             $worker = $this->user->getAdditionalUserData($login);
 
-            $identity->setRoles($worker->role);
+            $identity->setRoles([$worker->role]);
         }
 
         return $identity;
