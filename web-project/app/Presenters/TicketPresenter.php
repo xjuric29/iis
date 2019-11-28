@@ -7,10 +7,9 @@
 
 namespace App\Presenters;
 
-use Nette;
-use Tracy\Debugger;
+use App\Model\MasterPresenter;
 
-class TicketPresenter extends Nette\Application\UI\Presenter {
+class TicketPresenter extends MasterPresenter {
     /** @var \App\Model\Tickets @inject */
     public $tickets;
     public $comments;

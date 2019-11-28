@@ -10,11 +10,12 @@ session:
 	expiration: 14 days
 
 services:
-	router: App\Router\RouterFactory::createRouter
 	authenticator: App\Model\Authenticator
+	router: App\Router\RouterFactory::createRouter
 
 	# DB functions
 	- App\Model\viewTickets
 	- App\Model\viewTasks
 	- App\Model\Comments
+	- App\Model\PermissionMap
 	- App\Model\User
