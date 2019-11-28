@@ -445,6 +445,22 @@ section { // Main content of the site.
   text-transform: uppercase;
 }
 
+#profile-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+#edit-but-2{
+  display: flex;
+  justify-content: space-between;
+ // align-items: flex-start;
+
+  #edit-text{
+    margin-right: 0.5em;
+  }
+}
+
 
 // Extended tablet rules.
 @media (min-width: map-get($grid-breakpoints, lg)) {
