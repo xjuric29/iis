@@ -1,5 +1,5 @@
 <?php
-/** Presenter for listing tickets
+/** Presenter for listing tasks
  * @author Michal Pospíšil
  * @email xpospi95@stud.fit.vutbr.cz
  */
@@ -8,11 +8,8 @@ namespace App\Presenters;
 use Nette;
 
 
-class TicketsPresenter extends Nette\Application\UI\Presenter
+abstract class ListPresenter extends Nette\Application\UI\Presenter
 {
-    /** @var \App\Model\Tickets @inject */
-    public $tickets;
-
     /** @persistent */
     public $orderBy;
 
@@ -27,11 +24,7 @@ class TicketsPresenter extends Nette\Application\UI\Presenter
      * @param $search: key that is searched in name and description of ticket table
      * @param $userid: filters ticket from this user
      */
-    public function renderDefault($orderBy, $orderDir, $page = 1, $search = null, $userid = null): void
-    {
-        $this->template->ticketList = $this->tickets->getTicketTable($orderBy, $orderDir, $page, $search, $userid);
-        $this->template->paginator = $this->tickets->paginator;
-    }
+    abstract public function renderDefault($orderBy, $orderDir, $page = 1, $search = null, $userid = null): void;
 
     /** Creates a search bar
      * @author xpospi95
@@ -51,8 +44,5 @@ class TicketsPresenter extends Nette\Application\UI\Presenter
      * @param $values: values entered into form
      * @throws ...
      */
-    public function performSearch(Nette\Application\UI\Form $form, \stdClass $values): void
-    {
-        $this->redirect('Tickets:', ['search' => $values->searchBox, 'page' => '1']);
-    }
+    abstract public function performSearch(Nette\Application\UI\Form $form, \stdClass $values): void;
 }

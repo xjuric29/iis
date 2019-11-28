@@ -4,7 +4,7 @@ namespace App\Model;
 
 use Nette;
 
-class viewTickets extends viewBase {
+class viewTasks extends viewBase {
     protected function selectSearched($search, Nette\Database\Table\Selection $table) {
         if ($search) {
             $search = '%' . $search . '%';
@@ -14,7 +14,7 @@ class viewTickets extends viewBase {
     }
 
     protected function openTable($orderStr) {
-        return $this->database->table('ticket')
+        return $this->database->table('task')
             ->order($orderStr)
             ->limit($this->paginator->getLength(), $this->paginator->getOffset());
     }
@@ -23,10 +23,8 @@ class viewTickets extends viewBase {
     {
         switch($orderBy) {
             case "name":
-                return "name";
-            case "date":
             default:
-                return "creation_date";
+                return "name";
         }
     }
 }
