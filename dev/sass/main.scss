@@ -421,6 +421,13 @@ section { // Main content of the site.
   width: 20em;
 }
 
+//User table
+.action-buttons {
+  display: flex;
+  //justify-content: space-around;
+  align-content: flex-start;
+}
+
 
 // Extended tablet rules.
 @media (min-width: map-get($grid-breakpoints, lg)) {
