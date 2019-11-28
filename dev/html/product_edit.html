@@ -35,7 +35,7 @@ Author: Jiri Jurica (xjuric29)
                     -->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            José Manuel Cerqueira Afonso dos Santos
+                            Name
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="#">My tickets</a>
@@ -56,59 +56,18 @@ Author: Jiri Jurica (xjuric29)
     </header>
     <hr>
     <section id="ticket-detail">
-        <label for="exampleFormControlInput1">User name</label>
-        <input class="form-control" id="exampleFormControlInput1" placeholder="Add name">
-        <label for="exampleFormControlInput2" class="mt-4">User surname</label>
-        <input class="form-control" id="exampleFormControlInput2" placeholder="Add surname">
-        <label for="exampleFormControlInput3" class="mt-4">User email</label>
-        <input class="form-control" id="exampleFormControlInput3" placeholder="Add email">
+        <label for="exampleFormControlInput1">Product name</label>
+        <input class="form-control" id="exampleFormControlInput1" placeholder="Add name of product">
+        <label for="exampleFormControlInput2" class="mt-4">Subproduct name</label>
+        <input class="form-control" id="exampleFormControlInput2" placeholder="Add name of subproduct">
+        <label for="exampleFormControlInput3" class="mt-4">Product owner</label>
+        <input class="form-control" id="exampleFormControlInput3" placeholder="Add product owner">
 
-        <div class="product-setting">
-            <div class="product-type">
-                <div class="drop-type mt-4">Login</div>
-                <div class="drop-product dropdown">
-                    <input class="form-control" id="exampleFormControlInput4" placeholder="Add email">
-                </div>
-            </div>
-
-            <div class="product-type">
-                <div class="drop-type mt-4">Permitions</div>
-                <div class="drop-product dropdown">
-                    <a class="btn dropdown-toggle border product-dropdown" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        User
-                    </a>
-
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        <a class="dropdown-item" href="#">Worker</a>
-                        <a class="dropdown-item" href="#">Manager</a>
-                        <a class="dropdown-item" href="#">Admin</a>
-                        <a class="dropdown-item" href="#">Supervisor</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="product-setting">
-            <div class="product-type" id="product">
-                <div class="drop-type mt-4">Working for subproduct</div>
-                <div class="drop-product dropdown">
-                    <a class="btn dropdown-toggle border product-dropdown" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Product1
-                    </a>
-
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        <a class="dropdown-item" href="#">None</a>
-                        <a class="dropdown-item" href="#">Product3</a>
-                        <a class="dropdown-item" href="#">Product4</a>
-                        <a class="dropdown-item" href="#">Product5</a>
-                    </div>
-                </div>
-            </div>
-        </div>
 
         <div id="save-buttons">
             <a href="ticket_user.html"><button type="button" class="btn btn-primary mt-4 submit-but">Save</button></a>
             <a href="ticket_user.html"><button type="button" class="btn btn-outline-secondary close-but mt-4">Close</button></a>
+            <button type="button" class="btn btn-danger delete-but mt-4">Delete</button>
         </div>
     </section>
 </section>

@@ -286,18 +286,20 @@ section#ticket-detail .dropdown-toggle::after { //"arrow/triangle" position in d
 }
 
 #save-buttons {
+  display: flex;
   margin-top: 20px;
   margin-bottom: 20px;
 }
 
 .close-but {
-  float: right;
-  margin-right: 35em;
+  margin-right: 2em;
 }
 
 .submit-but {
-  float: left;
+  margin-right: 2em;
 }
+
+
 
 //Homepage loggedout
 
