@@ -433,6 +433,16 @@ section { // Main content of the site.
   margin-right: 3em;
 }
 
+//User profile
+.name-surname {
+  border-left: solid 1px;
+  padding-left: 2em;
+}
+
+.profile-name {
+  text-transform: uppercase;
+}
+
 
 // Extended tablet rules.
 @media (min-width: map-get($grid-breakpoints, lg)) {
