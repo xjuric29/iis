@@ -4,7 +4,7 @@ namespace App\Model;
 
 use Nette;
 
-class viewTickets extends viewBase {
+class viewTickets extends listBase {
     protected function selectSearched($search, Nette\Database\Table\Selection $table) {
         if ($search) {
             $search = '%' . $search . '%';
@@ -28,6 +28,10 @@ class viewTickets extends viewBase {
             default:
                 return "creation_date";
         }
+    }
+
+    protected function filterByUser($userid, Nette\Database\Table\Selection $table) {
+        return $table->where("author LIKE ?", $userid);
     }
 
     # xjuric29 methods

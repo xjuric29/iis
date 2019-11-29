@@ -4,7 +4,7 @@ namespace App\Model;
 
 use Nette;
 
-abstract class viewBase {
+abstract class listBase {
     protected $database;
 
     public $paginator;
@@ -16,6 +16,7 @@ abstract class viewBase {
     abstract protected function createOrderStr($orderBy);
     abstract protected function openTable($orderStr);
     abstract protected function selectSearched($search, Nette\Database\Table\Selection $table);
+    abstract protected function filterByUser($userid, Nette\Database\Table\Selection $table);
 
     public function getTicketTable($orderBy, $orderDir, $page, $search, $userid) {
         $this->paginator->setItemsPerPage(10); // počet položek na stránce
@@ -33,11 +34,12 @@ abstract class viewBase {
         }
         $retval = $this->openTable($orderStr);
 
-        $retval = $this->selectSearched($search, $retval);
-
+        if ($search) {
+            $retval = $this->selectSearched($search, $retval);
+        }
 
         if ($userid) {
-            $retval = $retval->where("$this->urlToDbDict['userid'] LIKE ?", $userid);
+            $retval = $this->filterByUser($userid, $retval);
         }
 
         $this->paginator->setItemCount($retval->count('*')); // celkový počet riadkov

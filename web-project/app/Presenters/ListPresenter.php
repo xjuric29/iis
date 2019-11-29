@@ -13,9 +13,12 @@ abstract class ListPresenter extends MasterPresenter
 {
     /** @persistent */
     public $orderBy;
-
     /** @persistent */
     public $orderDir;
+    /** @persistent */
+    public $search;
+    /** @persistent */
+    public $userid;
 
     /** Renders the page on load
      * @author xpospi95
