@@ -15,7 +15,7 @@
 {block tableBody}
 <tr n:foreach="$ticketList as $ticket">
     <td>
-        <a href="#">{$ticket->name}</a>
+        <a n:href="Ticket: id => $ticket->id">{$ticket->name}</a>
         <div>{$ticket->description|truncate:160}</div>
 
     </td>
