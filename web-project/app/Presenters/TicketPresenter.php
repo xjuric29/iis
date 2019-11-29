@@ -10,7 +10,7 @@ namespace App\Presenters;
 use App\Model\MasterPresenter;
 
 class TicketPresenter extends MasterPresenter {
-    /** @var \App\Model\viewTickets @inject */
+    /** @var \App\Model\ViewTickets @inject */
     public $tickets;
     public $comments;
 
