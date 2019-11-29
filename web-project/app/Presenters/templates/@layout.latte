@@ -40,7 +40,7 @@
 								<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
 									{if $user->isLoggedIn()}
 
-										<a class="dropdown-item" href="#">My tickets</a>
+										<a class="dropdown-item" n:href="Homepage: userid => $user->id">My tickets</a>
 										<a class="dropdown-item" href="#">Profile</a>
 										<div class="dropdown-divider"></div>
 										<a class="dropdown-item" n:href=":logout">Log out</a>
