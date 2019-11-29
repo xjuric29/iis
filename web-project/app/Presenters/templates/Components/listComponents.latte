@@ -7,23 +7,23 @@
         </header>
         <hr>
         <nav class="d-flex flex-wrap justify-content-between">
-            <div class="dropdown">
-                <a class="btn dropdown-toggle border" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Sort by
-                </a>
-
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                    <a class="dropdown-item" n:href=": orderBy => 'name', orderDir => 'desc'">Name descending</a>
-                    <a class="dropdown-item" n:href=": orderBy => 'name', orderDir => 'asc'">Name ascending</a>
-                    <a class="dropdown-item" n:href=": orderBy => 'date', orderDir => 'desc'">Creation date descending</a>
-                    <a class="dropdown-item" n:href=": orderBy => 'date', orderDir => 'asc'">Creation date ascending</a>
+            {if $rowCount > 0}
+                <div class="dropdown">
+                    <a class="btn dropdown-toggle border" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Sort by
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <a class="dropdown-item" n:href=": orderBy => 'name', orderDir => 'desc'">Name descending</a>
+                        <a class="dropdown-item" n:href=": orderBy => 'name', orderDir => 'asc'">Name ascending</a>
+                        <a class="dropdown-item" n:href=": orderBy => 'date', orderDir => 'desc'">Creation date descending</a>
+                        <a class="dropdown-item" n:href=": orderBy => 'date', orderDir => 'asc'">Creation date ascending</a>
+                    </div>
                 </div>
-
-            </div>
+            {/if}
             <div id="searchbox-wrapper">
                 {form search}
                     <div class="input-group mb-3">
-                        <input n:name="searchBox" type="text" class="form-control" placeholder="Search..." aria-label="Search..." aria-describedby="button-addon2">
+                        <input n:name="searchBox" type="text" class="form-control" placeholder="{include searchHint}" aria-label="{include searchHint}" aria-describedby="button-addon2">
                         <div class="input-group-append">
                             <button  n:name="searchButton" class="btn btn-outline-secondary" type="submit" id="button-addon2">Search</button>
                         </div>
@@ -33,14 +33,7 @@
 
         </nav>
 
-        <table class="table table-hover table-responsive-md">
-            <thead class="thead-dark">
-                {include tableHeader}
-            </thead>
-            <tbody>
-                {include tableBody}
-            </tbody>
-        </table>
+        {include table}
 
         {include paging}
     </section>

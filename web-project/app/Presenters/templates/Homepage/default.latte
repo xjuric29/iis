@@ -4,24 +4,37 @@
 {block addButton}
     <a class="btn btn-our float-right" href="#" role="button">Add ticket</a>
 {/block}
-{block tableHeader}
-<tr>
-    <th scope="col">Issue</th>
-    <th scope="col">Date</th>
-    <th scope="col">State</th>
-    <th scope="col">Reporter</th>
-</tr>
-{/block}
-{block tableBody}
-<tr n:foreach="$ticketList as $ticket">
-    <td>
-        <a n:href="Ticket: id => $ticket->id">{$ticket->name}</a>
-        <div>{$ticket->description|truncate:160}</div>
+{block searchHint}Search ticket names and descriptions...{/block}
+{block table}
+    {if $rowCount == 0}
+        {ifset $_GET['search']}
+            <div>It's embarrassing, but we couldn't find anything.</div>
+        {else}
+            <div>There is nothing to display.</div>
+        {/ifset}
+    {else}
+        <table class="table table-hover table-responsive-md">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Issue</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">State</th>
+                    <th scope="col">Reporter</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr n:foreach="$ticketList as $ticket">
+                    <td>
+                        <a n:href="Ticket: id => $ticket->id">{$ticket->name}</a>
+                        <div>{$ticket->description|truncate:160}</div>
 
-    </td>
-    <td>{$ticket->creation_date|date:'F j, Y'}</td>
-    <td>{$ticket->state}</td>
-    <td>{$ticket->ref('user', 'author')->first_name} {$ticket->ref('user', 'author')->surname}</td>
-</tr>
+                    </td>
+                    <td>{$ticket->creation_date|date:'F j, Y'}</td>
+                    <td>{$ticket->state}</td>
+                    <td>{$ticket->ref('user', 'author')->first_name} {$ticket->ref('user', 'author')->surname}</td>
+                </tr>
+            </tbody>
+        </table>
+    {/if}
 {/block}
 

@@ -8,6 +8,7 @@ abstract class listBase {
     protected $database;
 
     public $paginator;
+    public $rowCount;
 
     public function __construct(Nette\Database\Context $database) {
         $this->database = $database;
@@ -42,7 +43,8 @@ abstract class listBase {
             $retval = $this->filterByUser($userid, $retval);
         }
 
-        $this->paginator->setItemCount($retval->count('*')); // celkový počet riadkov
+        $this->rowCount = $retval->count('*');
+        $this->paginator->setItemCount($this->rowCount); // celkový počet riadkov
 
         return $retval;
     }
