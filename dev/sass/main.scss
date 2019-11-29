@@ -200,7 +200,7 @@ table tbody tr td a {
   margin-left: 0.7em;
 }
 
-#edit-butt {
+.edit-butt {
   color: #4e555b;
   float: right;
   margin-top: -35px;
@@ -214,7 +214,7 @@ table tbody tr td a {
   }
 }
 
-#edit-butt:hover {
+.edit-butt:hover {
   color: dodgerblue;
 }
 
@@ -251,6 +251,7 @@ img.attach-img {
 #task-name {
   font-style: italic;
   font-weight: normal;
+  color: #212529;
 }
 
 #undefined {
@@ -299,20 +300,28 @@ section#ticket-detail .dropdown-toggle::after { //"arrow/triangle" position in d
   margin-right: 2em;
 }
 
+//ticket_detail.html
+#edit-create-buttons {
+  display: flex;
+  justify-content: flex-end;
 
+  #edit-butt-notalone{
+    margin-right: 1em;
+  }
+}
 
 //Homepage loggedout
 
 .dropdown-login-form:hover {
   background: none;
-  color: black;
+  color: #212529;
 }
 
 .dropdown-forgotten-pswd {
   margin-left: 1.5em;
   padding-bottom: 1em;
   font-style: italic;
-  color: black;
+  color: #212529;
 }
 
 .dropdown-login-button {
@@ -468,6 +477,7 @@ section { // Main content of the site.
 
 .name-href {
   font-weight: normal;
+  color: #212529;
 }
 
 
