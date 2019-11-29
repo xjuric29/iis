@@ -10,7 +10,7 @@ use Nette;
 
 class TasksPresenter extends ListPresenter
 {
-    /** @var \App\Model\viewTasks @inject */
+    /** @var \App\Model\ViewTasks @inject */
     public $tasks;
 
     /** Renders the page on load

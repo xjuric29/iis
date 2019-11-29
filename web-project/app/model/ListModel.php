@@ -4,7 +4,7 @@ namespace App\Model;
 
 use Nette;
 
-abstract class listBase {
+abstract class ListModel {
     protected $database;
 
     public $paginator;
