@@ -1,4 +1,4 @@
-{layout '@layout.latte'}
+{layout '../@layout.latte'}
 {block content}
     <section class="container">
         <header class="col-12">
@@ -9,14 +9,14 @@
         <nav class="d-flex flex-wrap justify-content-between">
             <div class="dropdown">
                 <a class="btn dropdown-toggle border" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Sort
+                    Sort by
                 </a>
 
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                     <a class="dropdown-item" n:href=": orderBy => 'name', orderDir => 'desc'">Name descending</a>
                     <a class="dropdown-item" n:href=": orderBy => 'name', orderDir => 'asc'">Name ascending</a>
-                    <a class="dropdown-item" n:href=": orderBy => 'date', orderDir => 'desc'">Date descending</a>
-                    <a class="dropdown-item" n:href=": orderBy => 'date', orderDir => 'asc'">Date ascending</a>
+                    <a class="dropdown-item" n:href=": orderBy => 'date', orderDir => 'desc'">Creation date descending</a>
+                    <a class="dropdown-item" n:href=": orderBy => 'date', orderDir => 'asc'">Creation date ascending</a>
                 </div>
 
             </div>

@@ -4,7 +4,7 @@ namespace App\Model;
 
 use Nette;
 
-class viewTasks extends viewBase {
+class viewTasks extends listBase {
     protected function selectSearched($search, Nette\Database\Table\Selection $table) {
         if ($search) {
             $search = '%' . $search . '%';
@@ -26,5 +26,9 @@ class viewTasks extends viewBase {
             default:
                 return "name";
         }
+    }
+
+    protected function filterByUser($userid, Nette\Database\Table\Selection $table) {
+        return $table->where("author LIKE ?", $userid);
     }
 }
