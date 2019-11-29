@@ -466,6 +466,10 @@ section { // Main content of the site.
   font-weight: bolder;
 }
 
+.name-href {
+  font-weight: normal;
+}
+
 
 // Extended tablet rules.
 @media (min-width: map-get($grid-breakpoints, lg)) {
