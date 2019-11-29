@@ -28,6 +28,8 @@ class viewTickets extends viewBase {
             default:
                 return "creation_date";
         }
+    }
+
     # xjuric29 methods
     public function getTicket($id) {
         /**Return data for specific ticket.
