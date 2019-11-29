@@ -5,10 +5,11 @@
  */
 namespace App\Presenters;
 
+use App\Model\MasterPresenter;
 use Nette;
 
 
-abstract class ListPresenter extends Nette\Application\UI\Presenter
+abstract class ListPresenter extends MasterPresenter
 {
     /** @persistent */
     public $orderBy;
