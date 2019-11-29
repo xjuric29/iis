@@ -64,7 +64,7 @@ class MasterPresenter extends Nette\Application\UI\Presenter {
 
     public function actionLogout() {
         /** Logout current logged user. */
-        $this->getUser()->logout();
+        $this->getUser()->logout(true);
         $this->redirect('Homepage:');
     }
 }
