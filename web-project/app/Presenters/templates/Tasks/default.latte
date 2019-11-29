@@ -1,24 +1,37 @@
 {layout '../Components/listComponents.latte'}
 {block title}ITS | Tasks{/block}
 {block H1}Tasks{/block}
+{block searchHint}Search task names and descriptions...{/block}
 {block addButton}
     <a class="btn btn-our float-right" href="#" role="button">Add task</a>
 {/block}
-{block tableHeader}
-    <tr>
-        <th scope="col">Issue</th>
-        <th scope="col">State</th>
-        <th scope="col">Creator</th>
-    </tr>
-{/block}
-{block tableBody}
-    <tr n:foreach="$taskList as $task">
-        <td>
-            <a href="#">{$task->name}</a>
-            <div>{$task->description|truncate:160}</div>
+{block table}
+    {if $rowCount == 0}
+        {ifset $_GET['search']}
+            <div>It's embarrassing, but we couldn't find anything.</div>
+        {else}
+            <div>There is nothing to display.</div>
+        {/ifset}
+    {else}
+        <table class="table table-hover table-responsive-md">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Issue</th>
+                    <th scope="col">State</th>
+                    <th scope="col">Creator</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr n:foreach="$taskList as $task">
+                    <td>
+                        <a href="#">{$task->name}</a>
+                        <div>{$task->description|truncate:160}</div>
 
-        </td>
-        <td>{$task->state}</td>
-        <td>{$task->ref('user', 'author')->first_name} {$task->ref('user', 'author')->surname}</td>
-    </tr>
+                    </td>
+                    <td>{$task->state}</td>
+                    <td>{$task->ref('user', 'author')->first_name} {$task->ref('user', 'author')->surname}</td>
+                </tr>
+            </tbody>
+        </table>
+    {/if}
 {/block}
