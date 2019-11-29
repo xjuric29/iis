@@ -23,7 +23,7 @@ $color-button: #d9544f;
 }
 
 section nav div.dropdown a{
-  width: 150px;
+  width: 20em;
   text-align: left;
   position: relative;
 
@@ -468,6 +468,22 @@ section { // Main content of the site.
 
 .name-href {
   font-weight: normal;
+}
+
+
+.problem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  img#sad-image {
+    height: 20em;
+    margin-bottom: 20px;
+  }
+}
+
+#sad-text {
+  font-style: italic;
 }
 
 
