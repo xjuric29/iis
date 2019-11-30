@@ -6,12 +6,13 @@
 namespace App\Presenters;
 
 use Nette;
+use App\Model;
 use Tracy\Debugger;
 
 
 class UsersPresenter extends ListPresenter
 {
-    /** @var \App\Model\ViewUsers @inject */
+    /** @var Model\ViewUsers @inject */
     public $sysusers;
 
     /** Renders the page on load
@@ -28,7 +29,6 @@ class UsersPresenter extends ListPresenter
         $this->template->rowCount = $this->sysusers->rowCount;
         $this->template->paginator = $this->sysusers->paginator;
     }
-
 
     /** Handles search request
      * @author xpospi95

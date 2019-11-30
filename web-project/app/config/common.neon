@@ -20,3 +20,4 @@ services:
 	- App\Model\Comments
 	- App\Model\PermissionMap
 	- App\Model\User
+	- App\Model\UserDetail
