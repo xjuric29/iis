@@ -13,7 +13,7 @@ use Nette\Application\UI\Form;
 class MasterPresenter extends Nette\Application\UI\Presenter {
     /** @var \App\Model\PermissionMap @inject */
     public $permissionMap;
-    private $userInfo;
+    protected $userInfo;
 
     public function startup() {
         parent::startup();

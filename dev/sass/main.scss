@@ -226,6 +226,14 @@ table tbody tr td a {
   margin-bottom: 20px;
 }
 
+.alert-flash {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  width: 100%;
+}
+
 img.attach-img {
   max-width: 200px;
 }

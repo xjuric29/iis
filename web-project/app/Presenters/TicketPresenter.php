@@ -30,9 +30,13 @@ class TicketPresenter extends MasterPresenter {
          * @param $id: Specific ticket id.
          * @param $newState: New state of specified ticket. */
         if ($this->userInfo['role'] >= $this->permissionMap->convert('manager')) {
-            $this->tickets->;
+            $this->tickets->updateState($id, $newState);
+            $this->redirect(':', [$id]);
         }
-        else $this->flashMessage('You don\'t have enough permission to do this action');
+        else {
+            $this->flashMessage('You don\'t have enough permission to do this action.');
+            $this->redirect('Homepage:');
+        }
     }
 
     public function createComponentComment() {
@@ -53,5 +57,13 @@ class TicketPresenter extends MasterPresenter {
     public function commentSucceeded(Form $form, $values) {
         /**Process data from comment form. */
         $this->comments->addComment($values->ticketId, $values->author, $values->comment);
+    }
+
+    public function renderAdd() {
+
+    }
+
+    public function renderEdit() {
+
     }
 }

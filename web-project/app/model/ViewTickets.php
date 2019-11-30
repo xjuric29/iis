@@ -47,11 +47,19 @@ class ViewTickets extends ListModel {
            @param $id: Specific ticket id. */
         $query = $this->database->table('ticket')->where('id = ?', $id);
 
-        return $query->fetch();
+        // Modify state value for displaying in sites.
+        $rowValues = $query->fetch()->toArray();
+        $rowValues['state'] = $this->convertDbStateToPretty($rowValues['state']);
+
+        return new Nette\Database\Table\ActiveRow($rowValues, $query);
     }
 
     public function updateState($id, $state) {
-
+        /**Update state of specific ticket.
+         * @param $id: Specific ticket id.
+         * @param $state: Raw state string from DB. */
+        $this->database->table('ticket')->where('id = ?', $id)
+            ->update(['state' => $state]);
     }
 
     public function convertDbStateToPretty($dbState) {
@@ -70,7 +78,7 @@ class ViewTickets extends ListModel {
         $state = 'new';
         $swappedMap = array_flip($this->stateMap);
 
-        if (isset($swappedMap[$prettyState])) $state = $this->stateMap[$dbState];
+        if (isset($swappedMap[$prettyState])) $state = $swappedMap[$prettyState];
 
         return $state;
     }

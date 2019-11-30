@@ -56,9 +56,9 @@
                                 {$ticket->state}
                             </button>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="#">Denied</a>
-                                <a class="dropdown-item" href="#">In progress</a>
-                                <a class="dropdown-item" href="#">Blocked</a>
+                                <a class="dropdown-item" n:href=":changeState $ticket->id, 'new'">new</a>
+                                <a class="dropdown-item" n:href=":changeState $ticket->id, 'in_progress'">in progress</a>
+                                <a class="dropdown-item" n:href=":changeState $ticket->id, 'closed'">closed</a>
                             </div>
                         </div>
                     {else}
