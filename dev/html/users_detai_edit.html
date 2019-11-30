@@ -71,37 +71,31 @@ Author: Jiri Jurica (xjuric29)
             </div>
 
             <div class="product-type">
-                <div class="drop-type mt-4">Role</div>
-                <div class="drop-product dropdown">
-                    <a class="btn dropdown-toggle border product-dropdown" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Choose role
-                    </a>
-
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        <a class="dropdown-item" href="#">User</a>
-                        <a class="dropdown-item" href="#">Worker</a>
-                        <a class="dropdown-item" href="#">Manager</a>
-                        <a class="dropdown-item" href="#">Admin</a>
-                        <a class="dropdown-item" href="#">Supervisor</a>
-                    </div>
+                    <div class="form-group mt-4">
+                        <label for="exampleFormControlSelect2">Role</label>
+                        <select class="form-control dajaky-select-small" id="exampleFormControlSelect2">
+                            <option>Choose ...</option>
+                            <option>User</option>
+                            <option>Worker</option>
+                            <option>Manager</option>
+                            <option>Supervisor</option>
+                            <option>Admin</option>
+                        </select>
                 </div>
             </div>
         </div>
 
         <div class="product-setting">
             <div class="product-type" id="product">
-                <div class="drop-type mt-4">Working for subproduct</div>
-                <div class="drop-product dropdown">
-                    <a class="btn dropdown-toggle border product-dropdown" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Product1
-                    </a>
-
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        <a class="dropdown-item" href="#">None</a>
-                        <a class="dropdown-item" href="#">Product3</a>
-                        <a class="dropdown-item" href="#">Product4</a>
-                        <a class="dropdown-item" href="#">Product5</a>
-                    </div>
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1">Working for</label>
+                    <select class="form-control dajaky-select-small" id="exampleFormControlSelect1">
+                        <option>Choose ...</option>
+                        <option>Integer finibus arcu a lectus varius semper</option>
+                        <option>Fusce a ex eu sapien finibus rutru</option>
+                        <option>Etiam consequat massa eget nisi ultricies sagittis</option>
+                        <option>Lorem ipsum dolor sit amet, consectetur adipiscing elit</option>
+                    </select>
                 </div>
             </div>
         </div>
