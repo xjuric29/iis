@@ -447,6 +447,13 @@ section#ticket-detail .dropdown-toggle::after { //"arrow/triangle" position in d
   position: absolute;
   top: 2%;
   left: 85%;
+  width: 16px;
+  height: 16px;
+}
+
+.svg-icons {
+  width: 16px;
+  height: 16px;
 }
 
 table.noted-activity tr th {
