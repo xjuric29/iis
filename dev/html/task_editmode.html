@@ -59,38 +59,22 @@ Author: Jiri Jurica (xjuric29)
         <label for="exampleFormControlInput1">Task</label>
         <input class="form-control" id="exampleFormControlInput1" placeholder="This is name of task">
 
-        <div class="product-setting">
+          <div class="product-setting">
             <div class="product-type" id="product">
                 <div class="drop-type mt-4">Product type</div>
-                <div class="drop-product dropdown">
-                    <a class="btn dropdown-toggle border product-dropdown" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Product1
-                    </a>
 
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        <a class="dropdown-item" href="#">Product2</a>
-                        <a class="dropdown-item" href="#">Product3</a>
-                        <a class="dropdown-item" href="#">Product4</a>
-                        <a class="dropdown-item" href="#">Product5</a>
+                <div class="dropdown drop-flex" style="width: 25em">
+                    <button class="btn dropdown-toggle border drop-for-product" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Dropdown button
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="#">Something else here</a>
                     </div>
                 </div>
             </div>
-
-            <div class="product-type" id="subproduct">
-                <div class="drop-type mt-4">Subproduct</div>
-                <div class="drop-product dropdown">
-                    <a class="btn dropdown-toggle border product-dropdown" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Product1
-                    </a>
-
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        <a class="dropdown-item" href="#">Product2</a>
-                        <a class="dropdown-item" href="#">Product3</a>
-                        <a class="dropdown-item" href="#">Product4</a>
-                        <a class="dropdown-item" href="#">Product5</a>
-                    </div>
-                </div>
-            </div>
+        </div>
         </div>
 
         <label for="exampleFormControlInput1">Estimated time</label>
