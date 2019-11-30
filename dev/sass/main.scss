@@ -172,7 +172,7 @@ table tbody tr td a {
 .circle-right, .circle-left {
   width: 40px;
   height: 40px;
-  background-color: #6f42c1;
+  background-color: #212529;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -649,6 +649,12 @@ footer {
 
 .dajaky-select-small {
   width: 20em;
+}
+
+.activity-wrapper {
+  border-left: solid 1px;
+  padding-left: 10px;
+  //font-style: italic;
 }
 
 // Extended tablet rules.
