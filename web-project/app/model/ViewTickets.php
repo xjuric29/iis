@@ -5,6 +5,13 @@ namespace App\Model;
 use Nette;
 
 class ViewTickets extends ListModel {
+    // For converting pretty and db values of ticket state.
+    private $stateMap = [
+        'new' => 'new',
+        'in_progress' => 'in progress',
+        'closed' => 'closed'
+    ];
+
     protected function selectSearched($search, Nette\Database\Table\Selection $table) {
         if ($search) {
             $search = '%' . $search . '%';
@@ -41,5 +48,30 @@ class ViewTickets extends ListModel {
         $query = $this->database->table('ticket')->where('id = ?', $id);
 
         return $query->fetch();
+    }
+
+    public function updateState($id, $state) {
+
+    }
+
+    public function convertDbStateToPretty($dbState) {
+        /**Convert state from DB enum to string which can be display for users of site.
+         * @param $dbState: Raw state string from DB. */
+        $state = 'new';
+
+        if (isset($this->stateMap[$dbState])) $state = $this->stateMap[$dbState];
+
+        return $state;
+    }
+
+    public function convertPrettyStateToDb($prettyState) {
+        /**Convert state from site to enum string which can be saved in db.
+         * @param $prettyState: Pretty string from site. */
+        $state = 'new';
+        $swappedMap = array_flip($this->stateMap);
+
+        if (isset($swappedMap[$prettyState])) $state = $this->stateMap[$dbState];
+
+        return $state;
     }
 }

@@ -11,6 +11,12 @@ use Nette;
 
 class User {
     private $database;
+    private $roleMap = [
+        'common_worker' => 'worker',
+        'manager' => 'manager',
+        'superior' => 'supervisor',
+        'administrator' => 'admin'
+    ];
 
     public function __construct(Nette\Database\Context $database) {
         $this->database = $database;
@@ -42,10 +48,20 @@ class User {
     public function getAdditionalUserData($login) {
         /**Return additional user data depending on type of user (customer, worker).
          * @param $login: String with user id. */
-        $customerQuery = $this->database->table('user_customer')->where('id = ?', $login)->fetch();
-        $workerQuery = $this->database->table('user_worker')->where('id = ?', $login)->fetch();
+        $customerSelect = $this->database->table('user_customer')->where('id = ?', $login)->fetch();
+        $workerSelect = $this->database->table('user_worker')->where('id = ?', $login)->fetch();
 
-        if ($customerQuery) return $customerQuery;
-        else return $workerQuery;
+        if ($customerSelect) return $customerSelect;
+        else return $workerSelect;
+    }
+
+    public function convertDbRoleToPretty($dbRole) {
+        /**Convert role from DB enum to string which can be display for users of site.
+         * @param $dbRole: Raw role string from DB. */
+        $role = '';
+
+        if (isset($this->roleMap[$dbRole])) $role = $this->roleMap[$dbRole];
+
+        return $role;
     }
 }

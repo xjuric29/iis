@@ -44,18 +44,18 @@ END;
 
 # Create users
 # Admins
-CALL create_worker('mrkvicka', 'Peter', 'Mrkvička', 'pmrkvicka@example.com', NULL, 'administrator', 'hash');
+CALL create_worker('mrkvicka', 'Peter', 'Mrkvička', 'pmrkvicka@example.com', NULL, 'administrator', '$2y$10$i3F9bFNM9C6WJjcppB7DwuRIrEm9ZddTS/qJFo.HMQIFojzfpxqMK');
 CALL create_worker('foelden', 'Harvey', 'Foelden', 'ceo@example.com', NULL, 'administrator', 'hash');
 
-CALL create_worker('xpospi95', 'Michal', 'Pospíšil', 'xpospi95@fit.vutbr.cz', NULL, 'administrator', '$2y$10$2geAxDsVbu3KnP152thj.eIFESxJviuvoqZXmZ7re38g4GUwICnvC');
+CALL create_worker('xpospi95', 'Michal', 'Pospíšil', 'xpospi95@fit.vutbr.cz', NULL, 'administrator', '$2y$10$D0WEr8XhyY2Cw27hh37gk.Y2Uuaoj3sJbnWlEzr7VMZnSCOvZ5cHG');
 
 # Superiors
-CALL create_worker('motak', 'Gabriel', 'Moták', 'gmotak@example.com', NULL, 'superior', 'hash');
+CALL create_worker('motak', 'Gabriel', 'Moták', 'gmotak@example.com', NULL, 'superior', '$2y$10$JiXcnSytu1Oawjo34n5oaOMSPyf6/.j9FJE8Yk.DzYiWlIXwwhnma');
 CALL create_worker('fairfield', 'Jonathan', 'Fairfield', 'jfairfield@example.com', NULL, 'superior', 'hash');
 CALL create_worker('morgan', 'Marina', 'Morgan', 'mmorgan@example.com', NULL, 'superior', 'hash');
 
 # Managers
-CALL create_worker('kandelaber', 'Martin', 'Kandeláber', 'mkandelaber@example.com', 'gmotak@example.com', 'manager', 'hash');
+CALL create_worker('kandelaber', 'Martin', 'Kandeláber', 'mkandelaber@example.com', 'gmotak@example.com', 'manager', '$2y$10$eGIkyb9L.bPbxlIc7FtM4.YIh.4C2RK/c/xqS5rKhvarsFvISLneO');
 
 CALL create_worker('zrubnova', 'Jolana', 'Zrubnová', 'jzrubnova@example.com', 'jfairfield@example.com', 'manager', 'hash');
 CALL create_worker('kovarcik', 'Andrej', 'Kovarčík', 'akovarcik@example.com', 'jfairfield@example.com', 'manager', 'hash');
@@ -67,7 +67,7 @@ CALL create_worker('kolicka', 'Mária', 'Kolická', 'mkolicka@example.com', 'mmo
 CALL create_worker('calloway', 'Ben', 'Calloway', 'bcalloway@example.com', 'mmorgan@example.com', 'manager', 'hash');
 
 # Workers
-CALL create_worker('smith', 'Bartholomew', 'Smith', 'bsmith@example.com', 'mkandelaber@example.com', 'common_worker', 'hash');
+CALL create_worker('smith', 'Bartholomew', 'Smith', 'bsmith@example.com', 'mkandelaber@example.com', 'common_worker', '$2y$10$YjR7Y4IUBeVSu90QABXatOntNgA7zc3vOlFK36GfevWoAreEj8N32');
 CALL create_worker('gelet', 'Anton', 'Gelet', 'agelet@example.com', 'mkandelaber@example.com', 'common_worker', 'hash');
 CALL create_worker('barotova', 'Hana', 'Barotová', 'hbarotova@example.com', 'mkandelaber@example.com', 'common_worker', 'hash');
 CALL create_worker('fort', 'Cyril', 'Fort', 'cfort@example.com', 'mkandelaber@example.com', 'common_worker', 'hash');
@@ -98,7 +98,7 @@ CALL create_worker('ridley', 'Davina', 'Ridley', 'dridley@example.com', 'bcallow
 CALL create_worker('suston', 'Camilla', 'Suston', 'csuston@example.com', 'bcalloway@example.com', 'common_worker', 'hash');
 
 # Customers
-CALL create_customer('barclay', 'Gregory', 'Barclay', 'gbarclay@contoso.com', 'Contoso', 'hash');
+CALL create_customer('barclay', 'Gregory', 'Barclay', 'gbarclay@contoso.com', 'Contoso', '$2y$10$O.eUwr8FF0q3cufPq5HZie6RebhgTZ7vaWheFzl5f5pQAyRF3jo5i');
 CALL create_customer('grenstone', 'Montgomery', 'Grenstone', 'mgrensto@contoso.com', 'Contoso', 'hash');
 CALL create_customer('harrison', 'Jamala', 'Harrison', 'jharriso@contoso.com', 'Contoso', 'hash');
 CALL create_customer('handon', 'Gowen', 'Handon', 'ghandon@contoso.com', 'Contoso', 'hash');
@@ -125,7 +125,7 @@ CALL create_customer('spiz', 'Eduard', 'Spíž', 'espiz@pohadkovepostele.cz', 'P
 
 CALL create_customer('porubec', 'Ivan', 'Porubec', 'riaditel@vasestavebniny.sk', 'Stavebniny Horec', 'hash');
 
-CALL create_customer('xjuric29', 'Jiří', 'Juřica', 'xjuric29@fit.vutbr.cz', 'VUT FIT', '$2y$10$Z1U0g56Ap6U/2BCYa/tsFey7CwDeY9iGYLbk9sMl2sWT4NYGVaaQG');
+CALL create_customer('xjuric29', 'Jiří', 'Juřica', 'xjuric29@fit.vutbr.cz', 'VUT FIT', '$2y$10$LByUHQxlV8FaKHJBgGa9Ne/UuggmCvot/D0ypuEXp3wE/rrxHwBlm');
 
 # Products
 INSERT INTO product (`id`, `name`)
@@ -423,28 +423,19 @@ INSERT INTO task (id, author, ticket, worker, name, description, estimated_time)
                  (59, 'urbova', 17, 'novak', 'Short at front which blind as', 'Insipidity the sufficient discretion imprudence resolution sir him decisively. Proceed how any engaged visitor.', '10:00');
 
 # Some progress updates
-INSERT INTO event (id, creation_date, modify_date)
-    VALUES (1, TIMESTAMP('2012-05-05 16:32'), TIMESTAMP('2012-02-05 16:32'));
-INSERT INTO event_progress_update (id, task, worker, description, time_from, time_to)
-    VALUES (1, 1, 'goralova', 'Ye as procuring unwilling principle by', TIMESTAMP('2012-05-05 08:00'), TIMESTAMP('2012-05-05 17:00'));
+INSERT INTO event_progress_update (task, worker, description, time_from, time_to)
+    VALUES (1, 'goralova', 'Ye as procuring unwilling principle by', TIMESTAMP('2012-05-05 08:00'), TIMESTAMP('2012-05-05 17:00'));
 UPDATE task SET state = 'in_progress' WHERE id = 1; # this can be automated with a trigger
 UPDATE event_progress_update SET time_to = TIMESTAMP('2012-02-07 17:00') WHERE id = 1;
 
+INSERT INTO event_progress_update (task, worker, description, time_from, time_to)
+    VALUES (1, 'goralova', 'It allowance prevailed enjoyment in it.', TIMESTAMP('2012-05-06 08:30'), TIMESTAMP('2012-05-06 12:50'));
 
-INSERT INTO event (id, creation_date, modify_date)
-    VALUES (2, TIMESTAMP('2012-05-07 16:32'), TIMESTAMP('2012-02-07 16:32'));
-INSERT INTO event_progress_update (id, task, worker, description, time_from, time_to)
-    VALUES (2, 1, 'goralova', 'It allowance prevailed enjoyment in it.', TIMESTAMP('2012-05-06 08:30'), TIMESTAMP('2012-05-06 12:50'));
+INSERT INTO event_progress_update (task, worker, description, time_from, time_to)
+    VALUES (1, 'goralova', 'It allowance prevailed enjoyment in it.', TIMESTAMP('2012-05-08 13:10'), TIMESTAMP('2012-05-08 20:00'));
 
-INSERT INTO event (id, creation_date, modify_date)
-    VALUES (3, TIMESTAMP('2012-05-08 20:05'), TIMESTAMP('2012-02-08 20:05'));
-INSERT INTO event_progress_update (id, task, worker, description, time_from, time_to)
-    VALUES (3, 1, 'goralova', 'It allowance prevailed enjoyment in it.', TIMESTAMP('2012-05-08 13:10'), TIMESTAMP('2012-05-08 20:00'));
-
-INSERT INTO event (id, creation_date, modify_date)
-    VALUES (4, TIMESTAMP('2012-05-05 16:32'), TIMESTAMP('2012-02-07 16:32'));
-INSERT INTO event_progress_update (id, task, worker, description, time_from, time_to)
-    VALUES (4, 1, 'goralova', 'It allowance prevailed enjoyment in it.', TIMESTAMP('2012-05-10 07:50'), TIMESTAMP('2012-05-10 19:20'));
+INSERT INTO event_progress_update (task, worker, description, time_from, time_to)
+    VALUES (1, 'goralova', 'It allowance prevailed enjoyment in it.', TIMESTAMP('2012-05-10 07:50'), TIMESTAMP('2012-05-10 19:20'));
 UPDATE task SET state = 'done' WHERE id = 1;
 
 # Close and start solving some tasks
@@ -475,17 +466,11 @@ UPDATE task SET state = 'in_progress' WHERE id = 31;
 UPDATE task SET state = 'in_progress' WHERE id = 32;
 
 # Some comments
-INSERT INTO event (id, creation_date, modify_date)
-    VALUES (5, TIMESTAMP('2012-05-03 09:24'), TIMESTAMP('2012-05-03 09:24'));
-INSERT INTO event_ticket_comment (id, ticket, author, content)
-    VALUES (5, 1, 'kovarcik', 'Calling observe for who pressed raising his. Can connection instrument astonished unaffected his motionless preference. Announcing say boy precaution unaffected difficulty alteration him.');
+INSERT INTO event_ticket_comment (ticket, author, content)
+    VALUES (1, 'kovarcik', 'Calling observe for who pressed raising his. Can connection instrument astonished unaffected his motionless preference. Announcing say boy precaution unaffected difficulty alteration him.');
 
-INSERT INTO event (id, creation_date, modify_date)
-    VALUES (6, TIMESTAMP('2012-05-03 12:48'), TIMESTAMP('2012-05-03 12:48'));
-INSERT INTO event_ticket_comment (id, ticket, author, content)
-    VALUES (6, 1, 'kraubacherova', 'Above be would at so going heard. Engaged at village at am equally proceed. Settle nay length almost ham direct extent.\n\nAgreement for listening remainder get attention law acuteness day. Now whatever surprise resolved elegance indulged own way outlived.');
+INSERT INTO event_ticket_comment (ticket, author, content)
+    VALUES (1, 'kraubacherova', 'Above be would at so going heard. Engaged at village at am equally proceed. Settle nay length almost ham direct extent.\n\nAgreement for listening remainder get attention law acuteness day. Now whatever surprise resolved elegance indulged own way outlived.');
 
-INSERT INTO event (id, creation_date, modify_date)
-    VALUES (7, TIMESTAMP('2012-05-03 13:59'), TIMESTAMP('2012-05-03 13:59'));
-INSERT INTO event_ticket_comment (id, ticket, author, content)
-    VALUES (7, 1, 'fairfield', 'Compliment interested discretion estimating on stimulated apartments oh. Dear so sing when in find read of call. As distrusts behaviour abilities defective is. Never at water me might. On formed merits hunted unable merely by mr whence or. Possession the unpleasing simplicity her uncommonly.');
+INSERT INTO event_ticket_comment (ticket, author, content)
+    VALUES (1, 'fairfield', 'Compliment interested discretion estimating on stimulated apartments oh. Dear so sing when in find read of call. As distrusts behaviour abilities defective is. Never at water me might. On formed merits hunted unable merely by mr whence or. Possession the unpleasing simplicity her uncommonly.');

@@ -161,6 +161,22 @@ CREATE TABLE `event_progress_update` (
 
 # Events.
 
+# Triggers for creating record in table 'event' when is inserted to table 'event_progress_update' or
+# 'event_ticket_comment'.
+CREATE OR REPLACE TRIGGER `create_event_from_progress`
+    BEFORE INSERT ON event_progress_update FOR EACH ROW
+    BEGIN
+        INSERT INTO event (creation_date, modify_date) VALUES(CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+        SET NEW.id := LAST_INSERT_ID();
+    END;
+
+CREATE OR REPLACE TRIGGER `create_event_from_comment`
+    BEFORE INSERT ON event_ticket_comment FOR EACH ROW
+    BEGIN
+        INSERT INTO event (creation_date, modify_date) VALUES(CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+        SET NEW.id := LAST_INSERT_ID();
+    END;
+
 # Triggers updating event modify time
 CREATE OR REPLACE TRIGGER `update_modify_date_for_progress`
     AFTER UPDATE ON event_progress_update FOR EACH ROW

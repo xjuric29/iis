@@ -8,7 +8,6 @@
 namespace App\Model;
 
 use Nette;
-use Tracy\Debugger;
 
 class TicketComments {
     private $database;
@@ -21,10 +20,10 @@ class TicketComments {
 
     public function getComments($ticketId) {
         /**Return comments for specific ticket.
-           @param $ticketId: Specific ticket id. */
+         * @param $ticketId: Specific ticket id. */
         $query = $this->database->table('event_ticket_comment')
             ->select('author, author.first_name, author.surname, content, id.creation_date')
-            ->where('ticket = ?', $ticketId)->order('id.creation_date');
+            ->where('ticket = ?', $ticketId)->order('id.creation_date DESC');
 
         $result = array();
 
@@ -50,5 +49,18 @@ class TicketComments {
         }
 
         return $result;
+    }
+
+    public function addComment($ticketId, $author, $content) {
+        /**Add comment to database.
+         * @param $ticketId: Specific ticket id.
+         * @param $author: Author id.
+         * @param $content: User comment.
+         */
+        $this->database->table('event_ticket_comment')->insert([
+            'ticket' => $ticketId,
+            'author' => $author,
+            'content' => $content
+        ]);
     }
 }

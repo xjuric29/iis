@@ -38,12 +38,31 @@
 								</a>
 
 								<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+									<!-- Logged user -->
 									{if $user->isLoggedIn()}
-
 										<a class="dropdown-item" n:href="Homepage: userid => $user->id">My tickets</a>
 										<a class="dropdown-item" href="#">Profile</a>
+
+										{if $userInfo['role'] >= $permissionMap->convert('common_worker')}
+											<a class="dropdown-item" href="#">My tasks</a>
+										{/if}
+
+										{if $userInfo['role'] >= $permissionMap->convert('manager')}
+											<a class="dropdown-item" href="#">Created tasks</a>
+										{/if}
+
+										{if $userInfo['role'] >= $permissionMap->convert('superior')}
+											<a class="dropdown-item" href="#">Products</a>
+										{/if}
+
+										{if $userInfo['role'] >= $permissionMap->convert('administrator')}
+											<a class="dropdown-item" href="#">Users</a>
+										{/if}
+
 										<div class="dropdown-divider"></div>
 										<a class="dropdown-item" n:href=":logout">Log out</a>
+
+									<!-- Login form for unsigned user -->
 									{else}
 										{form login}
 										<div class="dropdown-item dropdown-login-form">
@@ -61,9 +80,6 @@
 										</div>
 										<button type="submit" n:name="send" class="dropdown-item dropdown-login-button">Log in</button>
 										{/form}
-									{/if}
-									{if $userInfo['role'] >= $permissionMap->convert('common_worker')}
-										test acl
 									{/if}
 								</div>
 
