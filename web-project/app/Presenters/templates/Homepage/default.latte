@@ -5,7 +5,7 @@
         <header class="col-12">
             <h1>Tickets</h1>
             {if $userInfo['role'] > 0}
-            <a class="btn btn-our float-right" href="#" role="button">Add ticket</a>
+                <a class="btn btn-our float-right" href="#" role="button">Add ticket</a>
             {/if}
         </header>
         <hr>
@@ -38,9 +38,9 @@
 
         {if $rowCount == 0}
             {ifset $_GET['search']}
-                <div>It's embarrassing, but we couldn't find anything.</div>
+                {include nothingFound}
             {else}
-                <div>There is nothing to display.</div>
+                {include nothingHere}
             {/ifset}
         {else}
             <table class="table table-hover table-responsive-md">

@@ -39,9 +39,9 @@
 
             {if $rowCount == 0}
                 {ifset $_GET['search']}
-                    <div>It's embarrassing, but we couldn't find anything.</div>
+                    {include nothingFound}
                 {else}
-                    <div>There is nothing to display.</div>
+                    {include nothingHere}
                 {/ifset}
             {else}
                 <table class="table table-hover table-responsive-md">
@@ -76,5 +76,7 @@
 
             {include paging}
         </section>
+    {else}
+        {include insufficientPermissions}
     {/if}
 {/block}

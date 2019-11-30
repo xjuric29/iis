@@ -16,6 +16,7 @@ services:
 	# DB functions
 	- App\Model\ViewTickets
 	- App\Model\ViewTasks
+	- App\Model\ViewUsers
 	- App\Model\Comments
 	- App\Model\PermissionMap
 	- App\Model\User

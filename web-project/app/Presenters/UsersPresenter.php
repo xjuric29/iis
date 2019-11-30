@@ -1,17 +1,18 @@
 <?php
-/** Presenter for listing tickets
+/** Presenter for listing tasks
  * @author Michal Pospíšil
  * @email xpospi95@stud.fit.vutbr.cz
  */
 namespace App\Presenters;
 
 use Nette;
+use Tracy\Debugger;
 
 
-class HomepagePresenter extends ListPresenter
+class UsersPresenter extends ListPresenter
 {
-    /** @var \App\Model\viewTickets @inject */
-    public $tickets;
+    /** @var \App\Model\ViewUsers @inject */
+    public $sysusers;
 
     /** Renders the page on load
      * @author xpospi95
@@ -23,10 +24,11 @@ class HomepagePresenter extends ListPresenter
      */
     public function renderDefault($orderBy, $orderDir, $page = 1, $search = null, $userid = null): void
     {
-        $this->template->ticketList = $this->tickets->getTable($orderBy, $orderDir, $page, $search, $userid);
-        $this->template->rowCount = $this->tickets->rowCount;
-        $this->template->paginator = $this->tickets->paginator;
+        $this->template->usersList = $this->sysusers->getUsersTable($orderBy, $page, $search, $userid, $orderDir = "asc");
+        $this->template->rowCount = $this->sysusers->rowCount;
+        $this->template->paginator = $this->sysusers->paginator;
     }
+
 
     /** Handles search request
      * @author xpospi95
@@ -36,6 +38,6 @@ class HomepagePresenter extends ListPresenter
      */
     public function performSearch(Nette\Application\UI\Form $form, \stdClass $values): void
     {
-        $this->redirect('Homepage:', ['search' => $values->searchBox, 'page' => '1']);
+        $this->redirect('Users:', ['search' => $values->searchBox, 'page' => '1']);
     }
 }
