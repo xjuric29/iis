@@ -17,12 +17,13 @@ $color-button: #d9544f;
   @include button-variant($color-button, $color-button);
 }
 
+
 .container .col-12 {
   padding: 0;
 }
 
 section nav div.dropdown a{
-  width: 150px;
+  width: 17em;
   text-align: left;
   position: relative;
 
@@ -70,19 +71,19 @@ table tbody tr td a {
   max-width: 50em;
   margin-top: 0;
 
-  table {
+  table#ticket-detail-tab {
     display: flex;
     flex-grow: 3;
     border-right: solid 1px;
   }
 
-  table tbody tr th {
+  table#ticket-detail-tab tbody tr th {
     font-weight: normal;
     width: 10em;
     vertical-align: top;
   }
 
-  table tbody tr td {
+  table#ticket-detail-tab tbody tr td {
     font-size: 16px;
   }
 }
@@ -178,10 +179,10 @@ table tbody tr td a {
   padding-bottom: 20px;
   padding-right: 20px;
   background-color: whitesmoke;
+  margin-left: auto;
   margin-right: 3.6em;
   margin-bottom: 20px;
   max-width: 40em;
-  float: right;
 }
 
 .name-date-right {
@@ -199,7 +200,7 @@ table tbody tr td a {
   margin-left: 0.7em;
 }
 
-#edit-butt {
+.edit-butt {
   color: #4e555b;
   float: right;
   margin-top: -35px;
@@ -213,7 +214,7 @@ table tbody tr td a {
   }
 }
 
-#edit-butt:hover {
+.edit-butt:hover {
   color: dodgerblue;
 }
 
@@ -250,6 +251,7 @@ img.attach-img {
 #task-name {
   font-style: italic;
   font-weight: normal;
+  color: #212529;
 }
 
 #undefined {
@@ -285,31 +287,41 @@ section#ticket-detail .dropdown-toggle::after { //"arrow/triangle" position in d
 }
 
 #save-buttons {
+  display: flex;
   margin-top: 20px;
   margin-bottom: 20px;
 }
 
 .close-but {
-  float: right;
-  margin-right: 35em;
+  margin-right: 2em;
 }
 
 .submit-but {
-  float: left;
+  margin-right: 2em;
+}
+
+//ticket_detail.html
+#edit-create-buttons {
+  display: flex;
+  justify-content: flex-end;
+
+  #edit-butt-notalone{
+    margin-right: 1em;
+  }
 }
 
 //Homepage loggedout
 
 .dropdown-login-form:hover {
   background: none;
-  color: black;
+  color: #212529;
 }
 
 .dropdown-forgotten-pswd {
   margin-left: 1.5em;
   padding-bottom: 1em;
   font-style: italic;
-  color: black;
+  color: #212529;
 }
 
 .dropdown-login-button {
@@ -360,12 +372,16 @@ section#ticket-detail .dropdown-toggle::after { //"arrow/triangle" position in d
   width: 5em;
 }
 
-.alert-flash {
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 100;
-  width: 100%;
+.activity-notes {
+  margin-left: 3.6em;
+}
+
+.activity-item {
+  padding-right: 2em;
+}
+
+table.noted-activity tr th {
+  font-weight: normal;
 }
 
 section { // Main content of the site.
@@ -382,6 +398,104 @@ section { // Main content of the site.
 .dropdown-state {
   width: 8em;
   text-align: left;
+}
+
+//Task manager
+#activity-date-time {
+  display: flex;
+  align-items: start;
+  //justify-content: space-between;
+  margin-top: 20px;
+
+  #activity-date {
+    align-items: flex-start;
+    width: 12em;
+    margin-right: 3em;
+  }
+
+  #activity-time{
+    align-items: flex-end;
+    width: 5em;
+    margin-right: 3em;
+  }
+  #activity-time2 {
+    width: 5em;
+  }
+}
+
+.noted-activity {
+  border-right: 0px;
+}
+
+//Users detail edit
+#exampleFormControlInput4 {
+  width: 20em;
+}
+
+//User table
+.action-buttons {
+  display: flex;
+  //justify-content: space-around;
+  align-content: flex-start;
+  margin-bottom: 1em;
+}
+
+.supervisor-options {
+  margin-right: 3em;
+}
+
+//User profile
+.name-surname {
+  border-left: solid 1px;
+  padding-left: 2em;
+}
+
+.profile-name {
+  text-transform: uppercase;
+}
+
+#profile-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+#edit-but-2 {
+  display: flex;
+  justify-content: space-between;
+ // align-items: flex-start;
+
+  #edit-text {
+    margin-right: 0.5em;
+  }
+}
+
+//Products table
+.subproduct-name {
+  font-weight: bolder;
+}
+
+.name-href {
+  font-weight: normal;
+  color: #212529;
+}
+
+
+.problem {
+  margin-top: 50px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  img#sad-image {
+    height: 20em;
+    margin-bottom: 20px;
+  }
+}
+
+#sad-text {
+  font-style: italic;
 }
 
 

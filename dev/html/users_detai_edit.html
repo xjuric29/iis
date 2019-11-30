@@ -14,7 +14,7 @@ Author: Jiri Jurica (xjuric29)
 
     <link rel="stylesheet" href="../../web-project/www/css/main.css">
 
-    <title>ITS | Ticket-editmode</title>
+    <title>ITS | Users-editmode</title>
     <link rel="stylesheet" href="../sass/main.scss">
 </head>
 <body>
@@ -51,66 +51,66 @@ Author: Jiri Jurica (xjuric29)
 </nav>
 <section class="container">
     <header class="col-12">
-        <h1>Ticket</h1>
-        <a class="btn btn-our float-right" href="#" role="button">Add ticket</a>
+        <h1>User</h1>
+        <a class="btn btn-our float-right" href="#" role="button">Add user</a>
     </header>
     <hr>
     <section id="ticket-detail">
-        <label for="exampleFormControlInput1">Issue</label>
-        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Phasellus eget enim in arcu">
+        <label for="exampleFormControlInput1">User name</label>
+        <input class="form-control" id="exampleFormControlInput1" placeholder="Add name">
+        <label for="exampleFormControlInput2" class="mt-4">User surname</label>
+        <input class="form-control" id="exampleFormControlInput2" placeholder="Add surname">
+        <label for="exampleFormControlInput3" class="mt-4">User email</label>
+        <input class="form-control" id="exampleFormControlInput3" placeholder="Add email">
+
+        <div class="product-setting">
+            <div class="product-type">
+                <div class="drop-type mt-4">Login</div>
+                <div class="drop-product dropdown">
+                    <input class="form-control" id="exampleFormControlInput4" placeholder="Add login">
+                </div>
+            </div>
+
+            <div class="product-type">
+                <div class="drop-type mt-4">Role</div>
+                <div class="drop-product dropdown">
+                    <a class="btn dropdown-toggle border product-dropdown" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Choose role
+                    </a>
+
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <a class="dropdown-item" href="#">User</a>
+                        <a class="dropdown-item" href="#">Worker</a>
+                        <a class="dropdown-item" href="#">Manager</a>
+                        <a class="dropdown-item" href="#">Admin</a>
+                        <a class="dropdown-item" href="#">Supervisor</a>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <div class="product-setting">
             <div class="product-type" id="product">
-                <div class="drop-type mt-4">Product type</div>
+                <div class="drop-type mt-4">Working for subproduct</div>
                 <div class="drop-product dropdown">
                     <a class="btn dropdown-toggle border product-dropdown" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Product1
                     </a>
 
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        <a class="dropdown-item" href="#">Product2</a>
+                        <a class="dropdown-item" href="#">None</a>
                         <a class="dropdown-item" href="#">Product3</a>
                         <a class="dropdown-item" href="#">Product4</a>
                         <a class="dropdown-item" href="#">Product5</a>
                     </div>
                 </div>
             </div>
-
-            <div class="product-type" id="subproduct">
-                <div class="drop-type mt-4">Subproduct</div>
-                <div class="drop-product dropdown">
-                    <a class="btn dropdown-toggle border product-dropdown" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Product1
-                    </a>
-
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        <a class="dropdown-item" href="#">Product2</a>
-                        <a class="dropdown-item" href="#">Product3</a>
-                        <a class="dropdown-item" href="#">Product4</a>
-                        <a class="dropdown-item" href="#">Product5</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div id="description-edit">
-            <div class="drop-type mt-4">Description</div>
-            <textarea class="form-control description-edit-field" id="exampleFormControlTextarea1" rows="3">Fusce placerat et erat ac imperdiet. Nunc sed felis sed enim dictum faucibus. Mauris et eleifend turpis. Cras magna arcu, consequat vel faucibus nec, rutrum aliquam turpis. In convallis condimentum sem, a cursus libero ultrices et. Donec auctor metus ut augue eleifend, vitae posuere dui scelerisque. Proin sagittis, sapien quis semper facilisis, felis augue tincidunt nisl, non tincidunt dui est eu nisl. Nullam ipsum felis, dictum nec leo eget, euismod luctus ante. Aliquam efficitur, velit sit amet molestie posuere, neque ipsum sodales enim, id commodo tortor ligula non felis. Pellentesque tristique molestie quam vel porta.
-            </textarea>
-        </div>
-
-        <div id="attachements">
-            <div class="mt-4">Attachements:</div>
-            <form>
-                <div class="form-group">
-                    <input type="file" class="form-control-file" id="exampleFormControlFile1">
-                </div>
-            </form>
         </div>
 
         <div id="save-buttons">
-            <a href="ticket_user.html"><button type="button" class="btn btn-primary mt-4 submit-but">Save</button></a>
-            <a href="ticket_user.html"><button type="button" class="btn btn-outline-secondary close-but mt-4">Cancel</button></a>
-            <button type="button" class="btn btn-danger delete-but mt-4">Delete</button>
+            <a href="users_table.html"><button type="button" class="btn btn-primary mt-4 submit-but">Save</button></a>
+            <a href="users_table.html"><button type="button" class="btn btn-outline-secondary close-but mt-4">Cancel</button></a>
+            <a href="users_table.html"><button type="button" class="btn btn-danger delete-but mt-4">Delete</button></a>
         </div>
     </section>
 </section>
