@@ -1,7 +1,8 @@
 /*!
  * IIS project 2019
  * Description: Sass code for site styles.
- * Author: Jiri Jurica (xjuric29)
+ * Authors: Andrea Fickova (xficko00)
+ *         Jiri Jurica (xjuric29)
  */
 
 // Bootstrap sass code import.
@@ -655,6 +656,42 @@ footer {
   border-left: solid 1px;
   padding-left: 10px;
   //font-style: italic;
+}
+
+
+// Tables columns
+
+.icon-col {
+  width: 1em;
+}
+
+.first-col {
+ // width: 23em;
+  //text-align: left;
+}
+
+.second-col {
+  width: 30em;
+}
+
+.name-col {
+  width: 15em;
+}
+
+.state-col, .login-col, .role-col {
+  width: 10em;
+}
+
+.date-col {
+ width: 13em;
+}
+
+.product-col {
+  width: 15em;
+}
+
+.email-col {
+  width: 20em;
 }
 
 // Extended tablet rules.
