@@ -651,6 +651,9 @@ footer {
   margin-top: 200px;
 }
 
+.dajaky-select-small {
+  width: 20em;
+}
 
 // Extended tablet rules.
 @media (min-width: map-get($grid-breakpoints, lg)) {
