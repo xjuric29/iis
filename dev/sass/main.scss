@@ -1,7 +1,8 @@
 /*!
  * IIS project 2019
  * Description: Sass code for site styles.
- * Author: Jiri Jurica (xjuric29)
+ * Authors: Andrea Fickova (xficko00)
+ *         Jiri Jurica (xjuric29)
  */
 
 // Bootstrap sass code import.
@@ -150,7 +151,7 @@ table tbody tr td a {
   padding-top: 10px;
   padding-left: 10px;
   padding-bottom: 20px;
-  padding-right: 20px;
+  padding-right: 10px;
   background-color: whitesmoke;
   margin-left: 3.6em;
   margin-bottom: 40px;
@@ -172,7 +173,7 @@ table tbody tr td a {
 .circle-right, .circle-left {
   width: 40px;
   height: 40px;
-  background-color: #6f42c1;
+  background-color: #212529;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -185,7 +186,7 @@ table tbody tr td a {
   padding-top: 10px;
   padding-left: 10px;
   padding-bottom: 20px;
-  padding-right: 20px;
+  padding-right: 10px;
   background-color: whitesmoke;
   margin-left: auto;
   margin-right: 3.6em;
@@ -198,10 +199,6 @@ table tbody tr td a {
   margin-right: 0.7em;
   //margin-bottom: 5px;
   //margin-top: -30px;*/
-}
-
-.comment-user-info, .comment-user-info-right {
-  margin-bottom: 1em;
 }
 
 .name-date-left {
@@ -281,7 +278,7 @@ img.attach-img {
 }
 
 .product-dropdown {
-  width: 30em;
+  width: 20em;
   text-align: left;
 }
 
@@ -433,7 +430,9 @@ section#ticket-detail .dropdown-toggle::after { //"arrow/triangle" position in d
   height:150px;
   margin-top: 10px;
   margin-right: 15px;
+
 }
+
 
 .attached-images {
   display: flex;
@@ -451,13 +450,24 @@ section#ticket-detail .dropdown-toggle::after { //"arrow/triangle" position in d
   left: 0;
 }
 
+
 .remove-img {
   position: absolute;
   top: 2%;
-  left: 85%;
-  width: 16px;
-  height: 16px;
+  left: 84%;
+  width: 1.4em;
+  height: 1.4em;
+  transition: width 0.3s, height 0.3s;
 }
+
+.remove-img:hover {
+  width: 1.6em;
+  height: 1.6em;
+
+  //transition-delay: 0.2s;
+}
+
+
 
 .svg-icons {
   width: 16px;
@@ -466,6 +476,11 @@ section#ticket-detail .dropdown-toggle::after { //"arrow/triangle" position in d
 
 .dajaky-select {
   width: 50em;
+}
+
+.inside-comm-box {
+  display: flex;
+  align-items: flex-start;
 }
 
 table.noted-activity tr th {
@@ -644,6 +659,61 @@ footer {
   width: 150px;
 }
 
+.svg-opacity {
+  opacity: 50%;
+  width: 12px;
+  height: 12px;
+}
+
+#footer-VIP-margin {
+  margin-top: 200px;
+}
+
+.dajaky-select-small {
+  width: 20em;
+}
+
+.activity-wrapper {
+  border-left: solid 1px;
+  padding-left: 10px;
+  //font-style: italic;
+}
+
+
+// Tables columns
+
+.icon-col {
+  width: 1em;
+}
+
+.first-col {
+ // width: 23em;
+  //text-align: left;
+}
+
+.second-col {
+  width: 30em;
+}
+
+.name-col {
+  width: 15em;
+}
+
+.state-col, .login-col, .role-col {
+  width: 10em;
+}
+
+.date-col {
+ width: 13em;
+}
+
+.product-col {
+  width: 15em;
+}
+
+.email-col {
+  width: 20em;
+}
 
 // Extended tablet rules.
 @media (min-width: map-get($grid-breakpoints, lg)) {

@@ -2,9 +2,8 @@
 IIS project 2019
 Description: HTML code for homepage.
 Authors: Andrea Fickova (xficko00)
-        Jiri Jurica (xjuric29)
+         Jiri Jurica (xjuric29)
 -->
-
 <!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
@@ -15,7 +14,7 @@ Authors: Andrea Fickova (xficko00)
 
     <link rel="stylesheet" href="../../web-project/www/css/main.css">
 
-    <title>ITS | Task-editmode</title>
+    <title>ITS | Subproduct-editmode</title>
     <link rel="stylesheet" href="../sass/main.scss">
 </head>
 <body>
@@ -36,7 +35,7 @@ Authors: Andrea Fickova (xficko00)
                     -->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            José Manuel Cerqueira Afonso dos Santos
+                            Name
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="#">My tickets</a>
@@ -52,43 +51,38 @@ Authors: Andrea Fickova (xficko00)
 </nav>
 <section class="container">
     <header class="col-12">
-        <h1>Task</h1>
+        <h1>Subproduct</h1>
     </header>
     <hr>
     <section id="ticket-detail">
-        <label for="exampleFormControlInput1">Task</label>
-        <input class="form-control" id="exampleFormControlInput1" placeholder="This is name of task">
-
-          <div class="product-setting mt-4">
-            <div class="product-type" id="product">
-                <div class="form-group">
-                    <label for="exampleFormControlSelect1">Product type</label>
-                    <select class="form-control dajaky-select" id="exampleFormControlSelect1">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                    </select>
-                </div>
-            </div>
+        <div class="form-group">
+            <label for="exampleFormControlSelect1">Product name</label>
+            <select class="form-control dajaky-select" id="exampleFormControlSelect1">
+                <option>Choose ...</option>
+                <option>Appache</option>
+                <option>Dement</option>
+                <option>Html</option>
+                <option>Php</option>
+            </select>
         </div>
+        <label for="exampleFormControlInput2" class="mt-2">Subproduct name</label>
+        <input class="form-control" id="exampleFormControlInput2" placeholder="Add name of subproduct">
+        <div class="form-group">
+            <label for="exampleFormControlSelect2" class="mt-4">Product owner</label>
+            <select class="form-control dajaky-select" id="exampleFormControlSelect2">
+                <option>Choose ...</option>
+                <option>Adam</option>
+                <option>Daniel</option>
+                <option>Helena</option>
+                <option>Peter</option>
+            </select>
         </div>
 
-        <label for="exampleFormControlInput1">Estimated time</label>
-        <input class="form-control time-form" placeholder="00:00">
-
-
-        <div id="description-edit">
-            <div class="drop-type mt-4">Description</div>
-            <textarea class="form-control description-edit-field" id="exampleFormControlTextarea1" rows="3">Fusce placerat et erat ac imperdiet. Nunc sed felis sed enim dictum faucibus. Mauris et eleifend turpis. Cras magna arcu, consequat vel faucibus nec, rutrum aliquam turpis. In convallis condimentum sem, a cursus libero ultrices et. Donec auctor metus ut augue eleifend, vitae posuere dui scelerisque. Proin sagittis, sapien quis semper facilisis, felis augue tincidunt nisl, non tincidunt dui est eu nisl. Nullam ipsum felis, dictum nec leo eget, euismod luctus ante. Aliquam efficitur, velit sit amet molestie posuere, neque ipsum sodales enim, id commodo tortor ligula non felis. Pellentesque tristique molestie quam vel porta.
-            </textarea>
-        </div>
 
         <div id="save-buttons">
-            <a href="ticket_user.html"><button type="button" class="btn btn-primary mt-4 submit-but">Save</button></a>
-            <a href="ticket_user.html"><button type="button" class="btn btn-outline-secondary close-but mt-4">Close</button></a>
-            <button type="button" class="btn btn-danger delete-but mt-4">Delete</button>
+            <a href="products_table.html"><button type="button" class="btn btn-primary mt-4 submit-but">Save</button></a>
+            <a href="products_table.html"><button type="button" class="btn btn-outline-secondary close-but mt-4">Cancel</button></a>
+            <a href="products_table.html"><button type="button" class="btn btn-danger delete-but mt-4">Delete</button></a>
         </div>
     </section>
 </section>
