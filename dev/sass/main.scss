@@ -18,7 +18,6 @@ $color-button: #d9544f;
   @include button-variant($color-button, $color-button);
 }
 
-
 .container .col-12 {
   padding: 0;
 }
@@ -605,7 +604,7 @@ section { // Main content of the site.
 //footer settings
 footer {
   background: #343a40;
-  height: 200px;
+  padding-bottom: 50px;
 }
 
 .footer-creators {
@@ -648,7 +647,7 @@ footer {
   display: flex;
   justify-content: space-between;
   vertical-align: center;
-  width: 75em;
+  width: 100%;
   margin: 0 auto;
   padding-top: 40px;
 }

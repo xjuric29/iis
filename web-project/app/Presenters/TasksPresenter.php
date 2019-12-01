@@ -6,6 +6,7 @@
 namespace App\Presenters;
 
 use Nette;
+use Tracy\Debugger;
 
 
 class TasksPresenter extends ListPresenter
@@ -23,7 +24,7 @@ class TasksPresenter extends ListPresenter
      */
     public function renderDefault($orderBy, $orderDir, $page = 1, $search = null, $userid = null): void
     {
-        $this->template->taskList = $this->tasks->getTicketTable($orderBy, $orderDir, $page, $search, $userid);
+        $this->template->taskList = $this->tasks->getTable($orderBy, $orderDir, $page, $search, $userid);
         $this->template->rowCount = $this->tasks->rowCount;
         $this->template->paginator = $this->tasks->paginator;
     }

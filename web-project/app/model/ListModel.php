@@ -19,12 +19,11 @@ abstract class ListModel {
     abstract protected function selectSearched($search, Nette\Database\Table\Selection $table);
     abstract protected function filterByUser($userid, Nette\Database\Table\Selection $table);
 
-    public function getTicketTable($orderBy, $orderDir, $page, $search, $userid) {
+    public function getTable($orderBy, $orderDir, $page, $search, $userid) {
         $this->paginator->setItemsPerPage(10); // počet položek na stránce
         $this->paginator->setPage($page); // číslo aktuální stránky
 
         $orderStr = $this->createOrderStr($orderBy);
-
         switch($orderDir) {
             case "asc":
                 $orderStr .= " ASC";
