@@ -422,7 +422,9 @@ section#ticket-detail .dropdown-toggle::after { //"arrow/triangle" position in d
   height:150px;
   margin-top: 10px;
   margin-right: 15px;
+
 }
+
 
 .attached-images {
   display: flex;
@@ -440,13 +442,24 @@ section#ticket-detail .dropdown-toggle::after { //"arrow/triangle" position in d
   left: 0;
 }
 
+
 .remove-img {
   position: absolute;
   top: 2%;
   left: 84%;
   width: 1.4em;
   height: 1.4em;
+  transition: width 0.3s, height 0.3s;
 }
+
+.remove-img:hover {
+  width: 1.6em;
+  height: 1.6em;
+
+  //transition-delay: 0.2s;
+}
+
+
 
 .svg-icons {
   width: 16px;
