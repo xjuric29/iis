@@ -495,7 +495,7 @@ section { // Main content of the site.
   text-align: left;
 }
 
-//Task manager
+//Task detail
 #activity-date-time {
   display: flex;
   align-items: start;
@@ -530,7 +530,6 @@ section { // Main content of the site.
 //User table
 .action-buttons {
   display: flex;
-  //justify-content: space-around;
   align-content: flex-start;
   margin-bottom: 1em;
 }
@@ -557,8 +556,6 @@ section { // Main content of the site.
   .edit-but-2 {
     display: flex;
     color: #4e555b;
-  //justify-content: space-between;
- // align-items: flex-start;
 
     #edit-text {
       margin-right: 0.5em;
@@ -575,7 +572,6 @@ section { // Main content of the site.
   font-weight: normal;
   color: #212529;
 }
-
 
 .problem {
   margin-top: 50px;
@@ -595,15 +591,13 @@ section { // Main content of the site.
 }
 
 
-//footer settings
+//Footer settings
 footer {
   background: #343a40;
-  height: 200px;
 }
 
 .footer-creators {
   color: white;
-  //padding-top: 20px;
 }
 
 .name-href-foot {
@@ -619,14 +613,13 @@ footer {
     color:white;
   }
 
-  a:hover{
+  a:hover {
     text-decoration: none;
   }
 }
 
 .authors-foot2 {
   text-transform: uppercase;
-
 }
 
 
@@ -639,11 +632,13 @@ footer {
 
 #footer {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   vertical-align: center;
-  width: 75em;
+  width: 85%;
   margin: 0 auto;
   padding-top: 40px;
+  padding-bottom: 40px;
 }
 
 #footer-school img {
@@ -668,19 +663,13 @@ footer {
 .activity-wrapper {
   border-left: solid 1px;
   padding-left: 10px;
-  //font-style: italic;
 }
 
 
 // Tables columns
 
 .icon-col {
-  width: 1em;
-}
-
-.first-col {
- // width: 23em;
-  //text-align: left;
+  width: 2%;
 }
 
 .second-col {
@@ -688,23 +677,23 @@ footer {
 }
 
 .name-col {
-  width: 15em;
+  width: 15%;
 }
 
 .state-col, .login-col, .role-col {
-  width: 10em;
+  width: 10%;
 }
 
 .date-col {
- width: 13em;
+ width: 13%;
 }
 
 .product-col {
-  width: 15em;
+  width: 15%;
 }
 
 .email-col {
-  width: 20em;
+  width: 20%;
 }
 
 // Extended tablet rules.
