@@ -266,7 +266,7 @@ img.attach-img {
 }
 
 .product-type {
-  max-width: 20em;
+  max-width: 100%;
 }
 
 .product-dropdown {
@@ -302,7 +302,7 @@ section#ticket-detail .dropdown-toggle::after { //"arrow/triangle" position in d
 
 #description-edit {
   display: inline-block;
-  width: 50em;
+  width: 100%;
 }
 
 .description-edit-field {
@@ -397,6 +397,7 @@ section#ticket-detail .dropdown-toggle::after { //"arrow/triangle" position in d
 
   #product {
     justify-content: flex-start;
+    width: 100%;
   }
 
   #subproduct {
@@ -428,7 +429,7 @@ section#ticket-detail .dropdown-toggle::after { //"arrow/triangle" position in d
 
 .attached-images {
   display: flex;
-  width: 50em;
+  width: 100%;
   flex-wrap: wrap;
 }
 
@@ -467,7 +468,7 @@ section#ticket-detail .dropdown-toggle::after { //"arrow/triangle" position in d
 }
 
 .dajaky-select {
-  width: 50em;
+  width: 100%;
 }
 
 .inside-comm-box {
