@@ -392,6 +392,7 @@ section#ticket-detail .dropdown-toggle::after { //"arrow/triangle" position in d
 //Task Editmode
 .product-setting {
   display: flex;
+  flex-wrap: wrap;
   margin-bottom: 20px;
   justify-content: space-between;
 
@@ -425,7 +426,6 @@ section#ticket-detail .dropdown-toggle::after { //"arrow/triangle" position in d
   margin-right: 15px;
 
 }
-
 
 .attached-images {
   display: flex;
