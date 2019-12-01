@@ -615,7 +615,13 @@ footer {
 
   a:hover {
     text-decoration: none;
+    color: red;
   }
+}
+
+.name-href-foot:hover {
+  color: #FF0028;
+  text-decoration: none;
 }
 
 .authors-foot2 {
