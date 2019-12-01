@@ -21,57 +21,25 @@
                 </div>
             </div>
             <div id="description-edit">
-                <div n:name="description" class="drop-type">Description</div>
+                <div class="drop-type">Description</div>
                 <textarea n:name="description" class="form-control description-edit-field" id="exampleFormControlTextarea1" rows="3" placeholder="Type description here..."></textarea>
             </div>
 
             <div id="attachements">
                 <div class="mt-4">Attachements:</div>
                 <div class="attached-images">
-
-                    <div class="image-pair">
-                        <a href="img/comp1.jpg"><img src="img/comp1.jpg" class="image1"></a>
-                        <img src="img/remove.svg" class="remove-img">
-                    </div>
-
-                    <div class="image-pair">
-                        <a href="img/comp1.jpg"><img src="img/comp2.jpg" class="image1"></a>
-                        <img src="img/remove.svg" class="remove-img">
-                    </div>
-
-                    <div class="image-pair">
-                        <a href="img/comp1.jpg"><img src="img/comp3.png" class="image1"></a>
-                        <img src="img/remove.svg" class="remove-img">
-                    </div>
-
-                    <div class="image-pair">
-                        <a href="img/comp1.jpg"><img src="img/comp4.jpg" class="image1"></a>
-                        <img src="img/remove.svg" class="remove-img">
-                    </div>
-
-                    <div class="image-pair">
-                        <a href="img/comp1.jpg"><img src="img/comp1.jpg" class="image1"></a>
-                        <img src="img/remove.svg" class="remove-img">
-                    </div>
-
-                    <div class="image-pair">
-                        <a href="img/comp1.jpg"><img src="img/comp2.jpg" class="image1"></a>
-                        <img src="img/remove.svg" class="remove-img">
-                    </div>
-
-                    <div class="image-pair">
-                        <a href="img/comp1.jpg"><img src="img/comp3.png" class="image1"></a>
-                        <img src="img/remove.svg" class="remove-img">
-                    </div>
-
-                    <div class="image-pair">
-                        <a href="img/comp1.jpg"><img src="img/comp4.jpg" class="image1"></a>
-                        <img src="img/remove.svg" class="remove-img">
-                    </div>
+                    {foreach $images as $image}
+                        <div class="image-pair">
+                            <a href="{$image}"><img src="{$image}" class="image1"></a>
+                            <a n:href=":deleteImage $image, $ticket->id">
+                                <img src="/img/static/remove.svg" class="remove-img">
+                            </a>
+                        </div>
+                    {/foreach}
                 </div>
 
                 <div class="form-group">
-                    <input n:name="images" type="file" class="form-control-file browse-but" id="exampleFormControlFile1" multiple>
+                    <input n:name="files" type="file" class="form-control-file browse-but" id="exampleFormControlFile1" multiple>
                 </div>
             </div>
 

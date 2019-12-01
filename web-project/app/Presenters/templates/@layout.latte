@@ -93,6 +93,52 @@
 
 	{include content}
 
+	{block footer}
+		<footer>
+			<section class="container">
+				<div id="footer">
+					<div id="footer-school" class="footer-creators">
+						<div class="authors-foot"><a href="https://www.vutbr.cz/en/"> Brno University of Technology</a></div>
+						<div class="authors-foot2">Faculty of information technologies</div>
+						<img src="/img/static/fit_logo.png">
+					</div>
+					<div class="footer-creators">
+						<div class="authors-foot">Authors</div>
+						<!-- <hr class="white-line"> -->
+						<table>
+							<thead class="thead-dark">
+							<tr>
+								<th scope="col"></th>
+								<th scope="col"></th>
+							</tr>
+							</thead>
+							<tbody id="table-body-foot">
+							<tr>
+								<td><a class="name-href-foot">Andrea Ficková</a></td>
+								<td><a href="mailto:xficko00@stud.fit.vutbr.cz" class="name-href-foot">xficko00@stud.fit.vutbr.cz</a></td>
+							</tr>
+							<tr>
+								<td><a class="name-href-foot">Jiří Juřica</a></td>
+								<td><a href="mailto:xjuric29@stud.fit.vutbr.cz" class="name-href-foot">xjuric29@stud.fit.vutbr.cz</a></td>
+							</tr>
+							<tr>
+								<td><a class="name-href-foot">Michal Pospíšil</a></td>
+								<td><a href="mailto:xpospi95@stud.fit.vutbr.cz" class="name-href-foot">xpospi95@stud.fit.vutbr.cz</a></td>
+							</tr>
+							</tbody>
+						</table>
+						<!-- <hr class="white-line"> -->
+					</div>
+					<div class="footer-creators">
+						<div class="authors-foot">Information systems</div>
+						<div class="authors-foot2">Issue tracking system</div>
+						<div class="authors-foot2">2019/2020</div>
+					</div>
+				</div>
+			</section>
+		</footer>
+	{/block}
+
 	{define paging}
 		{if $paginator->pageCount > 1}
 			{var $prevPagesCount = 3}

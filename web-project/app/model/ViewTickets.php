@@ -44,7 +44,7 @@ class ViewTickets extends ListModel {
     # xjuric29 methods
     public function getTicket($id) {
         /**Return data for specific ticket.
-           @param $id: Specific ticket id. */
+         * @param $id: Specific ticket id. */
         $query = $this->database->table('ticket')->where('id = ?', $id);
 
         // Modify state value for displaying in sites.
@@ -52,6 +52,33 @@ class ViewTickets extends ListModel {
         $rowValues['state'] = $this->convertDbStateToPretty($rowValues['state']);
 
         return new Nette\Database\Table\ActiveRow($rowValues, $query);
+    }
+
+    public function addTicket($authorId, $subProductId, $name, $description) {
+        /**Create new ticket.
+         * @param $authorId: String with user id.
+         * @param $subProductId: Specific sub product id.
+         * @param $name: String with name of ticket.
+         * @param $description: String with description of ticket. */
+        return $this->database->table('ticket')->insert([
+            'author' => $authorId,
+            'sub_product' => $subProductId,
+            'name' => $name,
+            'description' => $description
+        ]);
+    }
+
+    public function updateTicket($id, $subProductId, $name, $description) {
+        /**Update ticket.
+         * @param $id: Specific ticket id.
+         * @param $subProductId: Specific sub product id.
+         * @param $name: String with name of ticket.
+         * @param $description: String with description of ticket. */
+        return $this->database->table('ticket')->where('id = ?', $id)->update([
+            'sub_product' => $subProductId,
+            'name' => $name,
+            'description' => $description
+        ]);
     }
 
     public function updateState($id, $state) {

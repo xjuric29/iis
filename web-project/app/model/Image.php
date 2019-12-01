@@ -8,16 +8,21 @@
 namespace App\Model;
 
 use Nette;
+use Tracy\Debugger;
 
 class Image {
     private $database;
+    private $workDir;
 
     // Image settings.
     private $IMAGES_PER_TICKET = 10;
-    private $TICKET_IMAGE_PATH = '/img/usr/';
+    private $TICKET_IMAGE_REL_PATH = '/img/usr/';
+    private $TICKET_IMAGE_PATH = '';
 
-    public function __construct(Nette\Database\Context $database) {
+    public function __construct($wwwDir, Nette\Database\Context $database) {
         $this->database = $database;
+        $this->workDir = $wwwDir;
+        $this->TICKET_IMAGE_PATH = $wwwDir . $this->TICKET_IMAGE_REL_PATH;
     }
 
     public function getImageName($ticketId, $imageNumber) {
@@ -41,15 +46,18 @@ class Image {
         $images = array();
 
         for ($imageNumber = 1; $imageNumber <= $this->IMAGES_PER_TICKET; $imageNumber++) {
+            // Relative path for latte.
+            $webPath = $this->TICKET_IMAGE_REL_PATH . $this->getImageName($ticketId, $imageNumber);
+            // Absolute system path for checking ig image exists.
             $path = $this->TICKET_IMAGE_PATH . $this->getImageName($ticketId, $imageNumber);
 
-            if (file_exists($path)) array_push($images, $path);
+            if (file_exists($path)) array_push($images, $webPath);
         }
 
         return $images;
     }
 
-    public function getImageCountForTicket($ticketId) {
+    public function getImageCount($ticketId) {
         /**Return image count for specific ticket.
          * @param $ticketId: Specific ticket id. */
         return count($this->getArrayOfRealImages($ticketId));
@@ -69,15 +77,34 @@ class Image {
         return $freePaths;
     }
 
-    public function getFreePathCountForTicket($ticketId) {
+    public function getFreePathCount($ticketId) {
         /**Return count of free paths for specific ticket.
          * @param $ticketId: Specific ticket id. */
         return count($this->getArrayOfFreePaths($ticketId));
     }
 
-    public  function deleteImage($hashedName) {
+    public function saveImages($files, $ticketId) {
+        /**Save uploaded images to filesystem.
+         * @param $files: Array of Image objects.
+         * @param $ticketId: Specific ticket id. */
+        $freePathsArray = $this->getArrayOfFreePaths($ticketId);
+
+        if (count($freePathsArray) < count($files)) throw new Exception('Not enough space for images!');
+
+        for ($fileIndex = 0; $fileIndex < count($files); $fileIndex++) {
+            $files[$fileIndex]->move($freePathsArray[$fileIndex]);
+        }
+    }
+
+    public function deleteImage($relPath) {
         /**Delete specified image.
-         * @param $hashedName: Name with extension ONLY! We do not want to send whole path in GET parameter. */
-        unlink($this->TICKET_IMAGE_PATH . $hashedName);
+         * @param $relPath: Relative path from site root. */
+        unlink($this->workDir . $relPath);
+    }
+
+    // Constant getters.
+    public function getAllowedImageCount() {
+        /**Getter for max image count for ticket. */
+        return $this->IMAGES_PER_TICKET;
     }
 }

@@ -44,7 +44,7 @@ END;
 
 # Create users
 # Admins
-CALL create_worker('mrkvicka', 'Peter', 'Mrkvička', 'pmrkvicka@example.com', NULL, 'administrator', '$2y$10$i3F9bFNM9C6WJjcppB7DwuRIrEm9ZddTS/qJFo.HMQIFojzfpxqMK');
+CALL create_worker('mrkvicka', 'Peter', 'Mrkvička', 'pmrkvicka@example.com', NULL, 'administrator', '$2y$10$plARbea8P5oE2Z4pFUBt7.3LC76XwCAwP3epc/gXZr0a/fckeY6AC');
 CALL create_worker('foelden', 'Harvey', 'Foelden', 'ceo@example.com', NULL, 'administrator', 'hash');
 
 CALL create_worker('xpospi95', 'Michal', 'Pospíšil', 'xpospi95@fit.vutbr.cz', NULL, 'administrator', '$2y$10$D0WEr8XhyY2Cw27hh37gk.Y2Uuaoj3sJbnWlEzr7VMZnSCOvZ5cHG');

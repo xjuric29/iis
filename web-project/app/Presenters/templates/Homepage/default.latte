@@ -2,7 +2,9 @@
 {block title}ITS | Tickets{/block}
 {block H1}Tickets{/block}
 {block addButton}
-    <a class="btn btn-our float-right" href="#" role="button">Add ticket</a>
+    {if $userInfo['role'] >= $permissionMap->convert('customer')}
+        <a class="btn btn-our float-right" n:href="Ticket:add" role="button">Add ticket</a>
+    {/if}
 {/block}
 {block searchHint}Search ticket names and descriptions...{/block}
 {block table}

@@ -9,59 +9,52 @@ namespace App\Model;
 
 use Nette;
 
-class User {
+class Product {
     private $database;
-    private $roleMap = [
-        'common_worker' => 'worker',
-        'manager' => 'manager',
-        'superior' => 'supervisor',
-        'administrator' => 'admin'
-    ];
 
     public function __construct(Nette\Database\Context $database) {
         $this->database = $database;
     }
 
-    public function getUser($login) {
-        /**Return one row for user with specified id which is active.
-         * @param $login: String with user id. */
-        $query = $this->database->table('user')->where('id = ?', $login)->where('deleted = 0');
+    public function getSubProduct($productId) {
+        /**Return sub products for specific product.
+         * @param $productId: Specific product id. */
+        $query = $this->database->table('sub_product')->where('product = ?', $productId);
 
-        return $query->fetch();
+        return $query->fetchAll();
     }
 
-    public function getUserType($login) {
-        /**Specify if user is customer or worker.
-         * @param $login: String with user id.
-         * @return: 'customer', 'worker' or null. */
-        $type = null;
+    public function getArrayForSubProductSelect() {
+        /**Prepare 2D array with name of all Products on first level and 'id' => 'name of sub product' on second.
+         * @return: Array of arrays with sub products as values. */
+        $query = $this->database->table('product');
+        // Result array. Example:
+        // [
+        //      'product1' => [
+        //          1 => 'subProduct1',
+        //          ...
+        //          ],
+        //      'product2' => [
+        //          ...
+        //          ],
+        //       ...
+        // ]
+        $selectArray = array();
 
-        $customerQuery = $this->database->table('user_customer')->where('id = ?', $login)->fetch();
-        $workerQuery = $this->database->table('user_worker')->where('id = ?', $login)->fetch();
+        // Iterate over all product.
+        foreach ($query->fetchAll() as $product) {
+            // Array of all sub product for the product.
+            $productArray = array();
 
-        if ($customerQuery) $type = 'customer';
-        if ($workerQuery) $type = 'worker';
+            // Iterate over all sub product in product.
+            foreach ($this->getSubProduct($product->id) as $subProduct) {
+                $productArray[$subProduct->id] = $subProduct->name;
+            }
 
-        return $type;
-    }
+            // If product has at least one sub product, push to result array.
+            if (count($productArray)) $selectArray[$product->name] = $productArray;
+        }
 
-    public function getAdditionalUserData($login) {
-        /**Return additional user data depending on type of user (customer, worker).
-         * @param $login: String with user id. */
-        $customerSelect = $this->database->table('user_customer')->where('id = ?', $login)->fetch();
-        $workerSelect = $this->database->table('user_worker')->where('id = ?', $login)->fetch();
-
-        if ($customerSelect) return $customerSelect;
-        else return $workerSelect;
-    }
-
-    public function convertDbRoleToPretty($dbRole) {
-        /**Convert role from DB enum to string which can be display for users of site.
-         * @param $dbRole: Raw role string from DB. */
-        $role = '';
-
-        if (isset($this->roleMap[$dbRole])) $role = $this->roleMap[$dbRole];
-
-        return $role;
+        return $selectArray;
     }
 }

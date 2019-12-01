@@ -6,27 +6,32 @@
     <header class="col-12">
         <h1>Tickets</h1>
         {if $userInfo['role'] >= $permissionMap->convert('customer')}
-            <a class="btn btn-our float-right" href="#" role="button">Add ticket</a>
+            <a class="btn btn-our float-right" n:href="Ticket:add" role="button">Add ticket</a>
         {/if}
     </header>
     <hr>
     <section id="ticket-detail">
-        <h2>{$ticket->name}</h2>
 
-        <div id="edit-create-buttons">
-            <!-- Display for creator only. -->
-            {if $userInfo['role'] >= $permissionMap->convert('customer') && $ticket->author == $userInfo['login']}
-                <a href="#" class="edit-butt" id="edit-butt-notalone">
-                    <div>Edit ticket</div>
-                    <img src="/img/static/edit.png" alt="Edit">
-                </a>
-            {/if}
-            {if $userInfo['role'] >= $permissionMap->convert('manager')}
-                <a href="#" class="edit-butt">
-                    <div>Create task</div>
-                    <img src="/img/static/list.png" alt="Edit">
-                </a>
-            {/if}
+        <div class="header-detail-task">
+            <div>
+                <h2 class="task-ticket-name">{$ticket->name}</h2>
+            </div>
+
+            <div id="edit-create-buttons">
+                <!-- Display for creator only. -->
+                {if $userInfo['role'] >= $permissionMap->convert('customer') && $ticket->author == $userInfo['login']}
+                    <a n:href="Ticket:edit $ticket->id" class="edit-butt" id="edit-butt-notalone">
+                        <div>Edit&nbsp;ticket</div>
+                        <img src="/img/static/edit.png" alt="Edit" class="svg-icons">
+                    </a>
+                {/if}
+                {if $userInfo['role'] >= $permissionMap->convert('manager')}
+                    <a href="task_editmode.html" class="edit-butt">
+                        <div>Create&nbsp;task</div>
+                        <img src="/img/static/list.png" alt="Create" class="svg-icons">
+                    </a>
+                {/if}
+            </div>
         </div>
 
         <div class="ticket-detail-table">
@@ -34,7 +39,7 @@
                 <tbody>
                     <tr>
                         <th class="ticket-item">Reporter:</th>
-                        <td>{$ticket->ref('user', 'author')->first_name}</td>
+                        <td>{$ticket->ref('user', 'author')->first_name} {$ticket->ref('user', 'author')->surname}</td>
                     </tr>
                     <tr>
                         <th class="ticket-item">Date:</th>
@@ -73,56 +78,25 @@
             {$ticket->description}
         </div>
 
-        <div class="ticket-item mt-5">Attachments:</div>
-        <a href="img/blue_screen.jpg"><img class= "attach-img mt-3" src="img/blue_screen.jpg" alt="Blue screen" href="img/blue_screen"></a>
-
-        <!-- <section id="ticket-detail">
-            <h2>{$ticket->name}</h2>
-            <a /*n:href="Ticket:edit $ticket->id"*/ href="#" id="edit-butt">
-                <div>Edit</div>
-                <img src="/img/static/edit.png" alt="Edit">
-            </a>
-
-            <div class="ticket-detail-table">
-                <table>
-                    <tbody>
-                    <tr>
-                        <th class="ticket-item">Reporter:</th>
-                        <td>{$ticket->ref('user', 'author')->first_name}</td>
-                    </tr>
-                    <tr>
-                        <th class="ticket-item">Date:</th>
-                        <td>{$ticket->creation_date|date: '%d/%m/%Y %H:%M'}</td>
-                    </tr>
-                    <tr>
-                        <th class="ticket-item">Product:</th>
-                        <td>{$ticket->ref('sub_product', 'sub_product')->ref('product', 'product')->name}: {$ticket->ref('sub_product', 'sub_product')->name}</td>
-                    </tr>
-                    </tbody>
-                </table>
-
-                <div class="ticket-state">
-                    <div>State</div>
-                    <div class="ticked-detail-state">{$ticket->state}</div>
-                </div>
+        <div id="attachements">
+            <div class="mt-4">Attachements:</div>
+            <div class="attached-images">
+                {foreach $images as $image}
+                    <div class="image-pair">
+                        <a href="{$image}"><img src="{$image}" class="image1"></a>
+                    </div>
+                {/foreach}
             </div>
+        </div>
 
-            <div class="ticket-item mt-5">Description:</div>
-            <div id="desc-text" class="mt-2">
-                {$ticket->description}
-            </div>
-
-            <div class="ticket-item mt-5">Attachments:</div>
-            <a href="img/blue_screen.jpg"><img class= "attach-img mt-3" src="img/blue_screen.jpg" alt="Blue screen" href="img/blue_screen"></a>
-    -->
         {if $comments || $userInfo['role'] >= $permissionMap->convert('customer')}
-            <div class="ticket-item mt-5">Comments:</div>
+            <div class="ticket-item mt-4">Comments:</div>
         {/if}
         {if $userInfo['role'] >= $permissionMap->convert('customer')}
             {form comment}
                 <input type="hidden" n:name="ticketId" value="{$ticket->id}">
                 <input type="hidden" n:name="author" value="{$userInfo['login']}">
-                <textarea class="form-control comment-field" id="exampleFormControlTextarea1" rows="3" placeholder="Type comment here ..." n:name="comment"></textarea>
+                <textarea class="form-control comment-field" id="exampleFormControlTextarea1" rows="3" placeholder="Type comment here..." n:name="comment"></textarea>
 
                 <button type="submit" class="btn btn-primary" n:name="send">Submit</button>
             {/form}
