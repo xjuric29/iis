@@ -1,0 +1,171 @@
+{block title}
+    ITS | {$ticket->name}
+{/block}
+{block content}
+<section class="container">
+    <header class="col-12">
+        <h1>Tickets</h1>
+        {if $userInfo['role'] >= $permissionMap->convert('customer')}
+            <a class="btn btn-our float-right" href="#" role="button">Add ticket</a>
+        {/if}
+    </header>
+    <hr>
+    <section id="ticket-detail">
+        <h2>{$ticket->name}</h2>
+
+        <div id="edit-create-buttons">
+            <!-- Display for creator only. -->
+            {if $userInfo['role'] >= $permissionMap->convert('customer') && $ticket->author == $userInfo['login']}
+                <a href="#" class="edit-butt" id="edit-butt-notalone">
+                    <div>Edit ticket</div>
+                    <img src="/img/static/edit.png" alt="Edit">
+                </a>
+            {/if}
+            {if $userInfo['role'] >= $permissionMap->convert('manager')}
+                <a href="#" class="edit-butt">
+                    <div>Create task</div>
+                    <img src="/img/static/list.png" alt="Edit">
+                </a>
+            {/if}
+        </div>
+
+        <div class="ticket-detail-table">
+            <table id = "ticket-detail-tab">
+                <tbody>
+                    <tr>
+                        <th class="ticket-item">Reporter:</th>
+                        <td>{$ticket->ref('user', 'author')->first_name}</td>
+                    </tr>
+                    <tr>
+                        <th class="ticket-item">Date:</th>
+                        <td>{$ticket->creation_date|date: '%d/%m/%Y %H:%M'}</td>
+                    </tr>
+                    <tr>
+                        <th class="ticket-item">Product:</th>
+                        <td>{$ticket->ref('sub_product', 'sub_product')->ref('product', 'product')->name}: {$ticket->ref('sub_product', 'sub_product')->name}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="ticked-side-details">
+                <div class="ticket-state">
+                    {if $userInfo['role'] >= $permissionMap->convert('manager')}
+                        <div>State:</div>
+                        <div class="dropdown">
+                            <button class="btn dropdown-toggle border dropdown-state" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                {$ticket->state}
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" n:href=":changeState $ticket->id, 'new'">new</a>
+                                <a class="dropdown-item" n:href=":changeState $ticket->id, 'in_progress'">in progress</a>
+                                <a class="dropdown-item" n:href=":changeState $ticket->id, 'closed'">closed</a>
+                            </div>
+                        </div>
+                    {else}
+                        <div>State: {$ticket->state}</div>
+                    {/if}
+                </div>
+            </div>
+        </div>
+
+        <div class="ticket-item mt-5">Description:</div>
+        <div id="desc-text" class="mt-2">
+            {$ticket->description}
+        </div>
+
+        <div class="ticket-item mt-5">Attachments:</div>
+        <a href="img/blue_screen.jpg"><img class= "attach-img mt-3" src="img/blue_screen.jpg" alt="Blue screen" href="img/blue_screen"></a>
+
+        <!-- <section id="ticket-detail">
+            <h2>{$ticket->name}</h2>
+            <a /*n:href="Ticket:edit $ticket->id"*/ href="#" id="edit-butt">
+                <div>Edit</div>
+                <img src="/img/static/edit.png" alt="Edit">
+            </a>
+
+            <div class="ticket-detail-table">
+                <table>
+                    <tbody>
+                    <tr>
+                        <th class="ticket-item">Reporter:</th>
+                        <td>{$ticket->ref('user', 'author')->first_name}</td>
+                    </tr>
+                    <tr>
+                        <th class="ticket-item">Date:</th>
+                        <td>{$ticket->creation_date|date: '%d/%m/%Y %H:%M'}</td>
+                    </tr>
+                    <tr>
+                        <th class="ticket-item">Product:</th>
+                        <td>{$ticket->ref('sub_product', 'sub_product')->ref('product', 'product')->name}: {$ticket->ref('sub_product', 'sub_product')->name}</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <div class="ticket-state">
+                    <div>State</div>
+                    <div class="ticked-detail-state">{$ticket->state}</div>
+                </div>
+            </div>
+
+            <div class="ticket-item mt-5">Description:</div>
+            <div id="desc-text" class="mt-2">
+                {$ticket->description}
+            </div>
+
+            <div class="ticket-item mt-5">Attachments:</div>
+            <a href="img/blue_screen.jpg"><img class= "attach-img mt-3" src="img/blue_screen.jpg" alt="Blue screen" href="img/blue_screen"></a>
+    -->
+        {if $comments || $userInfo['role'] >= $permissionMap->convert('customer')}
+            <div class="ticket-item mt-5">Comments:</div>
+        {/if}
+        {if $userInfo['role'] >= $permissionMap->convert('customer')}
+            {form comment}
+                <input type="hidden" n:name="ticketId" value="{$ticket->id}">
+                <input type="hidden" n:name="author" value="{$userInfo['login']}">
+                <textarea class="form-control comment-field" id="exampleFormControlTextarea1" rows="3" placeholder="Type comment here ..." n:name="comment"></textarea>
+
+                <button type="submit" class="btn btn-primary" n:name="send">Submit</button>
+            {/form}
+        {/if}
+        {if $comments}
+            <hr>
+            {foreach $comments as $comment}
+                <!-- Customer comments on left. -->
+                {if $comment->userType == 'customer'}
+                    <div class="comment-wrapper-left">
+                        <div class="comment-user-info">
+                            <div class="circle-right rounded-circle">
+                                <span class="initials-bg">{$comment->first_name[0]}{$comment->surname[0]}</span>
+                            </div>
+                            <div class="name-date-left">
+                                <div class="name-user">{$comment->first_name} {$comment->surname}</div>
+                                <div class="date-and-time">{$comment->creation_date|date: '%d/%m/%Y %H:%M'}</div>
+                            </div>
+                        </div>
+                        <div class="comment-content border">
+                            {$comment->content}
+                        </div>
+                    </div>
+
+                <!-- Worker comments on right. -->
+                {else}
+                    <div class="comment-wrapper-right">
+                        <div class="comment-user-info-right">
+                            <div class="name-date-right">
+                                <div class="name-user-right">{$comment->first_name} {$comment->surname}<span> • {$comment->userRole}</span></div>
+                                <div class="date-and-time-right">{$comment->creation_date|date: '%d/%m/%Y %H:%M'}</div>
+                            </div>
+                            <div class="circle-right rounded-circle">
+                                <span class="initials-bg">{$comment->first_name[0]}{$comment->surname[0]}</span>
+                            </div>
+                        </div>
+                        <div class="comment-content-right border">
+                            {$comment->content}
+                        </div>
+                    </div>
+                {/if}
+            {/foreach}
+        {/if}
+    </section>
+</section>
+{/block}

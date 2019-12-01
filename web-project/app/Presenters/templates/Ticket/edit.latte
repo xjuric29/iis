@@ -1,0 +1,85 @@
+{block title}
+    ITS | Add ticket
+{/block}
+{block content}
+    <section class="container">
+        <header class="col-12">
+            <h1>Ticket</h1>
+        </header>
+        <hr>
+        <section id="ticket-detail">
+            {form ticket}
+            <label n:name="name" for="exampleFormControlInput1">Issue</label>
+            <input n:name="name" type="email" class="form-control" id="exampleFormControlInput1" placeholder="Name of ticket">
+
+            <div class="product-setting mt-4">
+                <div class="product-type" id="product">
+                    <div class="form-group">
+                        <label n:name="product" for="exampleFormControlSelect1">Product type</label>
+                        <select n:name="product" class="form-control dajaky-select" id="exampleFormControlSelect1"></select>
+                    </div>
+                </div>
+            </div>
+            <div id="description-edit">
+                <div n:name="description" class="drop-type">Description</div>
+                <textarea n:name="description" class="form-control description-edit-field" id="exampleFormControlTextarea1" rows="3" placeholder="Type description here..."></textarea>
+            </div>
+
+            <div id="attachements">
+                <div class="mt-4">Attachements:</div>
+                <div class="attached-images">
+
+                    <div class="image-pair">
+                        <a href="img/comp1.jpg"><img src="img/comp1.jpg" class="image1"></a>
+                        <img src="img/remove.svg" class="remove-img">
+                    </div>
+
+                    <div class="image-pair">
+                        <a href="img/comp1.jpg"><img src="img/comp2.jpg" class="image1"></a>
+                        <img src="img/remove.svg" class="remove-img">
+                    </div>
+
+                    <div class="image-pair">
+                        <a href="img/comp1.jpg"><img src="img/comp3.png" class="image1"></a>
+                        <img src="img/remove.svg" class="remove-img">
+                    </div>
+
+                    <div class="image-pair">
+                        <a href="img/comp1.jpg"><img src="img/comp4.jpg" class="image1"></a>
+                        <img src="img/remove.svg" class="remove-img">
+                    </div>
+
+                    <div class="image-pair">
+                        <a href="img/comp1.jpg"><img src="img/comp1.jpg" class="image1"></a>
+                        <img src="img/remove.svg" class="remove-img">
+                    </div>
+
+                    <div class="image-pair">
+                        <a href="img/comp1.jpg"><img src="img/comp2.jpg" class="image1"></a>
+                        <img src="img/remove.svg" class="remove-img">
+                    </div>
+
+                    <div class="image-pair">
+                        <a href="img/comp1.jpg"><img src="img/comp3.png" class="image1"></a>
+                        <img src="img/remove.svg" class="remove-img">
+                    </div>
+
+                    <div class="image-pair">
+                        <a href="img/comp1.jpg"><img src="img/comp4.jpg" class="image1"></a>
+                        <img src="img/remove.svg" class="remove-img">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <input n:name="images" type="file" class="form-control-file browse-but" id="exampleFormControlFile1" multiple>
+                </div>
+            </div>
+
+            <div id="save-buttons">
+                <button n:name="send" type="submit" class="btn btn-primary mt-4 submit-but">Save</button>
+                <a n:href="Homepage:" class="btn btn-outline-secondary close-but mt-4">Cancel</a>
+            </div>
+            {/form}
+        </section>
+    </section>
+{/block}
