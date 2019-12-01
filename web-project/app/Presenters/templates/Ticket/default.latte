@@ -79,7 +79,9 @@
         </div>
 
         <div id="attachements">
-            <div class="mt-4">Attachements:</div>
+            {if $images}
+                <div class="mt-4">Attachements:</div>
+            {/if}
             <div class="attached-images">
                 {foreach $images as $image}
                     <div class="image-pair">
