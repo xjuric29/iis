@@ -9,11 +9,11 @@ namespace App\Model;
 
 use Nette;
 use Nette\Application\UI\Form;
-use Tracy\Debugger;
 
 class MasterPresenter extends Nette\Application\UI\Presenter {
     /** @var \App\Model\PermissionMap @inject */
     public $permissionMap;
+    protected $userInfo;
 
     public function startup() {
         parent::startup();
@@ -29,11 +29,15 @@ class MasterPresenter extends Nette\Application\UI\Presenter {
             // With this we can access to user name and other data specified in authenticator class
             // (numbered role also!).
             $this->template->userInfo = $identity->getData();
-
+            $this->template->userInfo['login'] = $identity->getId();
         }
         // Sanity case when user is not logged and userInfo variable is not created.
-        else $this->template->userInfo = ['role' => 0];
+        else {
+            $this->template->userInfo = ['role' => 0];
+        }
 
+        // Copy complex user information to use in presenter also.
+        $this->userInfo = $this->template->userInfo;
         // Add permission map.
         $this->template->permissionMap = $this->permissionMap;
     }
@@ -51,8 +55,8 @@ class MasterPresenter extends Nette\Application\UI\Presenter {
         return $form;
     }
 
-    public function loginSucceeded(Nette\Application\UI\Form $form, $values) {
-        /** Check data from login form. */
+    public function loginSucceeded(Form $form, $values) {
+        /**Check data from login form. */
         try {
             $this->getUser()->login($values->login, $values->password);
             $this->redirect('this');
@@ -63,8 +67,8 @@ class MasterPresenter extends Nette\Application\UI\Presenter {
     }
 
     public function actionLogout() {
-        /** Logout current logged user. */
-        $this->getUser()->logout();
-        $this->redirect('Homepage:');
+        /**Logout current logged user. */
+        $this->getUser()->logout(true);
+        $this->redirect('Homepage:', ['userid' => null]);
     }
 }

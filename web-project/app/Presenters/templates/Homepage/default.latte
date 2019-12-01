@@ -1,28 +1,58 @@
-{layout '../Components/listComponents.latte'}
 {block title}ITS | Tickets{/block}
-{block H1}Tickets{/block}
-{block addButton}
-    <a class="btn btn-our float-right" href="#" role="button">Add ticket</a>
-{/block}
-{block searchHint}Search ticket names and descriptions...{/block}
-{block table}
-    {if $rowCount == 0}
-        {ifset $_GET['search']}
-            <div>It's embarrassing, but we couldn't find anything.</div>
+
+{block content}
+    <section class="container">
+        <header class="col-12">
+            <h1>Tickets</h1>
+            {if $userInfo['role'] > 0}
+                <a class="btn btn-our float-right" n:href="Ticket:add" role="button">Add ticket</a>
+            {/if}
+        </header>
+        <hr>
+        <nav class="d-flex flex-wrap justify-content-between">
+            {if $rowCount > 0}
+                <div class="dropdown">
+                    <a class="btn dropdown-toggle border" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Sort by
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <a class="dropdown-item" n:href=": orderBy => 'name', orderDir => 'desc'">Name descending</a>
+                        <a class="dropdown-item" n:href=": orderBy => 'name', orderDir => 'asc'">Name ascending</a>
+                        <a class="dropdown-item" n:href=": orderBy => 'date', orderDir => 'desc'">Creation date descending</a>
+                        <a class="dropdown-item" n:href=": orderBy => 'date', orderDir => 'asc'">Creation date ascending</a>
+                    </div>
+                </div>
+            {/if}
+            <div id="searchbox-wrapper">
+                {form search}
+                    <div class="input-group mb-3">
+                        <input n:name="searchBox" type="text" class="form-control" placeholder="Search ticket names and descriptions..." aria-label="Search ticket names and descriptions..." aria-describedby="button-addon2">
+                        <div class="input-group-append">
+                            <button  n:name="searchButton" class="btn btn-outline-secondary" type="submit" id="button-addon2">Search</button>
+                        </div>
+                    </div>
+                {/form}
+            </div>
+
+        </nav>
+
+        {if $rowCount == 0}
+            {ifset $_GET['search']}
+                {include nothingFound}
+            {else}
+                {include nothingHere}
+            {/ifset}
         {else}
-            <div>There is nothing to display.</div>
-        {/ifset}
-    {else}
-        <table class="table table-hover table-responsive-md">
-            <thead class="thead-dark">
+            <table class="table table-hover table-responsive-md">
+                <thead class="thead-dark">
                 <tr>
                     <th scope="col">Issue</th>
                     <th scope="col">Date</th>
                     <th scope="col">State</th>
                     <th scope="col">Reporter</th>
                 </tr>
-            </thead>
-            <tbody>
+                </thead>
+                <tbody>
                 <tr n:foreach="$ticketList as $ticket">
                     <td>
                         <a n:href="Ticket: id => $ticket->id">{$ticket->name}</a>
@@ -30,11 +60,20 @@
 
                     </td>
                     <td>{$ticket->creation_date|date:'F j, Y'}</td>
-                    <td>{$ticket->state}</td>
+                    <td>{if $ticket->state == "new"}
+                            New
+                        {elseif $ticket->state == "in_progress"}
+                            Open
+                        {else}
+                            Closed
+                        {/if}</td>
                     <td>{$ticket->ref('user', 'author')->first_name} {$ticket->ref('user', 'author')->surname}</td>
                 </tr>
-            </tbody>
-        </table>
-    {/if}
+                </tbody>
+            </table>
+        {/if}
+
+        {include paging}
+    </section>
 {/block}
 

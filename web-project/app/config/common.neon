@@ -1,21 +1,28 @@
 parameters:
 
+
 application:
-	debugger: true
 	errorPresenter: Error
 	mapping:
 		*: App\*Module\Presenters\*Presenter
 
+
 session:
 	expiration: 14 days
+
 
 services:
 	authenticator: App\Model\Authenticator
 	router: App\Router\RouterFactory::createRouter
 
 	# DB functions
+	- App\Model\Image(%wwwDir%)
 	- App\Model\ViewTickets
 	- App\Model\ViewTasks
-	- App\Model\Comments
+	- App\Model\ViewUsers
 	- App\Model\PermissionMap
+	- App\Model\Product
+	- App\Model\TicketComments
 	- App\Model\User
+	- App\Model\Comments
+	- App\Model\UserDetail

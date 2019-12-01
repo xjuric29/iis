@@ -1,7 +1,8 @@
 <!--
 IIS project 2019
 Description: HTML code for homepage.
-Author: Jiri Jurica (xjuric29)
+Authors: Andrea Fickova (xficko00)
+         Jiri Jurica (xjuric29)
 -->
 
 <!DOCTYPE html>
@@ -51,49 +52,29 @@ Author: Jiri Jurica (xjuric29)
 </nav>
 <section class="container">
     <header class="col-12">
-        <h1>Tickets</h1>
-        <a class="btn btn-our float-right" href="#" role="button">Add ticket</a>
+        <h1>Ticket</h1>
     </header>
     <hr>
     <section id="ticket-detail">
         <label for="exampleFormControlInput1">Issue</label>
         <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Phasellus eget enim in arcu">
 
-        <div class="product-setting">
+        <div class="product-setting mt-4">
             <div class="product-type" id="product">
-                <div class="drop-type mt-4">Product type</div>
-                <div class="drop-product dropdown">
-                    <a class="btn dropdown-toggle border product-dropdown" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Product1
-                    </a>
-
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        <a class="dropdown-item" href="#">Product2</a>
-                        <a class="dropdown-item" href="#">Product3</a>
-                        <a class="dropdown-item" href="#">Product4</a>
-                        <a class="dropdown-item" href="#">Product5</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="product-type" id="subproduct">
-                <div class="drop-type mt-4">Subproduct</div>
-                <div class="drop-product dropdown">
-                    <a class="btn dropdown-toggle border product-dropdown" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Product1
-                    </a>
-
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        <a class="dropdown-item" href="#">Product2</a>
-                        <a class="dropdown-item" href="#">Product3</a>
-                        <a class="dropdown-item" href="#">Product4</a>
-                        <a class="dropdown-item" href="#">Product5</a>
-                    </div>
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1">Product type</label>
+                    <select class="form-control dajaky-select" id="exampleFormControlSelect1">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                    </select>
                 </div>
             </div>
         </div>
         <div id="description-edit">
-            <div class="drop-type mt-4">Description</div>
+            <div class="drop-type">Description</div>
             <textarea class="form-control description-edit-field" id="exampleFormControlTextarea1" rows="3">Fusce placerat et erat ac imperdiet. Nunc sed felis sed enim dictum faucibus. Mauris et eleifend turpis. Cras magna arcu, consequat vel faucibus nec, rutrum aliquam turpis. In convallis condimentum sem, a cursus libero ultrices et. Donec auctor metus ut augue eleifend, vitae posuere dui scelerisque. Proin sagittis, sapien quis semper facilisis, felis augue tincidunt nisl, non tincidunt dui est eu nisl. Nullam ipsum felis, dictum nec leo eget, euismod luctus ante. Aliquam efficitur, velit sit amet molestie posuere, neque ipsum sodales enim, id commodo tortor ligula non felis. Pellentesque tristique molestie quam vel porta.
             </textarea>
         </div>
@@ -101,15 +82,60 @@ Author: Jiri Jurica (xjuric29)
         <div id="attachements">
             <div class="mt-4">Attachements:</div>
             <form>
+                <div class="attached-images">
+
+                    <div class="image-pair">
+                        <a href="img/comp1.jpg"><img src="img/comp1.jpg" class="image1"></a>
+                        <a href="#"><img src="img/remove.svg" class="remove-img"></a>
+                    </div>
+
+                    <div class="image-pair">
+                        <a href="img/comp1.jpg"><img src="img/comp2.jpg" class="image1"></a>
+                        <img src="img/remove.svg" class="remove-img">
+                    </div>
+
+                    <div class="image-pair">
+                        <a href="img/comp1.jpg"><img src="img/comp3.png" class="image1"></a>
+                        <img src="img/remove.svg" class="remove-img">
+                    </div>
+
+                    <div class="image-pair">
+                        <a href="img/comp1.jpg"><img src="img/comp4.jpg" class="image1"></a>
+                        <img src="img/remove.svg" class="remove-img">
+                    </div>
+
+                    <div class="image-pair">
+                        <a href="img/comp1.jpg"><img src="img/comp1.jpg" class="image1"></a>
+                        <img src="img/remove.svg" class="remove-img">
+                    </div>
+
+                    <div class="image-pair">
+                        <a href="img/comp1.jpg"><img src="img/comp2.jpg" class="image1"></a>
+                        <img src="img/remove.svg" class="remove-img">
+                    </div>
+
+                    <div class="image-pair">
+                        <a href="img/comp1.jpg"><img src="img/comp3.png" class="image1"></a>
+                        <img src="img/remove.svg" class="remove-img">
+                    </div>
+
+                    <div class="image-pair">
+                        <a href="img/comp1.jpg"><img src="img/comp4.jpg" class="image1"></a>
+                        <img src="img/remove.svg" class="remove-img">
+                    </div>
+
+                </div>
+
                 <div class="form-group">
-                    <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                    <input type="file" class="form-control-file browse-but" id="exampleFormControlFile1">
                 </div>
             </form>
         </div>
 
         <div id="save-buttons">
-            <a href="ticket_user.html"><button type="button" class="btn btn-primary mt-4 submit-but">Submit</button></a>
-            <a href="ticket_user.html"><button type="button" class="btn btn-outline-secondary close-but mt-4">Close</button></a>
+            <a href="ticket_user.html"><button type="button" class="btn btn-primary mt-4 submit-but">Save</button></a>
+            <a href="ticket_user.html"><button type="button" class="btn btn-outline-secondary close-but mt-4">Cancel</button></a>
+            <button type="button" class="btn btn-danger delete-but mt-4">Delete</button>
         </div>
     </section>
 </section>
