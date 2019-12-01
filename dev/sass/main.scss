@@ -116,11 +116,13 @@ table tbody tr td a {
 .ticked-detail-state {
   font-weight: bold;
   text-transform: uppercase;
+  min-width: 100%;
 }
 
 .ticked-side-details {
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
 }
 
 .initials-bg {
