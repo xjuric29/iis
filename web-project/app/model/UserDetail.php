@@ -44,7 +44,7 @@ class UserDetail extends MasterPresenter {
     }
 
     public function getSupervisor($userId) {
-        if ($this->getUserType($userId) == "worker") {
+        if ($this->getUserType($userId) == "worker" && $this->getUserData($userId)['superior']) {
             $superior = $this->database->table('user')
                 ->where('id LIKE ?', $this->getUserData($userId)['superior'])
                 ->fetch();

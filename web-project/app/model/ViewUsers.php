@@ -31,7 +31,7 @@ class ViewUsers extends ListModel {
         return strnatcmp($a['company'], $b['company']);
     }
 
-    public function getUsersTable($orderBy, $page, $search, $userid, $orderDir) {
+    public function getUsersTable($orderBy, $page, $search, $userid, $orderDir = "asc") {
         $table = $this->getTable(null, null, $page, $search, $userid)->fetchAll();
         $tableArray = array();
         foreach ($table as $row) {
@@ -76,9 +76,9 @@ class ViewUsers extends ListModel {
         }
 
         if($orderDir == "desc") {
-            array_reverse($tableArray);
+            $tableArray = array_reverse($tableArray);
         }
-        Debugger::barDump(count($tableArray));
+
         $this->paginator->setItemsPerPage(10); // počet položek na stránce
         $this->paginator->setPage($page);
         $this->paginator->setItemCount(count($tableArray));

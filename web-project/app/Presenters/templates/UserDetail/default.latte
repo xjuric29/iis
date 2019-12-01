@@ -17,9 +17,8 @@
                         <div class="what-name ticket-item">Surname</div>
                         <h2 class="profile-name">{$userDetails['surname']}</h2>
                     </div>
-                    <!--$userInfo['login'] == $userDetails['id'] ||-->
-                    {if  $userInfo['role'] == 5}
-                        <a href="users_detai_edit.html" class="edit-but-2">
+                    {if $userInfo['login'] == $userDetails['id'] || $userInfo['role'] == 5}
+                        <a n:href="UserDetail:edit userid => $userDetails['id']" class="edit-but-2">
                             <div id="edit-text">Edit</div>
                             <div id="edit-icon"><img src="/img/static/edit.svg" class="svg-icons"  alt="Edit"></div>
                         </a>
