@@ -10,7 +10,7 @@ sudo chmod 777 /var/git
 cd /var/git
 git clone git@github.com:xjuric29/iis.git
 cd iis/web-project
-composer install	# Install nette dependencies to vendor dir.
+composer install        # Install nette dependencies to vendor dir.
 sudo ln -s /var/git/iis/web-project/www/ /var/www/iis
 sudo printf "\n# IIS project\nlocalhost\tiis\n" >> /etc/hosts
 sudo ln -s /var/git/iis/dev/apache2/sites-available/iis.conf /etc/apache2/sites-available/
@@ -19,4 +19,8 @@ sudo systemctl reload apache2
 sudo mysql < /var/git/iis/dev/sql/init_db.sql
 ```
 
-Now is the Nette blank project running on http://iis!
+Now is the iis project running on http://iis!
+
+## Useful tips
+- Set the "post_max_size" and "upload_max_filesize" to **20M** in php.ini file. This ensure that add/edit ticket page will work correct with bigger size of images.
+- Create folder **web-project/www/img/usr** if it is not exists and change permissions to **777**.
