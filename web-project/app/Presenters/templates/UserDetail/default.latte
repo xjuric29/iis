@@ -3,7 +3,7 @@
 {block content}
     {ifset $invalidUser}
         {include nothingHere}
-    {elseif $userInfo['role'] > 1}
+    {elseif $userInfo['role'] > 0}
         <section class="container">
             <header class="col-12">
                 <h1>User profile</h1>
