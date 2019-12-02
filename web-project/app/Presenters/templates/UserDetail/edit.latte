@@ -11,50 +11,58 @@
             <hr>
             <section id="ticket-detail">
                 {form editUser}
-                    <label for="fname">User name</label>
-                    <input class="form-control" id="fname" placeholder="Add name" n:name="fname">
-                    <label for="sname" class="mt-4">User surname</label>
-                    <input class="form-control" id="sname" placeholder="Add surname" n:name="sname">
-                    <label for="mail" class="mt-4">User email</label>
-                    <input class="form-control" id="mail" placeholder="Add email" n:name="mail">
+                    <label for="fname">First name</label>
+                    <input class="form-control" id="fname" placeholder="Add first name" n:name="fname" value="{$userDetails['first_name']}">
+                    <label for="sname" class="mt-4">Surname</label>
+                    <input class="form-control" id="sname" placeholder="Add surname" n:name="sname"  value="{$userDetails['surname']}">
+                    <label for="mail" class="mt-4">E-mail</label>
+                    <input class="form-control" id="mail" placeholder="Add e-mail" n:name="mail"  value="{$userDetails['mail']}">
+                    {ifset $userDetails['company']}
+                        <label for="company" class="mt-4">Company</label>
+                        <input class="form-control" id="company" placeholder="Add company" n:name="company"  value="{$userDetails['company']}">
+                    {/ifset}
 
                     <div class="product-setting">
                         <div class="product-type">
                             <div class="drop-type mt-4">Login</div>
                             <div class="drop-product dropdown">
-                                <input class="form-control" id="login" placeholder="Add login" n:name="login">
+                                <input class="form-control" id="login" placeholder="Add login" n:name="login"  value="{$userDetails['id']}">
                             </div>
                         </div>
-
                         <div class="product-type">
                             <div class="form-group mt-4">
                                 <label for="roleSelect">Role</label>
                                 <select class="form-control dajaky-select-small" id="roleSelect" n:name="roleSelect">
-                                    <option>Choose ...</option>
-                                    <option>User</option>
-                                    <option>Worker</option>
-                                    <option>Manager</option>
-                                    <option>Supervisor</option>
-                                    <option>Admin</option>
                                 </select>
                             </div>
                         </div>
                     </div>
-
-                    <div class="product-setting">
-                        <div class="product-type" id="product">
-                            <div class="form-group">
-                                <label for="supSelect">Working for</label>
-                                <select class="form-control dajaky-select" n:name="supSelect">
-                                </select>
+                    {ifset $userDetails['role']}
+                        <div class="product-setting">
+                            <div class="product-type" id="product">
+                                <div class="form-group">
+                                    <label for="supSelect">Supervisor</label>
+                                    <select class="form-control dajaky-select" n:name="supSelect">
+                                    </select>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    {/ifset}
+                    <label for="pwd">New password</label>
+                    <input class="form-control" id="pwd" type="password" placeholder="Leave blank to keep unchanged" n:name="pwd">
+                    <label for="pwdconf" class="mt-4">Confirm new password</label>
+                    <input class="form-control" id="pwd" type="password" placeholder="Confirm new password" n:name="pwdconf">
 
                     <div id="save-buttons">
-                        <a href="users_table.html"><button n:name="save" type="submit" class="btn btn-primary mt-4 submit-but">Save</button></a>
-                        <a href="users_table.html"><button n:name="cancel" type="submit" class="btn btn-outline-secondary close-but mt-4">Cancel</button></a>
-                        <a href="users_table.html"><button n:name="delete" type="submit" class="btn btn-danger delete-but mt-4">Delete</button></a>
+                        <button n:name="save" type="submit" class="btn btn-primary mt-4 submit-but">Save</button>
+                        {if $userInfo['role'] == 5}
+                            <a n:href="Users:" role="button" class="btn btn-outline-secondary close-but mt-4">Cancel</a>
+                        {else}
+                            <a n:href="/" role="button" class="btn btn-outline-secondary close-but mt-4">Cancel</a>
+                        {/if}
+                        {if $userInfo['role'] == 5}
+                            <a n:href="UserDetail:delete userid => $userDetails['id']" role="button" class="btn btn-danger delete-but mt-4">Delete</a>
+                        {/if}
                     </div>
                 {/form}
             </section>

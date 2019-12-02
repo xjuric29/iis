@@ -25,7 +25,7 @@ class UsersPresenter extends ListPresenter
      */
     public function renderDefault($orderBy, $orderDir, $page = 1, $search = null, $userid = null): void
     {
-        $this->template->usersList = $this->sysusers->getUsersTable($orderBy, $page, $search, $userid, $orderDir = "asc");
+        $this->template->usersList = $this->sysusers->getUsersTable($orderBy, $page, $search, $userid, $orderDir);
         $this->template->rowCount = $this->sysusers->rowCount;
         $this->template->paginator = $this->sysusers->paginator;
     }

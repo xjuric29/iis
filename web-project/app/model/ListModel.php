@@ -21,9 +21,16 @@ abstract class ListModel {
     abstract protected function createOrderStr($orderBy);
     abstract protected function openTable($orderStr);
     abstract protected function selectSearched($search, Nette\Database\Table\Selection $table);
-    abstract protected function filterByUser($userid, Nette\Database\Table\Selection $table);
 
-    public function getTable($orderBy, $orderDir, $page, $search, $userid) {
+    protected function filterByUser($userid, Nette\Database\Table\Selection $table) {
+        return $table->where("author LIKE ?", $userid);
+    }
+
+    protected function filterByAssignee($assid, Nette\Database\Table\Selection $table) {
+        return $table;
+    }
+
+    public function getTable($orderBy, $orderDir, $page, $search, $userid, $assid) {
         $this->paginator->setItemsPerPage(10); // počet položek na stránce
         $this->paginator->setPage($page); // číslo aktuální stránky
 
@@ -46,8 +53,12 @@ abstract class ListModel {
             $retval = $this->filterByUser($userid, $retval);
         }
 
+        if ($assid) {
+            $retval = $this->filterByAssignee($assid, $retval);
+        }
+
         $this->rowCount = $retval->count('*');
-        $this->paginator->setItemCount($this->rowCount); // celkový počet riadkov
+        $this->paginator->setItemCount($this->rowCount);
 
         return $retval;
     }

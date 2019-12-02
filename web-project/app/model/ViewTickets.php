@@ -38,10 +38,6 @@ class ViewTickets extends ListModel {
         }
     }
 
-    protected function filterByUser($userid, Nette\Database\Table\Selection $table) {
-        return $table->where("author LIKE ?", $userid);
-    }
-
     # xjuric29 methods
     public function getTicket($id) {
         /**Return data for specific ticket.

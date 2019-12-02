@@ -22,9 +22,9 @@ class TasksPresenter extends ListPresenter
      * @param $search: key that is searched in name and description of ticket table
      * @param $userid: filters ticket from this user
      */
-    public function renderDefault($orderBy, $orderDir, $page = 1, $search = null, $userid = null): void
+    public function renderDefault($orderBy, $orderDir, $page = 1, $search = null, $creator = null, $assignee = null): void
     {
-        $this->template->taskList = $this->tasks->getTable($orderBy, $orderDir, $page, $search, $userid);
+        $this->template->taskList = $this->tasks->getTable($orderBy, $orderDir, $page, $search, $creator, $assignee);
         $this->template->rowCount = $this->tasks->rowCount;
         $this->template->paginator = $this->tasks->paginator;
     }

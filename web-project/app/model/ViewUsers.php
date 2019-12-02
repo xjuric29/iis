@@ -31,8 +31,8 @@ class ViewUsers extends ListModel {
         return strnatcmp($a['company'], $b['company']);
     }
 
-    public function getUsersTable($orderBy, $page, $search, $userid, $orderDir) {
-        $table = $this->getTable(null, null, $page, $search, $userid)->fetchAll();
+    public function getUsersTable($orderBy, $page, $search, $userid, $orderDir = "asc") {
+        $table = $this->getTable(null, null, $page, $search, $userid, null)->fetchAll();
         $tableArray = array();
         foreach ($table as $row) {
             $lastRow = $row->toArray();
@@ -56,7 +56,10 @@ class ViewUsers extends ListModel {
             else {
                 $lastRow['company'] = $this->sysuser->getAdditionalUserData($lastRow['id'])->company;
             }
-            $tableArray[] = $lastRow;
+            if($lastRow['deleted'] == 0) {
+                $tableArray[] = $lastRow;
+            }
+
         }
 
         // Sorting the array instead of ordering in database
@@ -76,9 +79,9 @@ class ViewUsers extends ListModel {
         }
 
         if($orderDir == "desc") {
-            array_reverse($tableArray);
+            $tableArray = array_reverse($tableArray);
         }
-        Debugger::barDump(count($tableArray));
+
         $this->paginator->setItemsPerPage(10); // počet položek na stránce
         $this->paginator->setPage($page);
         $this->paginator->setItemCount(count($tableArray));
@@ -103,7 +106,7 @@ class ViewUsers extends ListModel {
     }
 
     protected function filterByUser($userid, Nette\Database\Table\Selection $table) {
-        return $table->where("author LIKE ?", $userid);
+        return null;
     }
 
 }
