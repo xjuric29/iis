@@ -29,9 +29,9 @@
 	    <a href="mailto:xficko00@stud.fit.vutbr.cz">xficko00@stud.fit.vutbr.cz</a> -
 		návrh designu stránek, html, css, sass
 	</dd>
-	<dd class="todo">Michal Pospí¹il
+	<dd>Michal Pospí¹il
 	    <a href="mailto:xpospi95@stud.fit.vutbr.cz">xpospi95@stud.fit.vutbr.cz</a> -
-		popis èinnosti v týmu
+		UC diagram, úpravy db schémy, incializaèné dáta db, db triggre, nette (väè¹ina tabuµkových výpisov a ich funkcie, správa u¾ívateµov)
 	</dd>
     <dd class="translate">Jiøí Juøica <!-- Nahraïte skuteèným jménem a e-mailem autora a popisem èinnosti -->
 	    <a href="mailto:xjuric29@stud.fit.vutbr.cz">xjuric29@stud.fit.vutbr.cz</a> -
@@ -86,7 +86,13 @@
 	lze k nim získat informace pouze z jejich pøehledu.
 </p>
 <p>
-	V tabuµke je mo¾né zoznam entit radi», vyhµadáva» podµa názvu èi zmaza» danú entitu. Platí pre v¹etky entity.
+	V¹etky prehµady sú si z podstaty dizajnového návrhu podobné, preto sme sa rozhodli implementova» základný model
+	(ListModel) a prezentér (ListPresenter), z ktorých ka¾dá entita dedí základnú funkcionalitu. Model napríklad
+	reimplementuje databázovú po¾iadavku tak, aby ka¾dá tabuµka zobrazovala správne dáta. Pôvodne bola dediènos»
+	vyu¾itá aj u Latte ¹ablón, ale ukázalo sa, ¾e tento postup je neefektívny, keï¾e väè¹ina stránky sa v Latte zápise
+	aj tak mení, a preto sa dedilo minimum komponentov. Ka¾dý prehµad je mo¾né radi» podµa rôznych atribútov,
+	niekedy filtrova» podµa jedného a¾ dvoch. V ka¾dom prehµade je mo¾né vyhµadáva», v èom sa vyhµadáva je v¾dy popísané
+	v pridru¾enom vyhµadávacom poli.
 </p>
 <p>
 	V detaile zobrazenia ticketu, mô¾eme vidie» informácie dané zo zadania vrátane komentárov. Komentár pridaný
@@ -101,7 +107,9 @@
 	<span class="translate">mù¾e vést link</span>, na základe ktorého bol task vytvorený.
 </p>
 <p>
-	Zobrazenie detailu o u¾ívateµovi sme nazvali Profil. Tu uvidíme informácie vychádzajúce z databázy.
+	Zobrazenie detailov u¾ívateµa je pre ka¾dý typ rie¹ené rovnakým prezentérom a dátovou vrstvou napriek tomu, ¾e dáta
+	sa nachádzajú pre ka¾dého u¾ívateµa v 2 tabuµkách s rôznymi ståpcami. Model doká¾e rozpozna» o akého u¾ívateµa ide
+	a v Latte ¹ablóne sa na základe typu zobrazia alebo skryjú potrebné polia.
 </p>
 <p>
 	Ako domovskú stránku sme zvolili tabuµku ticketov. Táto stránka je prístupná pre v¹etkých, aj pre neregistrovaných
