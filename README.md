@@ -10,7 +10,9 @@ sudo chmod 777 /var/git
 cd /var/git
 git clone git@github.com:xjuric29/iis.git
 cd iis/web-project
-composer install        # Install nette dependencies to vendor dir.
+composer install    # Install nette dependencies to vendor dir.
+mkdir www/img/usr   # User image dir.
+chmod 777 www/img/usr
 sudo ln -s /var/git/iis/web-project/www/ /var/www/iis
 sudo printf "\n# IIS project\nlocalhost\tiis\n" >> /etc/hosts
 sudo ln -s /var/git/iis/dev/apache2/sites-available/iis.conf /etc/apache2/sites-available/
