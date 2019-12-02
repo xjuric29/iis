@@ -1,12 +1,13 @@
 {block title}ITS | Products{/block}
 
 {block content}
-    {if $userInfo['role'] > 2}
+    {if $userInfo['role'] >= $permissionMap->convert('manager')}
         <section class="container">
             <header class="col-12">
                 <h1>Products</h1>
                 {if $userInfo['role'] >= $permissionMap->convert('manager')}
-                    <a class="btn btn-our float-right" href="Product:add" role="button">Add product</a>
+                    <a class="btn btn-our float-right" n:href="Product:addProduct" role="button">Add product</a>
+                    <a class="btn btn-our float-right" n:href="Product:addSubProduct" role="button">Add subproduct</a>
                 {/if}
             </header>
             <hr>
@@ -49,12 +50,12 @@
                 </thead>
                 <tbody>
                     <tr n:foreach="$subproducts as $subproduct">
-                        <td class="subproduct-name"><a href="SubProduct: id => $subproduct->id">{$subproduct->name}</a></td>
-                        <td><a href="Product: id => $subproduct->ref(product, product)->id">{$subproduct->ref(product, product)->name}</a></td>
+                        <td class="subproduct-name"><a n:href="Product:editSubProduct id => $subproduct->id">{$subproduct->name}</a></td>
+                        <td><a n:href="Product:editProduct id => $subproduct->ref(product, product)->id">{$subproduct->ref(product, product)->name}</a></td>
                         <td><a n:href="UserDetail: userid => $subproduct->ref(user, leader)->id" class="name-href">{$subproduct->ref(user, leader)->first_name} {$subproduct->ref(user, leader)->surname}</a></td>
                         {if $userInfo['role'] >= $permissionMap->convert('manager')}
-                            <td><a href="SubProduct:edit id => $subproduct->id"><img src="/img/static/edit.svg" class="svg-icons"  alt="Edit"></a></td>
-                            <td><a href="SubProduct:delete id => $subproduct->id"><img src="/img/static/remove.svg" class="svg-icons"  alt="Delete"></a></td>
+                            <td><a n:href="Product:editSubProduct id => $subproduct->id"><img src="/img/static/edit.svg" class="svg-icons"  alt="Edit"></a></td>
+                            <td><a n:href="Product:deleteSubProduct id => $subproduct->id"><img src="/img/static/remove.svg" class="svg-icons"  alt="Delete"></a></td>
                         {/if}
                     </tr>
                 </tbody>
