@@ -18,6 +18,7 @@ $color-button: #d9544f;
   @include button-variant($color-button, $color-button);
 }
 
+
 .container .col-12 {
   padding: 0;
 }
@@ -115,11 +116,13 @@ table tbody tr td a {
 .ticked-detail-state {
   font-weight: bold;
   text-transform: uppercase;
+  min-width: 100%;
 }
 
 .ticked-side-details {
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
 }
 
 .initials-bg {
@@ -251,14 +254,6 @@ table tbody tr td a {
   margin-bottom: 20px;
 }
 
-.alert-flash {
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 100;
-  width: 100%;
-}
-
 img.attach-img {
   max-width: 200px;
 }
@@ -273,7 +268,7 @@ img.attach-img {
 }
 
 .product-type {
-  max-width: 20em;
+  max-width: 100%;
 }
 
 .product-dropdown {
@@ -309,7 +304,7 @@ section#ticket-detail .dropdown-toggle::after { //"arrow/triangle" position in d
 
 #description-edit {
   display: inline-block;
-  width: 50em;
+  width: 100%;
 }
 
 .description-edit-field {
@@ -399,11 +394,13 @@ section#ticket-detail .dropdown-toggle::after { //"arrow/triangle" position in d
 //Task Editmode
 .product-setting {
   display: flex;
+  flex-wrap: wrap;
   margin-bottom: 20px;
   justify-content: space-between;
 
   #product {
     justify-content: flex-start;
+    width: 100%;
   }
 
   #subproduct {
@@ -434,7 +431,7 @@ section#ticket-detail .dropdown-toggle::after { //"arrow/triangle" position in d
 
 .attached-images {
   display: flex;
-  width: 50em;
+  width: 100%;
   flex-wrap: wrap;
 }
 
@@ -447,7 +444,6 @@ section#ticket-detail .dropdown-toggle::after { //"arrow/triangle" position in d
   top: 0;
   left: 0;
 }
-
 
 .remove-img {
   position: absolute;
@@ -473,7 +469,7 @@ section#ticket-detail .dropdown-toggle::after { //"arrow/triangle" position in d
 }
 
 .dajaky-select {
-  width: 50em;
+  width: 100%;
 }
 
 .inside-comm-box {
@@ -501,7 +497,7 @@ section { // Main content of the site.
   text-align: left;
 }
 
-//Task manager
+//Task detail
 #activity-date-time {
   display: flex;
   align-items: start;
@@ -536,7 +532,6 @@ section { // Main content of the site.
 //User table
 .action-buttons {
   display: flex;
-  //justify-content: space-around;
   align-content: flex-start;
   margin-bottom: 1em;
 }
@@ -563,8 +558,6 @@ section { // Main content of the site.
   .edit-but-2 {
     display: flex;
     color: #4e555b;
-  //justify-content: space-between;
- // align-items: flex-start;
 
     #edit-text {
       margin-right: 0.5em;
@@ -581,7 +574,6 @@ section { // Main content of the site.
   font-weight: normal;
   color: #212529;
 }
-
 
 .problem {
   margin-top: 50px;
@@ -601,15 +593,13 @@ section { // Main content of the site.
 }
 
 
-//footer settings
+//Footer settings
 footer {
   background: #343a40;
-  padding-bottom: 50px;
 }
 
 .footer-creators {
   color: white;
-  //padding-top: 20px;
 }
 
 .name-href-foot {
@@ -625,14 +615,19 @@ footer {
     color:white;
   }
 
-  a:hover{
+  a:hover {
     text-decoration: none;
+    color: red;
   }
+}
+
+.name-href-foot:hover {
+  color: #FF0028;
+  text-decoration: none;
 }
 
 .authors-foot2 {
   text-transform: uppercase;
-
 }
 
 
@@ -645,11 +640,13 @@ footer {
 
 #footer {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   vertical-align: center;
-  width: 100%;
+  width: 85%;
   margin: 0 auto;
   padding-top: 40px;
+  padding-bottom: 40px;
 }
 
 #footer-school img {
@@ -674,19 +671,13 @@ footer {
 .activity-wrapper {
   border-left: solid 1px;
   padding-left: 10px;
-  //font-style: italic;
 }
 
 
 // Tables columns
 
 .icon-col {
-  width: 1em;
-}
-
-.first-col {
- // width: 23em;
-  //text-align: left;
+  width: 2%;
 }
 
 .second-col {
@@ -694,23 +685,23 @@ footer {
 }
 
 .name-col {
-  width: 15em;
+  width: 15%;
 }
 
 .state-col, .login-col, .role-col {
-  width: 10em;
+  width: 10%;
 }
 
 .date-col {
- width: 13em;
+ width: 13%;
 }
 
 .product-col {
-  width: 15em;
+  width: 15%;
 }
 
 .email-col {
-  width: 20em;
+  width: 20%;
 }
 
 // Extended tablet rules.

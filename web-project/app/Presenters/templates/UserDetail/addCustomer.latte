@@ -1,0 +1,51 @@
+{block title}ITS | Create a new customer{/block}
+
+{block content}
+    {ifset $invalidUser}
+        {include nothingHere}
+    {elseif $userInfo['role'] > 1}
+        <section class="container">
+            <header class="col-12">
+                <h1>New customer</h1>
+            </header>
+            <hr>
+            <section id="ticket-detail">
+                {form addCustomer}
+                    <label for="fname">First name</label>
+                    <input class="form-control" id="fname" placeholder="Add first name" n:name="fname">
+                    <label for="sname" class="mt-4">Surname</label>
+                    <input class="form-control" id="sname" placeholder="Add surname" n:name="sname">
+                    <label for="mail" class="mt-4">E-mail</label>
+                    <input class="form-control" id="mail" placeholder="Add e-mail" n:name="mail">
+                    <label for="company" class="mt-4">Company</label>
+                    <input class="form-control" id="company" placeholder="Add company" n:name="company">
+
+                    <div class="product-setting">
+                        <div class="product-type">
+                            <div class="drop-type mt-4">Login</div>
+                            <div class="drop-product dropdown">
+                                <input class="form-control" id="login" placeholder="Add login" n:name="login">
+                            </div>
+                        </div>
+                        <div class="product-type">
+                            <div class="form-group mt-4">
+                                <label for="roleSelect">Role</label>
+                                <select class="form-control dajaky-select-small" id="roleSelect"  n:name="roleSelect">
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <label for="pwd">Password</label>
+                    <input class="form-control" id="pwd" type="password" placeholder="Add password" n:name="pwd">
+
+                    <div id="save-buttons">
+                        <button n:name="save" type="submit" class="btn btn-primary mt-4 submit-but">Save</button>
+                        <a n:href="Users:" role="button" class="btn btn-outline-secondary close-but mt-4">Cancel</a>
+                    </div>
+                {/form}
+            </section>
+        </section>
+    {else}
+        {include insufficientPermissions}
+    {/ifset}
+{/block}

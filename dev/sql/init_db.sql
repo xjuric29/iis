@@ -152,9 +152,9 @@ CREATE TABLE `event_progress_update` (
     FOREIGN KEY(task)
         REFERENCES task(`id`)
         ON UPDATE RESTRICT
-        ON DELETE RESTRICT,
+        ON DELETE CASCADE,
     FOREIGN KEY(worker)
-        REFERENCES user_worker(`id`)
+        REFERENCES user(`id`)
         ON UPDATE CASCADE
         ON DELETE RESTRICT
 );

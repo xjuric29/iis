@@ -3,6 +3,7 @@
 namespace App\Model;
 
 use Nette;
+use Tracy\Debugger;
 
 class ViewTickets extends ListModel {
     // For converting pretty and db values of ticket state.
@@ -35,10 +36,6 @@ class ViewTickets extends ListModel {
             default:
                 return "creation_date";
         }
-    }
-
-    protected function filterByUser($userid, Nette\Database\Table\Selection $table) {
-        return $table->where("author LIKE ?", $userid);
     }
 
     # xjuric29 methods
@@ -79,6 +76,19 @@ class ViewTickets extends ListModel {
             'name' => $name,
             'description' => $description
         ]);
+    }
+
+    public function getArrayForTicketSelect($login) {
+        /**Return array of all tickets which are with product what manager can manage.
+         * @param $login: String with user id.*/
+        $selectArray = array();
+
+        $products = $this->product->getSubProduct(null, $login);
+        $tickets = $this->database->table('ticket')->where('sub_product IN ?', $products)->fetchAll();
+
+        foreach ($tickets as $ticket) $selectArray[$ticket->id] = $ticket->name;
+
+        return $selectArray;
     }
 
     public function updateState($id, $state) {

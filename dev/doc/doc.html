@@ -38,16 +38,48 @@
 <p>Uveïte prosím existující zástupce <strong>v¹ech rolí u¾ivatelù</strong>.</p>
 <table>
 <tbody><tr><th>Login</th><th>Heslo</th><th>Role</th></tr>
-<tr><td>admin</td><td>admin</td><td>Administrátor</td></tr>
-<tr><td>prodavac</td><td>prodavac</td><td>Prodavaè</td></tr>
-<tr><td>franta</td><td>franta</td><td>Zákazník</td></tr>
+<tr><td>mrkvicka</td><td>xi9EyErV7X</td><td>Administrátor</td></tr>
+<tr><td>motak</td><td>eNgU5GQZCj</td><td>Vedúci</td></tr>
+<tr><td>kandelaber</td><td>75Ke9DPc8U</td><td>Mana¾ér</td></tr>
+<tr><td>smith</td><td>R4QRR3Wgbm</td><td>Pracovník</td></tr>
+<tr><td>barclay</td><td>qv5LLSisE9</td><td>Zákaník</td></tr>
+
 </tbody></table>
 
 <p>(Diagram pøípadù u¾ití není nutné vkládat, pokud IS implementuje role a pøípady u¾ití definované zadáním.)</p> 
 
-<h2>Implementace</h2>
-<p>Struèná dokumentace k implementaci, která popisuje, které èásti 
-projektu (napø. PHP skripty) implementují jednotlivé pøípady pou¾ití.</p>
+<h2>Implementace</h2> <!--Struèná dokumentace k implementaci, která popisuje, které èásti projektu (napø. PHP skripty) implementují jednotlivé pøípady pou¾ití. -->
+<p>V na¹om projekte sme rozèlenili stránku na zobrazuje ¹tyri základné entity: ticket, task, user a product a ku ka¾dému objektu sme vytvorili ¹tyri mo¾nosti zobrazovania dát: <br>
+	&emsp;tabuµka - v nej sa zobrazuje zoznam entít (napríklad zoznam ticketov) a informácie k nemu (napr.: kto ticket zadal, dátum zadania a pod.), <br>
+	&emsp;detail - zobrazuje podrobné informácie o danej entite na základe relaènej databázy; zobrazí sa po zakliknutí názvu/mena v tabuµke, <br>
+	&emsp;editaèný mód - slú¾i na editáciu existujúcej entity (napr. ticketu); zobrazí sa po rozkliknutí ikonky "Edit", ktorá sa nachádza v tabuµke a v detaile objektu,<br>
+	&emsp;add mód - pridá novú entitu do databázy. <br>
+	Výnimkou je product, pre ktorý nie je mo¾nos» zobrazenia detailu, v¹etky informácie zobrazuje tabuµka produktov.<br>
+	<br>
+	V tabuµke je mo¾né zoznam entit radi», vyhµadáva» podµa názvu èi zmaza» danú entitu. Platí pre v¹etky entity.<br>
+	<br>
+	V detaile zobrazenia ticketu, mô¾eme vidie» informácie dané zo zadania vrátane komentárov. Komentár pridaný zamestnancom
+	sa zobrazuje na pravo a na µavo sú zobrazené komentáre od zákazníkov. Komentáre nesmie pridáva» nezaregistrovaný u¾ívateµ.
+	V detaile ticketu je taktie¾ ikona slú¾iaca pre vytvorenie ticketu (zobrazuje sa iba danej role u¾ívateµa).<br>
+
+	V detaile tasku sa zobrazujú taktie¾ informácie vyplývajúce zo zadania. Tu si pracovník, ktorému bol task priradený,
+	zaznamenáva aktivitu vykazovaním èasu stráveného na danom tasku v jednotlivé dni a taktie¾ mô¾e napísa» poznámku
+	k zaznamenanej aktivite. Zobrazuje sa taktie¾ celkový èas strávený nad taskom. Z tasku vedie link k ticketu,
+	na základe ktorého bol task vytvorený.<br>
+
+	Zobrazenie detailu o u¾ívateµovi sme nazvali Profil. Tu uvidíme informácie vychádzajúce z databázy. <br>
+	<br>
+	Editaèný mód modifikuje informácie o danej entite. <br>
+	<br>
+	Add mód je vzhµadovo rovnaký ako editaèný mód, av¹ak formulár nie je vyplnený a hlavne je funkcionálne odli¹ný.<br>
+	<br>
+	Ako domovskú stránku sme zvolili tabuµku ticketov. Táto stránka je prístupná pre v¹etkých,
+	aj pre neregistrovaných u¾ívateµov, navy¹e, tickety sú "v hlavnej úlohe" tohto projektu.<br>
+	<br>
+	Na v¹etkých stránkach pravom hornom rohu li¹ty sa zobrazuje meno prihláseného ú¾ívateµa,
+	pre neprihlaseného u¾ívateµa sa zobrazuje mo¾nos» Log In implementovaná ako dropdown,
+	v ktorom je formulár pre prihlásenie. Meno u¾ívateµa je implementovaný taktie¾ ako dropdown,
+	ktorý zobrazuje mo¾nosti (pre napr. zobrazenie profilu, ticketov, taskov a pod.) podµa práv role u¾ívateµa taktie¾ s mo¾nos»ou odhlásenia sa.</p>
 
 <h3>Databáze</h3>
 
@@ -59,9 +91,24 @@ projektu (napø. PHP skripty) implementují jednotlivé pøípady pou¾ití.</p>
 
 Struènì popi¹te: 
 <ul>
-<li>postup instalace na server,</li>
-<li>softwarové po¾adavky (verze PHP apod.),</li>
+<li><b>postup in¹talácie pre Ubuntu/Debian:</b><br>
+	&emsp;Nain¹talujeme balíky apache2, mariad-server, php composer.<br>
+	&emsp;Spustíme mysql_secure_installation.<br>
+	&emsp;Naklonujeme repozitar [link], nastavíme práva na 777.<br>
+	&emsp;Presunieme sa , za pomoci príkazu composer install nain¹talujeme nette závislosti.<br>
+	&emsp;Vytvoríme symlink do /var/www.<br>
+	&emsp;Nastavíme konfiguraèný súbor apache pre na¹u stránku.<br>
+	&emsp;Povolíme stránku príkazom a2ensite.<br>
+	&emsp;Naèítame znovu apache2 aby sa prejavili zmeny.</li>
+<li><b>softwarové po¾iadavky:</b><br>
+	&emsp;PHP 7.1<br>
+	&emsp;Nette 3.0<br>
+	&emsp;Bootstrap 4.3<br>
+	&emsp;MariaDB server<br>
+	&emsp;Apache server </li>
 <li>jak rozbalit, konfigurovat, inicializovat databázi, ...</li>
+	&emsp;Databázu inicializujeme pomocou prízkazu
+	sudo mysql < /var/git/iis/dev/sql/init_db.sql
 </ul>
 
 <h2>Známé problémy</h2>

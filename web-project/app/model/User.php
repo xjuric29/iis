@@ -8,6 +8,7 @@
 namespace App\Model;
 
 use Nette;
+use Tracy\Debugger;
 
 class User {
     private $database;
@@ -53,6 +54,35 @@ class User {
 
         if ($customerSelect) return $customerSelect;
         else return $workerSelect;
+    }
+
+    public function getArrayForAssigneeSelect() {
+        /**Return array of all tickets workers. */
+        $selectArray = array();
+
+        $workers = $this->database->table('user_worker')->fetchAll();
+
+        foreach ($workers as $worker) {
+            $selectArray[$worker->id] = $worker->ref('user', 'id')->first_name . ' ' .
+                $worker->ref('user', 'id')->surname;
+        }
+
+        return $selectArray;
+    }
+
+    public function getArrayForLeaderSelect() {
+        /**Return array of all workers which can be assigned as leader to some sub product. */
+        $selectArray = array();
+
+        $workers = $this->database->table('user_worker')->where('role IN ?',
+            ['manager', 'superior', 'administrator'])->fetchAll();
+
+        foreach ($workers as $worker) {
+            $selectArray[$worker->id] = $worker->ref('user', 'id')->first_name . ' ' .
+                $worker->ref('user', 'id')->surname;
+        }
+
+        return $selectArray;
     }
 
     public function convertDbRoleToPretty($dbRole) {

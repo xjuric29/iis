@@ -9,10 +9,10 @@ use Nette;
 use Tracy\Debugger;
 
 
-class TasksPresenter extends ListPresenter
+class ProductsPresenter extends ListPresenter
 {
-    /** @var \App\Model\ViewTasks @inject */
-    public $tasks;
+    /** @var \App\Model\ViewProducts @inject */
+    public $subproducts;
 
     /** Renders the page on load
      * @author xpospi95
@@ -22,11 +22,11 @@ class TasksPresenter extends ListPresenter
      * @param $search: key that is searched in name and description of ticket table
      * @param $userid: filters ticket from this user
      */
-    public function renderDefault($orderBy, $orderDir, $page = 1, $search = null, $creator = null, $assignee = null): void
+    public function renderDefault($orderBy, $orderDir = "asc", $page = 1, $search = null, $userid = null): void
     {
-        $this->template->taskList = $this->tasks->getTable($orderBy, $orderDir, $page, $search, $creator, $assignee);
-        $this->template->rowCount = $this->tasks->rowCount;
-        $this->template->paginator = $this->tasks->paginator;
+        $this->template->subproducts = $this->subproducts->getTable($orderBy, $orderDir, $page, $search, null, null);
+        $this->template->rowCount = $this->subproducts->rowCount;
+        $this->template->paginator = $this->subproducts->paginator;
     }
 
 

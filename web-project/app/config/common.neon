@@ -20,8 +20,10 @@ services:
 	- App\Model\ViewTickets
 	- App\Model\ViewTasks
 	- App\Model\ViewUsers
+	- App\Model\ViewProducts
 	- App\Model\PermissionMap
 	- App\Model\Product
+	- App\Model\TaskProgress
 	- App\Model\TicketComments
 	- App\Model\User
 	- App\Model\Comments

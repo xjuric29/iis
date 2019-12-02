@@ -1,5 +1,5 @@
 {block title}
-    ITS | Add ticket
+    ITS | Edit ticket
 {/block}
 {block content}
     <section class="container">
@@ -9,19 +9,19 @@
         <hr>
         <section id="ticket-detail">
             {form ticket}
-            <label n:name="name" for="exampleFormControlInput1">Issue</label>
-            <input n:name="name" type="email" class="form-control" id="exampleFormControlInput1" placeholder="Name of ticket">
+            <label n:name="name">Issue:</label>
+            <input n:name="name" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Name of ticket">
 
             <div class="product-setting mt-4">
                 <div class="product-type" id="product">
                     <div class="form-group">
-                        <label n:name="product" for="exampleFormControlSelect1">Product type</label>
+                        <label n:name="product">Product type:</label>
                         <select n:name="product" class="form-control dajaky-select" id="exampleFormControlSelect1"></select>
                     </div>
                 </div>
             </div>
             <div id="description-edit">
-                <div class="drop-type">Description</div>
+                <label class="drop-type">Description:</label>
                 <textarea n:name="description" class="form-control description-edit-field" id="exampleFormControlTextarea1" rows="3" placeholder="Type description here..."></textarea>
             </div>
 

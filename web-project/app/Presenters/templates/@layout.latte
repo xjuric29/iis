@@ -41,22 +41,22 @@
 									<!-- Logged user -->
 									{if $user->isLoggedIn()}
 										<a class="dropdown-item" n:href="Homepage: userid => $user->id">My tickets</a>
-										<a class="dropdown-item" href="#">Profile</a>
+										<a class="dropdown-item" n:href="UserDetail: userid => $user->id">Profile</a>
 
 										{if $userInfo['role'] >= $permissionMap->convert('common_worker')}
-											<a class="dropdown-item" href="#">My tasks</a>
+											<a class="dropdown-item" n:href="Tasks: assignee => $user->id">My tasks</a>
 										{/if}
 
 										{if $userInfo['role'] >= $permissionMap->convert('manager')}
-											<a class="dropdown-item" href="#">Created tasks</a>
+											<a class="dropdown-item" n:href="Tasks: creator => $user->id">Created tasks</a>
 										{/if}
 
 										{if $userInfo['role'] >= $permissionMap->convert('superior')}
-											<a class="dropdown-item" href="#">Products</a>
+											<a class="dropdown-item" n:href="Products:">Products</a>
 										{/if}
 
 										{if $userInfo['role'] >= $permissionMap->convert('administrator')}
-											<a class="dropdown-item" href="#">Users</a>
+											<a class="dropdown-item" n:href="Users:">Users</a>
 										{/if}
 
 										<div class="dropdown-divider"></div>

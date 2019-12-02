@@ -9,7 +9,6 @@ namespace App\Presenters;
 
 use App\Model\MasterPresenter;
 use Nette\Application\UI\Form;
-use Tracy\Debugger;
 
 class TicketPresenter extends MasterPresenter {
     /** @var \App\Model\ViewTickets @inject */
@@ -91,6 +90,7 @@ class TicketPresenter extends MasterPresenter {
     }
 
     public function renderEdit($id) {
+        // Ticket only for id for delete image.
         $this->template->ticket = $this->tickets->getTicket($id);
         $this->template->images = $this->images->getArrayOfRealImages($id);
     }
@@ -155,7 +155,6 @@ class TicketPresenter extends MasterPresenter {
                 $values->description);
             // Set for image save.
             $id = $ticket->id;
-            Debugger::barDump($values->files, 'files');
         }
         // Ticket is edited.
         else {

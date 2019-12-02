@@ -67,7 +67,7 @@
                         {else}
                             Closed
                         {/if}</td>
-                    <td>{$ticket->ref('user', 'author')->first_name} {$ticket->ref('user', 'author')->surname}</td>
+                    <td><a n:href="UserDetail: id => $ticket->author">{$ticket->ref('user', 'author')->first_name} {$ticket->ref('user', 'author')->surname}</a></td>
                 </tr>
                 </tbody>
             </table>

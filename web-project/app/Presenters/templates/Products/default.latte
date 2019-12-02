@@ -1,0 +1,70 @@
+{block title}ITS | Products{/block}
+
+{block content}
+    {if $userInfo['role'] >= $permissionMap->convert('manager')}
+        <section class="container">
+            <header class="col-12">
+                <h1>Products</h1>
+                {if $userInfo['role'] >= $permissionMap->convert('manager')}
+                    <a class="btn btn-our float-right" n:href="Product:addProduct" role="button">Add product</a>
+                    <a class="btn btn-our float-right" n:href="Product:addSubProduct" role="button">Add subproduct</a>
+                {/if}
+            </header>
+            <hr>
+            <nav class="d-flex flex-wrap justify-content-between">
+                <div class="dropdown">
+                    <a class="btn dropdown-toggle border" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Sort
+                    </a>
+
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <a class="dropdown-item" n:href=": orderBy => name, orderDir => desc">Subproduct descending</a>
+                        <a class="dropdown-item" n:href=": orderBy => name, orderDir => asc">Subproduct ascending</a>
+                        <a class="dropdown-item" n:href=": orderBy => lead, orderDir => desc">Manager descending</a>
+                        <a class="dropdown-item" n:href=": orderBy => lead, orderDir => asc">Manager ascending</a>
+                    </div>
+                </div>
+                <div id="searchbox-wrapper">
+                    {form search}
+                        <div class="input-group mb-3">
+                            <input n:name="searchBox" type="text" class="form-control" placeholder="Search subproducts..." aria-label="Search subproducts..." aria-describedby="button-addon2">
+                            <div class="input-group-append">
+                                <button  n:name="searchButton" class="btn btn-outline-secondary" type="submit" id="button-addon2">Search</button>
+                            </div>
+                        </div>
+                    {/form}
+                </div>
+            </nav>
+
+            <table class="table table-hover table-responsive-md">
+                <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Subproduct</th>
+                    <th scope="col" class="second-col">Product</th>
+                    <th scope="col" class="name-col">Manager</th>
+                    {if $userInfo['role'] >= $permissionMap->convert('manager')}
+                        <th scope="col" class="icon-col"></th>
+                        <th scope="col" class="icon-col"></th>
+                    {/if}
+                </tr>
+                </thead>
+                <tbody>
+                    <tr n:foreach="$subproducts as $subproduct">
+                        <td class="subproduct-name"><a n:href="Product:editSubProduct id => $subproduct->id">{$subproduct->name}</a></td>
+                        <td><a n:href="Product:editProduct id => $subproduct->ref(product, product)->id">{$subproduct->ref(product, product)->name}</a></td>
+                        <td><a n:href="UserDetail: userid => $subproduct->ref(user, leader)->id" class="name-href">{$subproduct->ref(user, leader)->first_name} {$subproduct->ref(user, leader)->surname}</a></td>
+                        {if $userInfo['role'] >= $permissionMap->convert('manager')}
+                            <td><a n:href="Product:editSubProduct id => $subproduct->id"><img src="/img/static/edit.svg" class="svg-icons"  alt="Edit"></a></td>
+                            <td><a n:href="Product:deleteSubProduct id => $subproduct->id"><img src="/img/static/remove.svg" class="svg-icons"  alt="Delete"></a></td>
+                        {/if}
+                    </tr>
+                </tbody>
+            </table>
+
+            {include paging}
+
+        </section>
+    {else}
+        {include insufficientPermissions}
+    {/if}
+{/block}
