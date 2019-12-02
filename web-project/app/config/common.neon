@@ -22,6 +22,7 @@ services:
 	- App\Model\ViewUsers
 	- App\Model\PermissionMap
 	- App\Model\Product
+	- App\Model\TaskProgress
 	- App\Model\TicketComments
 	- App\Model\User
 	- App\Model\Comments

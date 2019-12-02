@@ -26,7 +26,7 @@
                     </a>
                 {/if}
                 {if $userInfo['role'] >= $permissionMap->convert('manager')}
-                    <a href="task_editmode.html" class="edit-butt">
+                    <a n:href="Task:add" class="edit-butt">
                         <div>Create&nbsp;task</div>
                         <img src="/img/static/list.png" alt="Create" class="svg-icons">
                     </a>
@@ -39,7 +39,7 @@
                 <tbody>
                     <tr>
                         <th class="ticket-item">Reporter:</th>
-                        <td>{$ticket->ref('user', 'author')->first_name} {$ticket->ref('user', 'author')->surname}</td>
+                        <td><a n:href="UserDetail: $ticket->author">{$ticket->ref('user', 'author')->first_name} {$ticket->ref('user', 'author')->surname}</a></td>
                     </tr>
                     <tr>
                         <th class="ticket-item">Date:</th>

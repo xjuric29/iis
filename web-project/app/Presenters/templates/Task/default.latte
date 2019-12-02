@@ -1,0 +1,138 @@
+{block title}
+    ITS | {$task->name}
+{/block}
+{block content}
+<section class="container">
+    <header class="col-12">
+        <h1>Task</h1>
+        {if $userInfo['role'] >= $permissionMap->convert('manager')}
+            <a class="btn btn-our float-right" n:href="Task:add" role="button">Add task</a>
+        {/if}
+    </header>
+    <hr>
+    <section id="ticket-detail">
+
+        <div class="header-detail-task">
+            <div>
+                <h2>{$task->name}</h2>
+            </div>
+
+            {if $task->author == $userInfo['login']}
+                <a n:href="Task:edit $task->id" class="edit-ticket-button">
+                    <div>Edit task</div>
+                    <img src="/img/static/edit.svg" class="svg-icons"  alt="Edit">
+                </a>
+            {/if}
+        </div>
+
+        <div class="ticket-detail-table">
+            <table id="ticket-detail-tab">
+                <tbody>
+                <tr>
+                    <th class="ticket-item">Creator:</th>
+                    <td><a n:href="UserDetail: $task->author" class="name-href">{$task->ref('user', 'author')->first_name} {$task->ref('user', 'author')->surname}</a></td>
+                </tr>
+                <tr>
+                    <th class="ticket-item">Assignee:</th>
+                    <td><a n:href="UserDetail: $task->worker" class="name-href">{$task->ref('user', 'worker')->first_name} {$task->ref('user', 'worker')->surname}</a></td>
+                </tr>
+                <!-- If task has related ticket. -->
+                {if $task->ticket}
+                    <tr>
+                        <th class="ticket-item">Ticket:</th>
+                        <td><a n:href="Ticket: $task->ref('ticket', 'ticket')->id" id="task-name">{$task->ref('ticket', 'ticket')->name}</a></td>
+                    </tr>
+                {/if}
+                </tbody>
+            </table>
+
+            <div class="ticked-side-details">
+                <div class="ticket-state">
+                    <div>State</div>
+                    <div class="dropdown">
+                        <button class="btn dropdown-toggle border dropdown-state" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            {$task->state}
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" n:href=":changeState $task->id, 'to_do'">to do</a>
+                            <a class="dropdown-item" n:href=":changeState $task->id, 'in_progress'">in progress</a>
+                            <a class="dropdown-item" n:href=":changeState $task->id, 'done'">done</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ticket-state">
+                    <div>Estimated time</div>
+                    <div class="ticked-detail-state">{$task->estimated_time}</div>
+                </div>
+
+                <div class="ticket-state">
+                    <div>Spent time</div>
+                    <div class="ticked-detail-state">{$task->spentTime}</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="ticket-item mt-5">Description:</div>
+        <div id="desc-text" class="mt-2">
+            {$task->description}
+        </div>
+
+        <div class="ticket-item mt-5">Noted activity:</div>
+        {form workLog}
+            <input type="hidden" n:name="taskId" value="{$task->id}">
+            <input type="hidden" n:name="worker" value="{$userInfo['login']}">
+
+            <div id="activity-date-time">
+                <div class="form-group" id="activity-date">
+                    <label n:name="date">Date</label>
+                    <input n:name="date" type="date" class="form-control" id="formGroupExampleInput1">
+                </div>
+                <div class="form-group" id="activity-time">
+                    <label n:name="fromTime">Start time</label>
+                    <input n:name="fromTime" type="text" class="form-control" id="formGroupExampleInput2" placeholder="00:00">
+                </div>
+                <div class="form-group" id="activity-time2">
+                    <label n:name="toTime">End time</label>
+                    <input n:name="toTime" type="text" class="form-control" id="formGroupExampleInput3" placeholder="00:00">
+                </div>
+            </div>
+
+            <div>Notes:</div>
+            <textarea n:name="description" class="form-control comment-field" id="exampleFormControlTextarea1" rows="3"></textarea>
+            <button n:name="send" type="submit" class="btn btn-primary">Submit</button>
+        {/form}
+
+        {if $workLogs}
+            <hr>
+            {foreach $workLogs as $workLog}
+                <div class="comment-wrapper-left">
+                    <div class="comment-user-info">
+                        <div class="circle-right rounded-circle"><span class="initials-bg">{$workLog->first_name[0]}{$workLog->surname[0]}</span></div>
+                        <div class="name-date-left">
+                            <div class="name-user">{$workLog->first_name} {$workLog->surname}<span> • {$workLog->userRole}</span></div>
+                        </div>
+                    </div>
+                    <div class="activity-notes  activity-wrapper">
+                        <table class="noted-activity">
+                            <tr>
+                                <th class="activity-item">Date:</th>
+                                <td>{$workLog->creation_date|date: '%d/%m/%Y %H:%M'}</td>
+                            </tr>
+                            <tr>
+                                <th class="activity-item">Spent time:</th>
+                                <td>{$workLog->spentTime|date: '%H:%I'}</td>
+                            </tr>
+                        </table>
+                        <div class="mt-4">{$workLog->description}</div>
+                    </div>
+                </div>
+
+                {if !$iterator->last}
+                    <hr>
+                {/if}
+            {/foreach}
+        {/if}
+    </section>
+</section>
+{/block}

@@ -139,12 +139,12 @@ INSERT INTO product (`id`, `name`)
 
 # Subproducts
 INSERT INTO sub_product (`id`, `product`, `leader`, `name`)
-    VALUES (11, 1, 'kandelaber', 'Subprodukt 1.1'),
-           (12, 1, 'kovarcik', 'Subprodukt 1.2'),
-           (21, 2, 'calloway', 'Subprodukt 2.1'),
-           (31, 3, 'zrubnova', 'Subprodukt 3.1'),
-           (32, 3, 'tousel', 'Subprodukt 3.2'),
-           (33, 3, 'kolicka', 'Subprodukt 3.3'),
+    VALUES (11, 1, 'mrkvicka', 'Subprodukt 1.1'),
+           (12, 1, 'mrkvicka', 'Subprodukt 1.2'),
+           (21, 2, 'motak', 'Subprodukt 2.1'),
+           (31, 3, 'motak', 'Subprodukt 3.1'),
+           (32, 3, 'motak', 'Subprodukt 3.2'),
+           (33, 3, 'kandelaber', 'Subprodukt 3.3'),
            (34, 3, 'kolicka', 'Subprodukt 3.4'),
            (41, 4, 'zrubnova', 'Subprodukt 4.1'),
            (61, 6, 'tousel', 'Subprodukt 6.1'),
@@ -426,7 +426,7 @@ INSERT INTO task (id, author, ticket, worker, name, description, estimated_time)
 INSERT INTO event_progress_update (task, worker, description, time_from, time_to)
     VALUES (1, 'goralova', 'Ye as procuring unwilling principle by', TIMESTAMP('2012-05-05 08:00'), TIMESTAMP('2012-05-05 17:00'));
 UPDATE task SET state = 'in_progress' WHERE id = 1; # this can be automated with a trigger
-UPDATE event_progress_update SET time_to = TIMESTAMP('2012-02-07 17:00') WHERE id = 1;
+#UPDATE event_progress_update SET time_to = TIMESTAMP('2012-02-07 17:00') WHERE id = 1;
 
 INSERT INTO event_progress_update (task, worker, description, time_from, time_to)
     VALUES (1, 'goralova', 'It allowance prevailed enjoyment in it.', TIMESTAMP('2012-05-06 08:30'), TIMESTAMP('2012-05-06 12:50'));

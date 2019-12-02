@@ -55,8 +55,7 @@ class TicketComments {
         /**Add comment to database.
          * @param $ticketId: Specific ticket id.
          * @param $author: Author id.
-         * @param $content: User comment.
-         */
+         * @param $content: User comment. */
         $this->database->table('event_ticket_comment')->insert([
             'ticket' => $ticketId,
             'author' => $author,

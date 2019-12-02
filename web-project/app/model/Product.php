@@ -16,10 +16,14 @@ class Product {
         $this->database = $database;
     }
 
-    public function getSubProduct($productId) {
-        /**Return sub products for specific product.
-         * @param $productId: Specific product id. */
-        $query = $this->database->table('sub_product')->where('product = ?', $productId);
+    public function getSubProduct($productId=null, $login=null) {
+        /**Return sub products for specific product or for specific manager.
+         * @param $productId: Specific product id.
+         * @param $login: Specific user id. */
+        $query = $this->database->table('sub_product');
+
+        if($productId) $query->where('product = ?', $productId);
+        if($login) $query->where('leader = ?', $login);
 
         return $query->fetchAll();
     }

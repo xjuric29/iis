@@ -7,33 +7,44 @@
 
 namespace App\Presenters;
 
+use App\Model\Date;
 use App\Model\MasterPresenter;
 use Nette\Application\UI\Form;
+use Nette\Utils\DateTime;
 use Tracy\Debugger;
 
 class TaskPresenter extends MasterPresenter {
+    /** @var \App\Model\ViewTasks @inject */
+    public $tasks;
+    /** @var \App\Model\TaskProgress @inject */
+    public $workLogs;
     /** @var \App\Model\ViewTickets @inject */
-    public $tickets;
-    /** @var \App\Model\TicketComments @inject */
-    public $comments;
-    /** @var \App\Model\Product @inject */
-    public $products;
-    /** @var \App\Model\Image @inject */
-    public $images;
+    public $ticket;
+    /** @var \App\Model\User @inject */
+    public $user;
 
-    // Ticket detail.
+    // Task detail.
+    public function actionDefault($id) {
+        /**Check permission before access to this page. */
+        if ($this->userInfo['role'] <= $this->permissionMap->convert('customer')) {
+            $this->flashMessage('You are not permitted to do this action.');
+            $this->redirect('Homepage:');
+        }
+    }
+
     public function renderDefault($id) {
-        $this->template->ticket = $this->tickets->getTicket($id);
-        $this->template->comments = $this->comments->getComments($id);
-        $this->template->images = $this->images->getArrayOfRealImages($id);
+        $this->template->task = $this->tasks->getTask($id);
+        Debugger::barDump($this->template->task, 'task');
+        $this->template->workLogs = $this->workLogs->getLoggedWork($id);
+        Debugger::barDump($this->template->workLogs, 'workLogs');
     }
 
     public function actionChangeState($id, $newState) {
-        /**Method which is called by manager or higher permission from ticket detail page.
-         * @param $id: Specific ticket id.
-         * @param $newState: New state of specified ticket. */
-        if ($this->userInfo['role'] >= $this->permissionMap->convert('manager')) {
-            $this->tickets->updateState($id, $newState);
+        /**Change state of task.
+         * @param $id: Specific task id.
+         * @param $newState: New state of specified task. */
+        if ($this->userInfo['role'] >= $this->permissionMap->convert('common_worker')) {
+            $this->tasks->updateState($id, $newState);
             $this->redirect(':', $id);
         }
         else {
@@ -42,30 +53,64 @@ class TaskPresenter extends MasterPresenter {
         }
     }
 
-    public function createComponentComment() {
+    public function actionDelete($id) {
+        /**Delete specific task.
+         * @param $id: Specific task id. */
+        $task = $this->tasks->getTask($id);
+
+        if ($this->userInfo['role'] >= $this->permissionMap->convert('manager') &&
+            $task->author == $this->userInfo['login']) {
+            $this->tasks->deleteTask($id);
+            $this->redirect('Tasks:', ['creator' => $this->userInfo['login']]);
+        }
+        else {
+            $this->flashMessage('You don\'t have enough permission to do this action.');
+            $this->redirect('Homepage:');
+        }
+    }
+
+    public function createComponentWorkLog() {
         /**Comment form for ticket. */
         $form = new Form;
         // Hidden operational inputs.
-        $form->addHidden('ticketId');
-        $form->addHidden('author');
+        $form->addHidden('taskId');
+        $form->addHidden('worker');
         // One and only visible "input".
-        $form->addTextArea('comment')
-            ->setRequired('Comment cannot be blank.');
+        $form->addText('date')
+            #->addRule(Form::PATTERN,'Date is in bad format.', '([0-9]{2}\.){2}[0-9]{4}')
+            ->setRequired('Date cannot be blank.');
+        $form->addText('fromTime')
+            ->addRule(Form::PATTERN,'Start time is in in bad format.', '[0-9]{2}:[0-9]{2}')
+            ->setRequired('Start time cannot be blank.');
+        $form->addText('toTime')
+            ->addRule(Form::PATTERN,'End time is in in bad format.', '[0-9]{2}:[0-9]{2}')
+            ->setRequired('End time cannot be blank.');
+        $form->addTextArea('description')
+            ->setRequired('Description cannot be blank.');
         $form->addSubmit('send');
-        $form->onSuccess[] = [$this, 'commentSucceeded'];
+        $form->onSuccess[] = [$this, 'workLogSucceeded'];
 
         return $form;
     }
 
-    public function commentSucceeded(Form $form, $values) {
-        /**Process data from comment form. */
-        $this->comments->addComment($values->ticketId, $values->author, $values->comment);
+    public function workLogSucceeded(Form $form, $values) {
+        /**Process data from work log form. */
+        // Sanity state when start time is greater than end time. It is validated here because nette form does not have
+        // this type of check in basic rules.
+        if ($values->fromTime > $values->toTime) $this->redirect(':', $values->taskId);
+
+        $this->workLogs->addWorkLog($values->taskId, $values->worker,
+            new DateTime($values->date . ' ' . $values->fromTime),
+            new DateTime($values->date . ' ' . $values->toTime), $values->description);
+
+        // Switch state to in progress if is in to do.
+        if ($this->tasks->getTask($values->taskId)->state != 'in progress') $this->tasks->updateState($values->taskId, 'in_progress');
     }
 
-    // Add/edit ticket.
+    // Add/edit task.
     public function actionAdd() {
         /**Check permission before access to this page. */
-        if ($this->userInfo['role'] < $this->permissionMap->convert('customer')) {
+        if ($this->userInfo['role'] < $this->permissionMap->convert('manager')) {
             $this->flashMessage('You are not permitted to do this action.');
             $this->redirect('Homepage:');
         }
@@ -73,99 +118,68 @@ class TaskPresenter extends MasterPresenter {
 
     public function actionEdit($id) {
         /**Check permission before access to this page. */
-        $ticket = $this->tickets->getTicket($id);
+        $task = $this->tasks->getTask($id);
 
-        if ($this->userInfo['role'] < $this->permissionMap->convert('customer') ||
-            $ticket->author != $this->userInfo['login']) {
+        if ($this->userInfo['role'] < $this->permissionMap->convert('manager') ||
+            $task->author != $this->userInfo['login']) {
             $this->flashMessage('You are not permitted to do this action.');
             $this->redirect('Homepage:');
         }
         // Fill form.
         else {
-            $this['ticket']->setDefaults([
-                'name' => $ticket->name,
-                'product' => $ticket->sub_product,
-                'description' => $ticket->description
+            $this['task']->setDefaults([
+                'name' => $task->name,
+                'assignee' => $task->worker,
+                'ticket' => $task->ticket,
+                'estimatedTime' => $task->estimated_time,
+                'description' => $task->description
             ]);
         }
     }
 
     public function renderEdit($id) {
-        $this->template->ticket = $this->tickets->getTicket($id);
-        $this->template->images = $this->images->getArrayOfRealImages($id);
+        // Task only for id for delete param.
+        $this->template->task = $this->tasks->getTask($id);
     }
 
-    public function actionDeleteImage($image, $id) {
-        /**Action for delete specific image.
-         * @param $image: Relative path to image from site root.*/
-        $this->images->deleteImage($image);
-        $this->redirect(':edit', $id);
-    }
-
-    public function createComponentTicket() {
-        /**Ticket form. */
-        // Important part. If 'id' is not set the form is used for creating ticket else for editing.
-        $id = $this->getParameter('id');
-
+    public function createComponentTask() {
+        /**Task form. */
         $form = new Form;
         $form->addText('name')
-            ->setRequired('Name of ticket cannot be blank.');
-        $form->addSelect('product', null, $this->products->getArrayForSubProductSelect());
+            ->setRequired('Name of task cannot be blank.');
+        $form->addSelect('assignee', null, $this->user->getArrayForAssigneeSelect());
+        $form->addSelect('ticket', null, $this->ticket->getArrayForTicketSelect($this->userInfo['login']));
+        $form->addText('estimatedTime')
+            ->addRule(Form::PATTERN,'Estimated time is in in bad format.', '[0-9]{2}:[0-9]{2}')
+            ->setRequired('Estimated time cannot be blank.');
         $form->addTextArea('description')
             ->setRequired('Description cannot be blank.');
-
-        // Ticket is created.
-        if (!$id) {
-            $form->addMultiUpload('files')
-                ->addRule(Form::PATTERN, 'The images have to be in JPG format.',
-                    '.*\.(jpg|JPG|jpeg|JPEG)')
-                ->addRule(Form::LENGTH,
-                    'Cannot upload more than ' . $this->images->getAllowedImageCount() . ' images.',
-                    [1, $this->images->getAllowedImageCount()]);
-        }
-        // Ticket is edited.
-        else {
-            // If ticket has maximum images, disable upload button.
-            if ($this->images->getFreePathCount($id) == 0) $form->addMultiUpload('files')->setDisabled(true);
-            // Else allow only rest count of images.
-            else {
-                $form->addMultiUpload('files')
-                    ->addRule(Form::PATTERN, 'The images have to be in JPG format.',
-                        '.*\.(jpg|JPG|jpeg|JPEG)')
-                    ->addRule(Form::LENGTH,
-                        'Cannot upload more than ' . $this->images->getFreePathCount($id) . ' images.',
-                        [1, $this->images->getFreePathCount($id)]);
-            }
-        }
         $form->addSubmit('send');
-        $form->onSuccess[] = [$this, 'ticketCreateUpdateSucceeded'];
+        $form->onSuccess[] = [$this, 'taskCreateUpdateSucceeded'];
 
         return $form;
     }
 
-    public function ticketCreateUpdateSucceeded(Form $form, $values) {
-        /**Process data from ticket form. */
+    public function taskCreateUpdateSucceeded(Form $form, $values) {
+        /**Process data from task form. */
         // Important part. If 'id' is not set the form is used for creating ticket else for editing.
         $id = $this->getParameter('id');
 
-        // Ticket is created.
+        // Task is created.
         if (!$id) {
             // Create ticket.
-            $ticket = $this->tickets->addTicket($this->userInfo['login'], $values->product, $values->name,
-                $values->description);
+            $task = $this->tasks->addTask($this->userInfo['login'], $values->ticket, $values->assignee, $values->name,
+                $values->description, Date::convertHoursMinutesToDateInterval($values->estimatedTime));
             // Set for image save.
-            $id = $ticket->id;
-            Debugger::barDump($values->files, 'files');
+            $id = $task->id;
         }
-        // Ticket is edited.
+        // Task is edited.
         else {
-            $this->tickets->updateTicket($id, $values->product, $values->name, $values->description);
+            $this->tasks->updateTask($id, $this->userInfo['login'], $values->ticket, $values->assignee, $values->name,
+                $values->description, Date::convertHoursMinutesToDateInterval($values->estimatedTime));
         }
-
-        // Save images.
-        $this->images->saveImages($values->files, $id);
 
         // Redirect to the ticket.
-        $this->redirect("Ticket:", $id);
+        $this->redirect("Task:", $id);
     }
 }
