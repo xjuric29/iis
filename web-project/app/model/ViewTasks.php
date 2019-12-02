@@ -22,6 +22,10 @@ class ViewTasks extends ListModel {
     protected function createOrderStr($orderBy)
     {
         switch($orderBy) {
+            case "ass":
+                return "worker";
+            case "cret":
+                return "author";
             case "name":
             default:
                 return "name";
@@ -30,5 +34,9 @@ class ViewTasks extends ListModel {
 
     protected function filterByUser($userid, Nette\Database\Table\Selection $table) {
         return $table->where("author LIKE ?", $userid);
+    }
+
+    protected function filterByAssignee($assid, Nette\Database\Table\Selection $table) {
+        return $table->where("worker LIKE ?", $assid);
     }
 }

@@ -23,7 +23,7 @@ class HomepagePresenter extends ListPresenter
      */
     public function renderDefault($orderBy, $orderDir, $page = 1, $search = null, $userid = null): void
     {
-        $this->template->ticketList = $this->tickets->getTable($orderBy, $orderDir, $page, $search, $userid);
+        $this->template->ticketList = $this->tickets->getTable($orderBy, $orderDir, $page, $search, $userid, null);
         $this->template->rowCount = $this->tickets->rowCount;
         $this->template->paginator = $this->tickets->paginator;
     }

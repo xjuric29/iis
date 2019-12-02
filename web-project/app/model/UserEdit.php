@@ -108,4 +108,12 @@ class UserEdit extends MasterPresenter {
         }
 
     }
+
+    public function deleteUser($userId) {
+        $this->database->table('user')
+            ->where('id', $userId)
+            ->update([
+                'deleted' => 1,
+            ]);
+    }
 }

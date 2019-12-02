@@ -32,7 +32,7 @@ class ViewUsers extends ListModel {
     }
 
     public function getUsersTable($orderBy, $page, $search, $userid, $orderDir = "asc") {
-        $table = $this->getTable(null, null, $page, $search, $userid)->fetchAll();
+        $table = $this->getTable(null, null, $page, $search, $userid, null)->fetchAll();
         $tableArray = array();
         foreach ($table as $row) {
             $lastRow = $row->toArray();
@@ -56,7 +56,10 @@ class ViewUsers extends ListModel {
             else {
                 $lastRow['company'] = $this->sysuser->getAdditionalUserData($lastRow['id'])->company;
             }
-            $tableArray[] = $lastRow;
+            if($lastRow['deleted'] == 0) {
+                $tableArray[] = $lastRow;
+            }
+
         }
 
         // Sorting the array instead of ordering in database
@@ -103,7 +106,7 @@ class ViewUsers extends ListModel {
     }
 
     protected function filterByUser($userid, Nette\Database\Table\Selection $table) {
-        return $table->where("author LIKE ?", $userid);
+        return null;
     }
 
 }

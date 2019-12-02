@@ -46,6 +46,12 @@ class UserDetailPresenter extends Model\MasterPresenter
         $this->template->supervisor = $this->userDetails->getSupervisor($userid);
     }
 
+    public function actionDelete($userid): void
+    {
+        $this->userEdit->deleteUser($userid);
+        $this->redirect("Users:");
+    }
+
     /** Creates the edit user form
      * @author xpospi95
      */
