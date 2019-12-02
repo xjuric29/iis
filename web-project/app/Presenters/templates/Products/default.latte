@@ -6,8 +6,10 @@
             <header class="col-12">
                 <h1>Products</h1>
                 {if $userInfo['role'] >= $permissionMap->convert('manager')}
-                    <a class="btn btn-our float-right" n:href="Product:addProduct" role="button">Add product</a>
-                    <a class="btn btn-our float-right" n:href="Product:addSubProduct" role="button">Add subproduct</a>
+                    <div>
+                        <a class="btn btn-our ml-1" n:href="Product:addProduct" role="button">Add product</a>
+                        <a class="btn btn-our" n:href="Product:addSubProduct" role="button">Add subproduct</a>
+                    </div>
                 {/if}
             </header>
             <hr>

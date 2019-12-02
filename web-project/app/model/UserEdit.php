@@ -90,22 +90,26 @@ class UserEdit extends MasterPresenter {
                 'surname' => $values->sname,
                 'mail' => $values->mail,
             ]);
+
         if ($this->user->getUserType($userId) == "worker") {
-            if ($values->supSelect != "none") {
-                $this->database->table('user_worker')
-                    ->where('id', $userId)
-                    ->update([
-                        'role' => $values->roleSelect,
-                        'superior' => $values->supSelect,
-                    ]);
-            }
-            else {
-                $this->database->table('user_worker')
-                    ->where('id', $userId)
-                    ->update([
-                        'role' => $values->roleSelect,
-                        'superior' => NULL,
-                    ]);
+            // Property_exists checks if the superior and role can be updated - users cannot update these, only admins can
+            if (property_exists($values, 'supSelect')) {
+                if ($values->supSelect != "none") {
+                    $this->database->table('user_worker')
+                        ->where('id', $userId)
+                        ->update([
+                            'role' => $values->roleSelect,
+                            'superior' => $values->supSelect,
+                        ]);
+                }
+                else {
+                    $this->database->table('user_worker')
+                        ->where('id', $userId)
+                        ->update([
+                            'role' => $values->roleSelect,
+                            'superior' => NULL,
+                        ]);
+                }
             }
         }
         else {
