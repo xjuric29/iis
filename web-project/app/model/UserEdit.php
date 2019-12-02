@@ -40,23 +40,31 @@ class UserEdit extends MasterPresenter {
         return ["customer" => "Customer"];
     }
 
-    public function getSupervisorArr($userId) {
-        $curSupervisor = $this->database->query('
+    public function getSupervisorArr($userId)
+    {
+        if ($userId) {
+            $curSupervisor = $this->database->query('
             SELECT user.id, user.first_name, user.surname
             FROM user
             WHERE user.id LIKE (SELECT user_worker.superior FROM user_worker WHERE user_worker.id = ?)
             ', $userId)
-            ->fetch();
-        if($curSupervisor == null) {
-            $supArray = ["none" => "None"];
-            $curSupervisor = "";
+                ->fetch();
+
+            if ($curSupervisor == null) {
+                $supArray = ["none" => "None"];
+                $curSupervisor = "";
+            } else {
+                $supArray = [
+                    $curSupervisor['id'] => ($curSupervisor['first_name'] . " " . $curSupervisor['surname']),
+                    "none" => "None"
+                ];
+                $curSupervisor = $curSupervisor['id'];
+            }
         }
         else {
-            $supArray = [
-                $curSupervisor['id'] => ($curSupervisor['first_name'] . " " . $curSupervisor['surname']),
-                "none" => "None"
-            ];
-            $curSupervisor = $curSupervisor['id'];
+            $userId = "";
+            $curSupervisor = "";
+            $supArray = ["none" => "None"];
         }
 
         $supervisors = $this->database->query('
@@ -70,10 +78,11 @@ class UserEdit extends MasterPresenter {
         foreach($supervisors as $supervisor) {
             $supArray += [$supervisor['id'] => $supervisor['first_name'] . " " . $supervisor['surname']];
         }
+
         return $supArray;
     }
 
-    public function editUser($userId, $values) {
+    public function editUser($userId, $values, $form) {
         $this->database->table('user')
             ->where('id', $userId)
             ->update([
@@ -103,10 +112,23 @@ class UserEdit extends MasterPresenter {
             $this->database->table('user_customer')
                 ->where('id', $userId)
                 ->update([
-                    'company' => $values->comp,
+                    'company' => $values->company,
                 ]);
         }
-
+        // Update password if requested, check that confirmation matches
+        if($values->pwd) {
+            if($values->pwd == $values->pwdconf) {
+                $this->database->table('user')
+                    ->where('id', $userId)
+                    ->update([
+                        'hash' => password_hash($values->pwd, PASSWORD_BCRYPT),
+                    ]);
+            }
+            else {
+                return false;
+            }
+        }
+        return true;
     }
 
     public function deleteUser($userId) {
@@ -115,5 +137,62 @@ class UserEdit extends MasterPresenter {
             ->update([
                 'deleted' => 1,
             ]);
+    }
+
+    public function newEmployee($values, $form) {
+        try {
+            $this->database->table('user')
+                ->insert([
+                    'id' => $values->login,
+                    'first_name' => $values->fname,
+                    'surname' => $values->sname,
+                    'mail' => $values->mail,
+                    'hash' => password_hash($values->pwd, PASSWORD_BCRYPT),
+                ]);
+
+            if ($values->supSelect != "none") {
+                $this->database->table('user_worker')
+                    ->insert([
+                        'id' => $values->login,
+                        'role' => $values->roleSelect,
+                        'superior' => $values->supSelect,
+                    ]);
+            }
+            else {
+                $this->database->table('user_worker')
+                    ->insert([
+                        'id' => $values->login,
+                        'role' => $values->roleSelect,
+                        'superior' => NULL,
+                    ]);
+            }
+        }
+        catch (\Nette\Database\UniqueConstraintViolationException $e) {
+            return false;
+        }
+        return true;
+    }
+
+    public function newCustomer($values) {
+        try {
+            $this->database->table('user')
+                ->insert([
+                    'id' => $values->login,
+                    'first_name' => $values->fname,
+                    'surname' => $values->sname,
+                    'mail' => $values->mail,
+                    'hash' => password_hash($values->pwd, PASSWORD_BCRYPT),
+                ]);
+
+            $this->database->table('user_customer')
+                ->insert([
+                    'id' => $values->login,
+                    'company' => $values->company,
+                ]);
+        }
+        catch (\Nette\Database\UniqueConstraintViolationException $e) {
+            return false;
+        }
+        return true;
     }
 }

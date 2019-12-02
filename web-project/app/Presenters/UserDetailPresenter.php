@@ -76,22 +76,107 @@ class UserDetailPresenter extends Model\MasterPresenter
             ->addRule(Form::MAX_LENGTH, "Login can't be longer than 32 characters.", 32)
             ->addRule(Form::REQUIRED)
             ->setDisabled(true);
+        $form->addText('pwd');
+        $form->addText('pwdconf');
         $form->addSelect('roleSelect', "Role", $this->userEdit->getRoleArr($this->getParameter("userid")));
         $form->addSelect('supSelect', "Supervisor", $this->userEdit->getSupervisorArr($this->getParameter("userid")));
-        $form->addSubmit('save', 'Save');
+        $form->addSubmit('save', 'Save')->setValidationScope([]);
         $form->onSuccess[] = [$this, 'performEditUser'];
         return $form;
     }
 
     public function performEditUser(Form $form, \stdClass $values): void {
-        Debugger::barDump($values);
-        $this->userEdit->editUser($this->getParameter("userid"), $values);
-        if($this->userInfo['role'] < 5) {
-            $this->redirect("Homepage:");
+        if($this->userEdit->editUser($this->getParameter("userid"), $values, $form)) {
+            if($this->userInfo['role'] < 5) {
+                $this->redirect("Homepage:");
+            }
+            else {
+                $this->redirect("Users:");
+            }
         }
         else {
+            $this->flashMessage("Passwords are not matching.");
+        }
+    }
+
+    /** Creates form for a new employee
+     * @author xpospi95
+     */
+    public function createComponentAddEmployee() : Form {
+        $form = new Form;
+        $form->addText('fname')
+            ->addRule(Form::MAX_LENGTH, "First name can't be longer than 32 characters.", 32)
+            ->setRequired("First name is required.");
+        $form->addText('sname')
+            ->addRule(Form::MAX_LENGTH, "Surname can't be longer than 64 characters.", 64)
+            ->setRequired("Surname is required.");
+        $form->addText('mail')
+            ->addRule(Form::EMAIL, "This isn't a valid e-mail.")
+            ->addRule(Form::MAX_LENGTH, "Email can't be longer than 256 characters.", 256)
+            ->setRequired("E-mail is required.");
+        $form->addText('login')
+            ->addRule(Form::MAX_LENGTH, "Login can't be longer than 32 characters.", 32)
+            ->addRule(Form::REQUIRED);
+        $form->addText('pwd')
+            ->setRequired("Password is required.");
+        $form->addSelect('roleSelect', "Role",
+            array(
+            'common_worker' => "Employee",
+            'manager' => "Manager",
+            'superior' => "Supervisor",
+            'administrator' => "Administrator",)
+        );
+        $form->addSelect('supSelect', "Supervisor", $this->userEdit->getSupervisorArr($this->getParameter("userid")));
+        $form->addSubmit('save', 'Save');
+        $form->onSuccess[] = [$this, 'createEmployee'];
+        return $form;
+    }
+
+    public function createEmployee(Form $form, \stdClass $values): void {
+        if($this->userEdit->newEmployee($values, $form)) {
             $this->redirect("Users:");
         }
+        else {
+            $this->flashMessage("Login already exists.");
+        }
+    }
 
+    /** Creates form for a new customer
+     * @author xpospi95
+     */
+    public function createComponentAddCustomer() : Form {
+        $form = new Form;
+        $form->addText('fname')
+            ->addRule(Form::MAX_LENGTH, "First name can't be longer than 32 characters.", 32)
+            ->setRequired("First name is required.");
+        $form->addText('sname')
+            ->addRule(Form::MAX_LENGTH, "Surname can't be longer than 64 characters.", 64)
+            ->setRequired("Surname is required.");
+        $form->addText('mail')
+            ->addRule(Form::EMAIL, "This isn't a valid e-mail.")
+            ->addRule(Form::MAX_LENGTH, "Email can't be longer than 256 characters.", 256)
+            ->setRequired("E-mail is required.");
+        $form->addText('company')
+            ->addRule(Form::MAX_LENGTH, "Company can't be longer than 64 characters.", 64)
+            ->addRule(Form::REQUIRED);
+        $form->addText('login')
+            ->addRule(Form::MAX_LENGTH, "Login can't be longer than 32 characters.", 32)
+            ->addRule(Form::REQUIRED);
+        $form->addText('pwd')
+            ->setRequired("Password is required.");
+        $form->addSelect('roleSelect', "Role", array('customer' => "Customer"))
+            ->setDisabled(true);
+        $form->addSubmit('save', 'Save');
+        $form->onSuccess[] = [$this, 'createCustomer'];
+        return $form;
+    }
+
+    public function createCustomer(Form $form, \stdClass $values): void {
+        if($this->userEdit->newCustomer($values, $form)) {
+            $this->redirect("Users:");
+        }
+        else {
+            $this->flashMessage("Login already exists.");
+        }
     }
 }

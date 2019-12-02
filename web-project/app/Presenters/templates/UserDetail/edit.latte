@@ -48,16 +48,20 @@
                             </div>
                         </div>
                     {/ifset}
+                    <label for="pwd">New password</label>
+                    <input class="form-control" id="pwd" type="password" placeholder="Leave blank to keep unchanged" n:name="pwd">
+                    <label for="pwdconf" class="mt-4">Confirm new password</label>
+                    <input class="form-control" id="pwd" type="password" placeholder="Confirm new password" n:name="pwdconf">
 
                     <div id="save-buttons">
                         <button n:name="save" type="submit" class="btn btn-primary mt-4 submit-but">Save</button>
                         {if $userInfo['role'] == 5}
-                            <a n:href="Users:"><button name="cancel" type="button" class="btn btn-outline-secondary close-but mt-4">Cancel</button></a>
+                            <a n:href="Users:" role="button" class="btn btn-outline-secondary close-but mt-4">Cancel</a>
                         {else}
-                            <a n:href="/"><button name="cancel" n:href="UserDetail: userid => $userDetails['id']" type="button" class="btn btn-outline-secondary close-but mt-4">Cancel</button></a>
+                            <a n:href="/" role="button" class="btn btn-outline-secondary close-but mt-4">Cancel</a>
                         {/if}
                         {if $userInfo['role'] == 5}
-                            <a n:href="UserDetail:delete userid => $userDetails['id']"><button name="delete" type="button" class="btn btn-danger delete-but mt-4">Delete</button></a>
+                            <a n:href="UserDetail:delete userid => $userDetails['id']" role="button" class="btn btn-danger delete-but mt-4">Delete</a>
                         {/if}
                     </div>
                 {/form}
