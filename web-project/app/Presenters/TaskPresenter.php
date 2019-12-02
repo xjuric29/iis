@@ -1,7 +1,7 @@
 <?php
 /**
  * IIS project 2019
- * Description: Presenter for displaying ticket detail and its actions.
+ * Description: Presenter for displaying task detail and its actions.
  * Author: Jiri Jurica (xjuric29)
  */
 
@@ -34,9 +34,7 @@ class TaskPresenter extends MasterPresenter {
 
     public function renderDefault($id) {
         $this->template->task = $this->tasks->getTask($id);
-        Debugger::barDump($this->template->task, 'task');
         $this->template->workLogs = $this->workLogs->getLoggedWork($id);
-        Debugger::barDump($this->template->workLogs, 'workLogs');
     }
 
     public function actionChangeState($id, $newState) {
@@ -75,9 +73,8 @@ class TaskPresenter extends MasterPresenter {
         // Hidden operational inputs.
         $form->addHidden('taskId');
         $form->addHidden('worker');
-        // One and only visible "input".
+
         $form->addText('date')
-            #->addRule(Form::PATTERN,'Date is in bad format.', '([0-9]{2}\.){2}[0-9]{4}')
             ->setRequired('Date cannot be blank.');
         $form->addText('fromTime')
             ->addRule(Form::PATTERN,'Start time is in in bad format.', '[0-9]{2}:[0-9]{2}')

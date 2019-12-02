@@ -90,6 +90,8 @@ class TicketPresenter extends MasterPresenter {
     }
 
     public function renderEdit($id) {
+        // Ticket only for id for delete image.
+        $this->template->ticket = $this->tickets->getTicket($id);
         $this->template->images = $this->images->getArrayOfRealImages($id);
     }
 

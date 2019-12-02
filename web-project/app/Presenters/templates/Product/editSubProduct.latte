@@ -1,0 +1,32 @@
+{block title}
+    ITS | Add subproduct
+{/block}
+{block content}
+    <section class="container">
+        <header class="col-12">
+            <h1>Subproduct</h1>
+        </header>
+        <hr>
+        <section id="ticket-detail">
+            {form subProduct}
+                <div class="form-group">
+                    <label n:name="product">Product name:</label>
+                    <select n:name="product" class="form-control dajaky-select" id="exampleFormControlSelect1"></select>
+                </div>
+                <label n:name="name" class="mt-2">Subproduct name:</label>
+                <input n:name="name" class="form-control" id="exampleFormControlInput2" placeholder="Name of subproduct">
+                <div class="form-group">
+                    <label n:name="leader" class="mt-4">Product owner:</label>
+                    <select n:name="leader" class="form-control dajaky-select" id="exampleFormControlSelect2"></select>
+                </div>
+
+
+                <div id="save-buttons">
+                    <button type="submit" class="btn btn-primary mt-4 submit-but">Save</button>
+                    <a n:href="Products:" class="btn btn-outline-secondary close-but mt-4">Cancel</a>
+                    <a n:href="Product:deleteSubProduct $subProduct->id" class="btn btn-danger delete-but mt-4">Delete</a>
+                </div>
+            {/form}
+        </section>
+    </section>
+{/block}
