@@ -79,9 +79,9 @@
                                 Done
                             {/if}
                         </td>
-                        <td>{$task->ref('user', 'author')->first_name} {$task->ref('user', 'author')->surname}</td>
-                        <td><a n:href="Task:delete id => $task->id"><img src="/img/static/edit.svg" class="svg-icons" alt="Edit" ></a></td>
-                        <td><a n:href="Task:edit id => $task->id"><img src="/img/static/remove.svg" class="svg-icons"  alt="Delete"></a></td>
+                        <td><a n:href="UserDetail: userid => $task->author">{$task->ref('user', 'author')->first_name} {$task->ref('user', 'author')->surname}</td>
+                        <td><a n:href="Task:edit id => $task->id"><img src="/img/static/edit.svg" class="svg-icons" alt="Edit" ></a></td>
+                        <td><a n:href="Task:delete id => $task->id"><img src="/img/static/remove.svg" class="svg-icons"  alt="Delete"></a></td>
                     </tr>
                     </tbody>
                 </table>

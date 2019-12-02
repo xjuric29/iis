@@ -58,7 +58,7 @@
                         {if $userInfo['role'] == 5}
                             <a n:href="Users:" role="button" class="btn btn-outline-secondary close-but mt-4">Cancel</a>
                         {else}
-                            <a n:href="/" role="button" class="btn btn-outline-secondary close-but mt-4">Cancel</a>
+                            <a href="/" role="button" class="btn btn-outline-secondary close-but mt-4">Cancel</a>
                         {/if}
                         {if $userInfo['role'] == 5}
                             <a n:href="UserDetail:delete userid => $userDetails['id']" role="button" class="btn btn-danger delete-but mt-4">Delete</a>

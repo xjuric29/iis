@@ -57,6 +57,7 @@ class UserDetailPresenter extends Model\MasterPresenter
      */
     public function createComponentEditUser() : Form {
         $form = new Form;
+        $userid = $this->getParameter("userid");
         $form->addText('fname')
             ->addRule(Form::MAX_LENGTH, "First name can't be longer than 32 characters.", 32)
             ->setRequired("First name is required.");
@@ -67,7 +68,7 @@ class UserDetailPresenter extends Model\MasterPresenter
             ->addRule(Form::EMAIL, "This isn't a valid e-mail.")
             ->addRule(Form::MAX_LENGTH, "Email can't be longer than 256 characters.", 256)
             ->setRequired("E-mail is required.");
-        if($this->userDetails->getUserType($this->getParameter("userid")) == "customer") {
+        if($this->userDetails->getUserType($userid) == "customer") {
             $form->addText('company')
                 ->addRule(Form::MAX_LENGTH, "Company can't be longer than 64 characters.", 64)
                 ->addRule(Form::REQUIRED);
@@ -81,6 +82,13 @@ class UserDetailPresenter extends Model\MasterPresenter
         $form->addSelect('roleSelect', "Role", $this->userEdit->getRoleArr($this->getParameter("userid")));
         $form->addSelect('supSelect', "Supervisor", $this->userEdit->getSupervisorArr($this->getParameter("userid")));
         $form->addSubmit('save', 'Save')->setValidationScope([]);
+
+        // Disable some fields for non-admins
+        if($this->userDetails->getUserType($userid) == "worker" && $this->userDetails->getUserData($userid)->role != "administrator") {
+            $form['roleSelect']->setDisabled(true);
+            $form['supSelect']->setDisabled(true);
+        }
+
         $form->onSuccess[] = [$this, 'performEditUser'];
         return $form;
     }
