@@ -1,0 +1,50 @@
+{block title}
+    ITS | Add task
+{/block}
+{block content}
+    <section class="container">
+        <header class="col-12">
+            <h1>Task</h1>
+        </header>
+        <hr>
+        <section id="ticket-detail">
+            {form task}
+                <label n:name="name">Task</label>
+                <input n:name="name" class="form-control" id="exampleFormControlInput1" placeholder="Name of task">
+
+                <div class="product-setting mt-4">
+                    <div class="product-type" id="product">
+                        <div class="form-group">
+                            <label n:name="assignee">Assignee:</label>
+                            <select n:name="assignee" class="form-control dajaky-select" id="exampleFormControlSelect1"></select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-setting mt-4">
+                    <div class="product-type" id="product">
+                        <div class="form-group">
+                            <label n:name="ticket">Ticket:</label>
+                            <select n:name="ticket" class="form-control dajaky-select" id="exampleFormControlSelect1"></select>
+                        </div>
+                    </div>
+                </div>
+
+                <label n:name="estimatedTime">Estimated time:</label>
+                <input n:name="estimatedTime" class="form-control time-form" placeholder="00:00">
+
+
+                <div id="description-edit">
+                    <div class="drop-type mt-4">Description:</div>
+                    <textarea n:name="description" class="form-control description-edit-field" id="exampleFormControlTextarea1" rows="3" placeholder="Type description here..."></textarea>
+                </div>
+
+                <div id="save-buttons">
+                    <button type="submit" class="btn btn-primary mt-4 submit-but">Save</button>
+                    <a n:href="Tasks: creator => $userInfo['login']" class="btn btn-outline-secondary close-but mt-4">Cancel</a>
+                    <a n:href=":delete $task->id" class="btn btn-danger delete-but mt-4">Delete</a>
+                </div>
+            {/form}
+        </section>
+    </section>
+{/block}

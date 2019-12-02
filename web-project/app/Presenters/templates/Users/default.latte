@@ -1,0 +1,107 @@
+{block title}ITS | User management{/block}
+
+{block content}
+    {if $userInfo['role'] > 1}
+        <section class="container">
+            <header class="col-12">
+                <h1>User management</h1>
+                <div>
+                    <a class="btn btn-our float-right" n:href="UserDetail:addCustomer" role="button">Create a customer</a>
+                    <a class="btn btn-our float-right" n:href="UserDetail:addEmployee" role="button">Create an employee</a>
+                </div>
+            </header>
+            <hr>
+            <nav class="d-flex flex-wrap justify-content-between">
+                {if $rowCount > 0}
+                    <div class="dropdown">
+                        <a class="btn dropdown-toggle border" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Sort by
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <a class="dropdown-item" n:href=": orderBy => 'sname', orderDir => 'desc'">Surname descending</a>
+                            <a class="dropdown-item" n:href=": orderBy => 'sname', orderDir => 'asc'">Surname ascending</a>
+                            <a class="dropdown-item" n:href=": orderBy => 'svisor', orderDir => 'desc'">Supervisor descending</a>
+                            <a class="dropdown-item" n:href=": orderBy => 'svisor', orderDir => 'asc'">Supervisor ascending</a>
+                            <a class="dropdown-item" n:href=": orderBy => 'role', orderDir => 'desc'">Role descending</a>
+                            <a class="dropdown-item" n:href=": orderBy => 'role', orderDir => 'asc'">Role ascending</a>
+                            <a class="dropdown-item" n:href=": orderBy => 'comp', orderDir => 'desc'">Company descending</a>
+                            <a class="dropdown-item" n:href=": orderBy => 'comp', orderDir => 'asc'">Company ascending</a>
+                        </div>
+                    </div>
+                {/if}
+                <div id="searchbox-wrapper">
+                    {form search}
+                        <div class="input-group mb-3">
+                            <input n:name="searchBox" type="text" class="form-control" placeholder="Search names and emails..." aria-label="Search names and emails..." aria-describedby="button-addon2">
+                            <div class="input-group-append">
+                                <button  n:name="searchButton" class="btn btn-outline-secondary" type="submit" id="button-addon2">Search</button>
+                            </div>
+                        </div>
+                    {/form}
+                </div>
+
+            </nav>
+
+            {if $rowCount == 0}
+                {ifset $_GET['search']}
+                    {include nothingFound}
+                {else}
+                    {include nothingHere}
+                {/ifset}
+            {else}
+                <table class="table table-hover table-responsive-md">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Surname</th>
+                        <th scope="col" class="email-col">Email</th>
+                        <th scope="col" class="name-col">Supervisor</th>
+                        <th scope="col" class="role-col">Role</th>
+                        <th scope="col">Company</th>
+                        <th scope="col" class="icon-col"></th>
+                        <th scope="col" class="icon-col"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr n:foreach="$usersList as $rowUser">
+                        <td>
+                            <a n:href="UserDetail: userid => $rowUser['id']">{$rowUser['first_name']}</a>
+                        </td>
+                        <td>
+                            <a n:href="UserDetail: userid => $rowUser['id']">{$rowUser['surname']}</a>
+                        </td>
+                        <td>
+                            {$rowUser['mail']}
+                        </td>
+                        <td>
+                            {$rowUser['superior']}
+                        </td>
+                        <td>
+                            {if $rowUser['role'] == "administrator"}
+                                Administrator
+                            {elseif $rowUser['role'] == "superior"}
+                                Supervisor
+                            {elseif $rowUser['role'] == "manager"}
+                                Manager
+                            {elseif $rowUser['role'] == "common_worker"}
+                                Employee
+                            {else}
+                                Customer
+                            {/if}
+                        </td>
+                        <td>
+                            {$rowUser['company']}
+                        </td>
+                        <td><a n:href="UserDetail:edit userid => $rowUser['id']"><img src="/img/static/edit.svg" class="svg-icons"  alt="Edit"></a></td>
+                        <td><a n:href="UserDetail:delete userid => $rowUser['id']"><img src="/img/static/remove.svg" class="svg-icons"  alt="Delete"></a></td>
+                    </tr>
+                    </tbody>
+                </table>
+            {/if}
+
+            {include paging}
+        </section>
+    {else}
+        {include insufficientPermissions}
+    {/if}
+{/block}

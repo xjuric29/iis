@@ -94,11 +94,15 @@ CREATE TABLE `ticket` (
 );
 
 CREATE TABLE `event_ticket_comment` (
-    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `id` INTEGER NOT NULL,
     `ticket` INTEGER NOT NULL,
     `author` VARCHAR(32) NOT NULL,
     `content` TEXT NOT NULL,
     PRIMARY KEY(`id`),
+    FOREIGN KEY(id)
+        REFERENCES event(`id`)
+        ON UPDATE RESTRICT
+        ON DELETE RESTRICT,
     FOREIGN KEY(`ticket`)
         REFERENCES ticket(`id`)
         ON UPDATE RESTRICT
@@ -134,21 +138,54 @@ CREATE TABLE `task` (
 );
 
 CREATE TABLE `event_progress_update` (
-    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `id` INTEGER NOT NULL,
     `task` INTEGER NOT NULL,
     `worker` VARCHAR(32) NOT NULL,
     `description` TEXT NOT NULL,
     `time_from` TIMESTAMP NOT NULL,
     `time_to` TIMESTAMP NOT NULL,
     PRIMARY KEY(`id`),
+    FOREIGN KEY(id)
+        REFERENCES event(`id`)
+        ON UPDATE RESTRICT
+        ON DELETE RESTRICT,
     FOREIGN KEY(task)
         REFERENCES task(`id`)
         ON UPDATE RESTRICT
-        ON DELETE RESTRICT,
+        ON DELETE CASCADE,
     FOREIGN KEY(worker)
-        REFERENCES user_worker(`id`)
+        REFERENCES user(`id`)
         ON UPDATE CASCADE
         ON DELETE RESTRICT
-)
+);
 
 # Events.
+
+# Triggers for creating record in table 'event' when is inserted to table 'event_progress_update' or
+# 'event_ticket_comment'.
+CREATE OR REPLACE TRIGGER `create_event_from_progress`
+    BEFORE INSERT ON event_progress_update FOR EACH ROW
+    BEGIN
+        INSERT INTO event (creation_date, modify_date) VALUES(CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+        SET NEW.id := LAST_INSERT_ID();
+    END;
+
+CREATE OR REPLACE TRIGGER `create_event_from_comment`
+    BEFORE INSERT ON event_ticket_comment FOR EACH ROW
+    BEGIN
+        INSERT INTO event (creation_date, modify_date) VALUES(CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+        SET NEW.id := LAST_INSERT_ID();
+    END;
+
+# Triggers updating event modify time
+CREATE OR REPLACE TRIGGER `update_modify_date_for_progress`
+    AFTER UPDATE ON event_progress_update FOR EACH ROW
+    BEGIN
+        UPDATE event, event_progress_update SET event.modify_date=CURRENT_TIMESTAMP WHERE event.id = event_progress_update.id;
+    END;
+
+CREATE OR REPLACE TRIGGER `update_modify_date_for_comment`
+    AFTER UPDATE ON event_ticket_comment FOR EACH ROW
+    BEGIN
+        UPDATE event, event_ticket_comment SET event.modify_date=CURRENT_TIMESTAMP WHERE event.id = event_ticket_comment.id;
+    END;

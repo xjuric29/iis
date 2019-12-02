@@ -12,4 +12,19 @@ session:
 
 
 services:
+	authenticator: App\Model\Authenticator
 	router: App\Router\RouterFactory::createRouter
+
+	# DB functions
+	- App\Model\Image(%wwwDir%)
+	- App\Model\ViewTickets
+	- App\Model\ViewTasks
+	- App\Model\ViewUsers
+	- App\Model\ViewProducts
+	- App\Model\PermissionMap
+	- App\Model\Product
+	- App\Model\TaskProgress
+	- App\Model\TicketComments
+	- App\Model\User
+	- App\Model\Comments
+	- App\Model\UserDetail

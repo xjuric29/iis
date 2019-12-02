@@ -1,0 +1,96 @@
+<!--
+IIS project 2019
+Description: HTML code for homepage.
+Authors: Andrea Fickova (xficko00)
+        Jiri Jurica (xjuric29)
+-->
+
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="../../web-project/www/css/main.css">
+
+    <title>ITS | Task-editmode</title>
+    <link rel="stylesheet" href="../sass/main.scss">
+</head>
+<body>
+<nav class="navbar navbar-expand-xl navbar-dark bg-dark">
+    <div class="container">
+        <div class="col-12">
+            <a class="navbar-brand" href="#">ITS - Issue tracking system</a>
+            <button class="navbar-toggler float-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    <!-- Display item without logged user.
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Log in</a>
+                    </li>
+                    -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            José Manuel Cerqueira Afonso dos Santos
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">My tickets</a>
+                            <a class="dropdown-item" href="#">Profile</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Log out</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="container">
+    <header class="col-12">
+        <h1>Task</h1>
+    </header>
+    <hr>
+    <section id="ticket-detail">
+        <label for="exampleFormControlInput1">Task</label>
+        <input class="form-control" id="exampleFormControlInput1" placeholder="This is name of task">
+
+          <div class="product-setting mt-4">
+            <div class="product-type" id="product">
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1">Product type</label>
+                    <select class="form-control dajaky-select" id="exampleFormControlSelect1">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        </div>
+
+        <label for="exampleFormControlInput1">Estimated time</label>
+        <input class="form-control time-form" placeholder="00:00">
+
+
+        <div id="description-edit">
+            <div class="drop-type mt-4">Description</div>
+            <textarea class="form-control description-edit-field" id="exampleFormControlTextarea1" rows="3">Fusce placerat et erat ac imperdiet. Nunc sed felis sed enim dictum faucibus. Mauris et eleifend turpis. Cras magna arcu, consequat vel faucibus nec, rutrum aliquam turpis. In convallis condimentum sem, a cursus libero ultrices et. Donec auctor metus ut augue eleifend, vitae posuere dui scelerisque. Proin sagittis, sapien quis semper facilisis, felis augue tincidunt nisl, non tincidunt dui est eu nisl. Nullam ipsum felis, dictum nec leo eget, euismod luctus ante. Aliquam efficitur, velit sit amet molestie posuere, neque ipsum sodales enim, id commodo tortor ligula non felis. Pellentesque tristique molestie quam vel porta.
+            </textarea>
+        </div>
+
+        <div id="save-buttons">
+            <a href="ticket_user.html"><button type="button" class="btn btn-primary mt-4 submit-but">Save</button></a>
+            <a href="ticket_user.html"><button type="button" class="btn btn-outline-secondary close-but mt-4">Close</button></a>
+            <button type="button" class="btn btn-danger delete-but mt-4">Delete</button>
+        </div>
+    </section>
+</section>
+</body>
+</html>

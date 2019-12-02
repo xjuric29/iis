@@ -1,7 +1,8 @@
 /*!
  * IIS project 2019
  * Description: Sass code for site styles.
- * Author: Jiri Jurica (xjuric29)
+ * Authors: Andrea Fickova (xficko00)
+ *         Jiri Jurica (xjuric29)
  */
 
 // Bootstrap sass code import.
@@ -17,8 +18,21 @@ $color-button: #d9544f;
   @include button-variant($color-button, $color-button);
 }
 
+
+.container .col-12 {
+  padding: 0;
+}
+
+.alert-flash {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  width: 100%;
+}
+
 section nav div.dropdown a{
-  width: 150px;
+  width: 17em;
   text-align: left;
   position: relative;
 
@@ -27,6 +41,444 @@ section nav div.dropdown a{
     right: 10px;
     top: 15px;
   }
+}
+
+#searchbox-wrapper {
+  margin-top: 1em;
+  width: 100%;
+}
+
+//Table on main page
+table thead tr:first-child th {
+  text-transform: uppercase;
+}
+
+table tr {
+  transition: background-color 0.5s;
+}
+
+table tbody tr td a {
+  font-weight: bold;
+  color: initial;
+}
+
+table tbody tr td a:hover {
+  color: initial;
+}
+
+table tbody tr td a {
+  display: block;
+
+}
+
+#paging {
+  margin-top: 40px;
+}
+
+//Ticked detail
+#ticket-detail {
+  max-width: 50em;
+  margin-top: 0;
+
+  table#ticket-detail-tab {
+    display: flex;
+    flex-grow: 3;
+    border-right: solid 1px;
+  }
+
+  table#ticket-detail-tab tbody tr th {
+    font-weight: normal;
+    width: 10em;
+    vertical-align: top;
+  }
+
+  table#ticket-detail-tab tbody tr td {
+    font-size: 16px;
+  }
+}
+
+#ticket-item {
+  font-size: 16px;
+}
+
+.ticket-detail-table {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-top: 30px;
+}
+
+.ticket-state {
+  padding-left: 10px;
+  margin-bottom: 3px;
+}
+
+.ticked-detail-state {
+  font-weight: bold;
+  text-transform: uppercase;
+  min-width: 100%;
+}
+
+.ticked-side-details {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.initials-bg {
+  color: white;
+}
+
+.comment-wrapper-left {
+  padding-top: 1.6em;
+}
+
+/*.name-user {
+  position: relative;
+  left: 3.6em;
+  top: -30px;
+}*/
+
+/*.date-and-time {
+  position: relative;
+  left: 3.6em;
+  top: -30px;
+}*/
+
+.comment-content {
+  //border-style: solid;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  padding-top: 10px;
+  padding-left: 10px;
+  padding-bottom: 20px;
+  padding-right: 10px;
+  background-color: whitesmoke;
+  margin-left: 3.6em;
+  margin-bottom: 40px;
+  max-width: 40em;
+}
+
+.comment-user-info { //left side
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.comment-user-info-right {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.circle-right, .circle-left {
+  width: 40px;
+  height: 40px;
+  background-color: #212529;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.comment-content-right {
+  border-top-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  padding-top: 10px;
+  padding-left: 10px;
+  padding-bottom: 20px;
+  padding-right: 10px;
+  background-color: whitesmoke;
+  margin-left: auto;
+  margin-right: 3.6em;
+  margin-bottom: 20px;
+  max-width: 40em;
+}
+
+.name-date-right {
+  text-align: right;
+  margin-right: 0.7em;
+  //margin-bottom: 5px;
+  //margin-top: -30px;*/
+}
+
+.name-date-left {
+  margin-left: 0.7em;
+}
+
+.header-detail-task {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  .task-ticket-name {
+    justify-items: flex-start;
+  }
+
+  #edit-create-buttons {
+    justify-items: flex-end;
+
+    .edit-butt {
+      color: #4e555b;
+      display: flex;
+      align-items: flex-start;
+
+      div {
+        margin-right: 5px;
+      }
+    }
+  }
+}
+
+
+.edit-butt:hover {
+  color: dodgerblue;
+}
+
+.edit-ticket-button {
+  display: flex;
+  align-items: flex-start;
+
+  div {
+    margin-right: 5px;
+    color: #4e555b;
+  }
+}
+
+.comment-field {
+  color: #b3b7bb;
+  padding-top: 5px;
+  padding-left: 5px;
+  margin-top: 15px;
+  margin-bottom: 20px;
+}
+
+img.attach-img {
+  max-width: 200px;
+}
+
+//Ticked editmode
+.drop-type {
+  margin-bottom: 0.5rem;
+}
+
+.drop-product {
+  max-width: 20em;
+}
+
+.product-type {
+  max-width: 100%;
+}
+
+.product-dropdown {
+  width: 20em;
+  text-align: left;
+}
+
+.drop-for-product{
+ width: 25em;
+ text-align: left;
+}
+
+.drop-flex {
+  width: 25em;
+}
+
+#task-name {
+  font-style: italic;
+  font-weight: normal;
+  color: #212529;
+}
+
+#undefined {
+  font-weight: normal;
+  font-style: italic;
+}
+
+section#ticket-detail .dropdown-toggle::after { //"arrow/triangle" position in dropdown
+  position: absolute;
+  right: 10px;
+  top: 15px;
+}
+
+#description-edit {
+  display: inline-block;
+  width: 100%;
+}
+
+.description-edit-field {
+  padding-top: 5px;
+  padding-left: 5px;
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
+
+
+.choose-file {
+  background-color: #b3b7bb;
+}
+
+#no-file {
+  color: #b3b7bb;
+  font-style: italic;
+}
+
+#save-buttons {
+  display: flex;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.close-but {
+  margin-right: 2em;
+}
+
+.submit-but {
+  margin-right: 2em;
+}
+
+//ticket_detail.html
+#edit-create-buttons {
+  display: flex;
+  justify-content: flex-end;
+
+  #edit-butt-notalone{
+    margin-right: 1em;
+  }
+}
+
+//Homepage loggedout
+
+.dropdown-login-form:hover {
+  background: none;
+  color: #212529;
+}
+
+.dropdown-forgotten-pswd {
+  margin-left: 1.5em;
+  padding-bottom: 1em;
+  font-style: italic;
+  color: #212529;
+}
+
+.dropdown-login-button {
+  background-color: dodgerblue;
+  height: 40px;
+  padding-top: 0.6em;
+  text-transform: uppercase;
+  text-align: center;
+  color: white;
+}
+
+.dropdown-login-button:hover{
+  background-color: #1d7ade;
+  color: white;
+}
+
+.dropdown-error-msg {
+  color: red;
+  padding-left: 1.7em;
+  font-size: 12px;
+  padding-bottom: 1em;
+}
+
+.dropdown-menu-right {
+  padding-bottom: 0;
+}
+
+.dropdown-menu {
+  overflow: hidden;
+}
+
+//Task Editmode
+.product-setting {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+  justify-content: space-between;
+
+  #product {
+    justify-content: flex-start;
+    width: 100%;
+  }
+
+  #subproduct {
+    justify-content: flex-end;
+  }
+}
+
+.time-form {
+  width: 5em;
+}
+
+.activity-notes {
+  margin-left: 3.6em;
+}
+
+.activity-item {
+  padding-right: 2em;
+}
+
+.attached-images img.image1 {
+  object-fit: cover;
+  width:150px;
+  height:150px;
+  margin-top: 10px;
+  margin-right: 15px;
+
+}
+
+.attached-images {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.browse-but {
+  margin-top: 20px;
+}
+
+.image-pair {
+  position: relative;
+  top: 0;
+  left: 0;
+}
+
+.remove-img {
+  position: absolute;
+  top: 2%;
+  left: 84%;
+  width: 1.4em;
+  height: 1.4em;
+  transition: width 0.3s, height 0.3s;
+}
+
+.remove-img:hover {
+  width: 1.6em;
+  height: 1.6em;
+
+  //transition-delay: 0.2s;
+}
+
+
+
+.svg-icons {
+  width: 16px;
+  height: 16px;
+}
+
+.dajaky-select {
+  width: 100%;
+}
+
+.inside-comm-box {
+  display: flex;
+  align-items: flex-start;
+}
+
+table.noted-activity tr th {
+  font-weight: normal;
 }
 
 section { // Main content of the site.
@@ -39,19 +491,237 @@ section { // Main content of the site.
   }
 }
 
+//Ticket manager
+.dropdown-state {
+  width: 8em;
+  text-align: left;
+}
+
+//Task detail
+#activity-date-time {
+  display: flex;
+  align-items: start;
+  //justify-content: space-between;
+  margin-top: 20px;
+
+  #activity-date {
+    align-items: flex-start;
+    width: 12em;
+    margin-right: 3em;
+  }
+
+  #activity-time{
+    align-items: flex-end;
+    width: 5em;
+    margin-right: 3em;
+  }
+  #activity-time2 {
+    width: 5em;
+  }
+}
+
+.noted-activity {
+  border-right: 0px;
+}
+
+//Users detail edit
+#exampleFormControlInput4 {
+  width: 20em;
+}
+
+//User table
+.action-buttons {
+  display: flex;
+  align-content: flex-start;
+  margin-bottom: 1em;
+}
+
+.supervisor-options {
+  margin-right: 3em;
+}
+
+//User profile
+.name-surname {
+  border-left: solid 1px;
+  padding-left: 2em;
+}
+
+.profile-name {
+  text-transform: uppercase;
+}
+
+#profile-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+
+  .edit-but-2 {
+    display: flex;
+    color: #4e555b;
+
+    #edit-text {
+      margin-right: 0.5em;
+    }
+  }
+}
+
+//Products table
+.subproduct-name {
+  font-weight: bolder;
+}
+
+.name-href {
+  font-weight: normal;
+  color: #212529;
+}
+
+.problem {
+  margin-top: 50px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  img#sad-image {
+    height: 20em;
+    margin-bottom: 20px;
+  }
+}
+
+#sad-text {
+  font-style: italic;
+}
+
+
+//Footer settings
+footer {
+  background: #343a40;
+}
+
+.footer-creators {
+  color: white;
+}
+
+.name-href-foot {
+  font-weight: normal;
+  color: white;
+  margin-right: 3em;
+}
+
+.authors-foot {
+  text-transform: uppercase;
+  font-weight: bold;
+  a {
+    color:white;
+  }
+
+  a:hover {
+    text-decoration: none;
+    color: red;
+  }
+}
+
+.name-href-foot:hover {
+  color: #FF0028;
+  text-decoration: none;
+}
+
+.authors-foot2 {
+  text-transform: uppercase;
+}
+
+
+#table-body-foot {
+}
+
+.white-line {
+  background: white;
+}
+
+#footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  vertical-align: center;
+  width: 85%;
+  margin: 0 auto;
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+#footer-school img {
+  margin-top: 10px;
+  width: 150px;
+}
+
+.svg-opacity {
+  opacity: 50%;
+  width: 12px;
+  height: 12px;
+}
+
+#footer-VIP-margin {
+  margin-top: 200px;
+}
+
+.dajaky-select-small {
+  width: 20em;
+}
+
+.activity-wrapper {
+  border-left: solid 1px;
+  padding-left: 10px;
+}
+
+
+// Tables columns
+
+.icon-col {
+  width: 2%;
+}
+
+.second-col {
+  width: 30em;
+}
+
+.name-col {
+  width: 15%;
+}
+
+.state-col, .login-col, .role-col {
+  width: 10%;
+}
+
+.date-col {
+ width: 13%;
+}
+
+.product-col {
+  width: 15%;
+}
+
+.email-col {
+  width: 20%;
+}
+
 // Extended tablet rules.
 @media (min-width: map-get($grid-breakpoints, lg)) {
-
+  #searchbox-wrapper {
+    margin-top: 0;
+    width: 35%;
+    min-width: 250px;
+  }
 }
 
 // Extended computer rules.
 @media (min-width: map-get($grid-breakpoints, xl)) {
   .navbar {
-    height: 180px;
+    height: 130px;
 
     .container {
       .col-12 {
         display: flex;  // Keep elements in navbar in same row.
+        padding: 0;
 
         .navbar-brand {
           font-size: 2.5em; // Size of project name in header.
@@ -62,6 +732,11 @@ section { // Main content of the site.
         }
       }
     }
+  }
+
+  #searchbox-wrapper {
+    margin-top: 0;
+    width: 40%;
   }
 }
 

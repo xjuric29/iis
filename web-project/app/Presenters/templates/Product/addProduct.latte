@@ -1,0 +1,21 @@
+{block title}
+    ITS | Add product
+{/block}
+{block content}
+    <section class="container">
+        <header class="col-12">
+            <h1>Product</h1>
+        </header>
+        <hr>
+        <section id="ticket-detail">
+            {form product}
+                <label n:name="name">Product name:</label>
+                <input n:name="name" class="form-control" id="exampleFormControlInput1" placeholder="Name of product">
+                <div id="save-buttons">
+                    <button type="submit" class="btn btn-primary mt-4 submit-but">Save</button>
+                    <a n:href="Products:" class="btn btn-outline-secondary close-but mt-4">Cancel</a>
+                </div>
+            {/form}
+        </section>
+    </section>
+{/block}

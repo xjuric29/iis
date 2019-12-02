@@ -1,0 +1,73 @@
+{block title}ITS | User ...{/block}
+
+{block content}
+    {ifset $invalidUser}
+        {include nothingHere}
+    {elseif $userInfo['role'] > 0}
+        <section class="container">
+            <header class="col-12">
+                <h1>User profile</h1>
+            </header>
+            <hr>
+            <section id="ticket-detail">
+                <div id="profile-header">
+                    <div class="name-surname">
+                        <div class="what-name ticket-item">Name</div>
+                        <h2 class="profile-name">{$userDetails['first_name']}</h2>
+                        <div class="what-name ticket-item">Surname</div>
+                        <h2 class="profile-name">{$userDetails['surname']}</h2>
+                    </div>
+                    {if $userInfo['login'] == $userDetails['id'] || $userInfo['role'] == 5}
+                        <a n:href="UserDetail:edit userid => $userDetails['id']" class="edit-but-2">
+                            <div id="edit-text">Edit</div>
+                            <div id="edit-icon"><img src="/img/static/edit.svg" class="svg-icons"  alt="Edit"></div>
+                        </a>
+                    {/if}
+                </div>
+
+                <!-- <hr> -->
+                <div class="ticket-detail-table">
+                    <table id="ticket-detail-tab" class="name-detail-tab" style="border: 0">
+                        <tbody>
+                        <tr>
+                            <th class="ticket-item">Login:</th>
+                            <td>{$userDetails['id']}</td>
+                        </tr>
+                        <tr>
+                            <th class="ticket-item">Email:</th>
+                            <td>{$userDetails['mail']}</td>
+                        </tr>
+                        <tr>
+                            <th class="ticket-item">Role:</th>
+                            {if $userType == "worker"}
+                                <td>
+                                    {if $userDetails['role'] == "administrator"}
+                                        Administrator
+                                    {elseif $userDetails['role'] == "manager"}
+                                        Manager
+                                    {elseif $userDetails['role'] == "superior"}
+                                        Supervisor
+                                    {else}
+                                        Employee
+                                    {/if}
+                                </td>
+                            {else}
+                                <td>Customer</td>
+                            {/if}
+                        </tr>
+                        {if $userType == "worker"}
+                            <tr>
+                                <th class="ticket-item">Supervisor:</th>
+                                <td>{$supervisor}</td>
+                            </tr>
+                        {/if}
+                        </tbody>
+                    </table>
+
+                </div>
+            </section>
+        </section>
+    {else}
+        {include insufficientPermissions}
+    {/ifset}
+{/block}

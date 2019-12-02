@@ -1,0 +1,95 @@
+{block title}ITS | Tasks{/block}
+
+{block content}
+    {if $userInfo['role'] > 1}
+        <section class="container">
+            <header class="col-12">
+                <h1>Tasks</h1>
+                {if $userInfo['role'] > 2}
+                    <a class="btn btn-our float-right" n:href="Task:add" role="button">Add task</a>
+                {/if}
+            </header>
+            <hr>
+            <nav class="d-flex flex-wrap justify-content-between">
+                {if $rowCount > 0}
+                    <div class="dropdown">
+                        <a class="btn dropdown-toggle border" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Sort by
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <a class="dropdown-item" n:href=": orderBy => 'name', orderDir => 'desc'">Name descending</a>
+                            <a class="dropdown-item" n:href=": orderBy => 'name', orderDir => 'asc'">Name ascending</a>
+                            <a class="dropdown-item" n:href=": orderBy => 'cret', orderDir => 'desc'">Creator descending</a>
+                            <a class="dropdown-item" n:href=": orderBy => 'cret', orderDir => 'asc'">Creator ascending</a>
+                            <a class="dropdown-item" n:href=": orderBy => 'ass', orderDir => 'desc'">Assignee descending</a>
+                            <a class="dropdown-item" n:href=": orderBy => 'ass', orderDir => 'asc'">Assignee ascending</a>
+                        </div>
+                    </div>
+                {/if}
+                <div id="searchbox-wrapper">
+                    {form search}
+                        <div class="input-group mb-3">
+                            <input n:name="searchBox" type="text" class="form-control" placeholder="Search task names and descriptions..." aria-label="Search task names and descriptions..." aria-describedby="button-addon2">
+                            <div class="input-group-append">
+                                <button  n:name="searchButton" class="btn btn-outline-secondary" type="submit" id="button-addon2">Search</button>
+                            </div>
+                        </div>
+                    {/form}
+                </div>
+
+            </nav>
+
+            {if $rowCount == 0}
+                {ifset $_GET['search']}
+                    {include nothingFound}
+                {else}
+                    {include nothingHere}
+                {/ifset}
+            {else}
+                <table class="table table-hover table-responsive-md">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th scope="col" class="first-col">Task</th>
+                        <th scope="col" class="name-col">Assignee</th>
+                        <th scope="col" class="product-col">Ticket</th>
+                        <th scope="col" class="state-col">State</th>
+                        <th scope="col" class="name-col">Creator</th>
+                        <th scope="col" class="icon-col"></th>
+                        <th scope="col" class="icon-col"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr n:foreach="$taskList as $task">
+                        <td>
+                            <a n:href="Task: $task->id">{$task->name}</a>
+                            <div>{$task->description|truncate:160}</div>
+                        </td>
+                        <td>
+                            <a n:href="UserDetail: userid => $task->worker">{$task->ref(user, worker)->first_name} {$task->ref(user, worker)->surname}</a>
+                        </td>
+                        <td>
+                            <a n:href="Ticket: id => $task->ref(ticket, ticket)->id" title="{$task->ref(ticket, ticket)->name}">{$task->ref(ticket, ticket)->name|truncate:40}</a>
+                        </td>
+                        <td>
+                            {if $task->state == "to_do"}
+                                New
+                            {elseif $task->state == "in_progress"}
+                                In progress
+                            {else}
+                                Done
+                            {/if}
+                        </td>
+                        <td><a n:href="UserDetail: userid => $task->author">{$task->ref('user', 'author')->first_name} {$task->ref('user', 'author')->surname}</td>
+                        <td><a n:href="Task:edit id => $task->id"><img src="/img/static/edit.svg" class="svg-icons" alt="Edit" ></a></td>
+                        <td><a n:href="Task:delete id => $task->id"><img src="/img/static/remove.svg" class="svg-icons"  alt="Delete"></a></td>
+                    </tr>
+                    </tbody>
+                </table>
+            {/if}
+
+            {include paging}
+        </section>
+    {else}
+        {include insufficientPermissions}
+    {/if}
+{/block}
